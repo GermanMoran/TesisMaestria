@@ -72,30 +72,101 @@ class LinearRegession():
 
     def CalcularModeloLR(self):
         # alpha=0.1, l1_ratio=0.97
-        print(self.alpha)
-        print(self.l1_ratio)
         Y = self.df.RDT_AJUSTADO
         X = self.df.drop(["RDT_AJUSTADO","ID_LOTE"], axis=1) 
         modelElasticNet = ElasticNet(alpha=self.alpha, l1_ratio=self.l1_ratio)
         model = modelElasticNet.fit(X,Y)
         r_2 = model.score(X,Y)
-        return [model, r_2]
+        # Pedicciones
+        yhat = model.predict(X)
+
+        return [model, r_2, yhat]
 
 
 class CLR():
-    def __init__(self, df, alpha, l1_ratio):
+
+    def __init__(self, df, yhat):
         self.df = df
-        self.alpha = alpha
-        self.l1_ratio = l1_ratio
+        self.yhat = yhat
+
+    
+    def calcularMAE(self):
+        EPA = 0
+        Acumulador = 0
+        accepted_average_error= []
+        self.df["yhat"]= pd.Series(yhat)
+        self.df["EA"] = abs(self.df.RDT_AJUSTADO - self.df.yhat)
+        self.df_ordely = self.df.sort_values(by=['EA'],ascending=True).reset_index()
+
+        # We calculated MAE
+        for i in range(len(self.df_ordely)):
+            Acumulador = Acumulador + self.df_ordely.loc[i].EA
+            EPA = Acumulador/(i+1)
+            accepted_average_error.append(EPA)
+        
+        # we agregate the average to dataset ordely
+        self.df_ordely["MAE"] = pd.Series(accepted_average_error)
+        #self.df_ordely.to_excel("../Archivos Generados/PipelineResults/DatasetOrdenadoMAE.xlsx")
+        #self.df.to_excel("../Archivos Generados/PipelineResults/DatasetOriginal.xlsx")
+        return self.df_ordely
     
 
 
+def DeleteRecordsGroup(Group, df):
+    indexEliminar = list(Group["index"])
+    df_new = df[df.index.isin(indexEliminar)== False]
+    return df_new
 
-# Dataset a trabajar
+
+
+# Variables Globales
+# =========================================================================================
+Minimum_records = 80
+minimum_correlation= 0.88
+MAE_Allowed = 45
+group_acepted = []
+model_acepted = []
+additional_average_error = 50
+contador = 0
+
+
+
+#  FASE 1
+# =========================================================================================
+
 dataset = OneHotCoding(df,bin_features).dummyCodification()
 print(dataset.RDT_AJUSTADO)
-modellr, r_2 = LinearRegession(dataset, 0.1, 0.97).CalcularModeloLR()
-print("Ajuste del Modelo dataset Completo: ", r_2)
+while (len(dataset) !=0):
+    contador = contador+1
+    print("Tamaño del dataset: ", dataset.shape)
+    modellr, r_2, yhat = LinearRegession(dataset, 0.1, 0.97).CalcularModeloLR()
+    print("Ajuste del Modelo dataset Completo: ", r_2)
+    DatasetOrdely = CLR(dataset,yhat).calcularMAE()
+    group = DatasetOrdely.loc[DatasetOrdely.MAE < MAE_Allowed]
+    if (len(group) >= Minimum_records):
+            print("El grupo cumple minimo de registros")
+            group = group.drop(["yhat","EA","MAE"], axis=1)
+            dataset = dataset .drop(["yhat","EA"], axis=1)
+            group_model, r2_group_mode, yhat_group = LinearRegession(group,0.1,0.97).CalcularModeloLR()
+            print(f"R2 del grupo {contador}: ",r2_group_mode)
+            if(r2_group_mode >= 0.88):
+                # Elimino los registros para la siguiente iteración
+                dataset = DeleteRecordsGroup(group, dataset)
+                group = group.drop(['index'], axis=1)
+                group_acepted.append(group)
+                model_acepted.append(group_model)
+                group.to_excel(f"../Archivos Generados/PipelineResults/Grupo{contador}.xlsx")
+                MAE_Allowed = MAE_Allowed + additional_average_error
+            else:
+                break  
+    else:
+        Orphans = dataset
+        print("Logitud Huerfanos: ", Orphans.shape)
+        # Aqui hay que eliminar columnas EA , yhat
+        Orphans.to_excel("../Archivos Generados/PipelineResults/Huerfanos.xlsx")
+        break
 
 
+#  FASE 2
+# ==================================================================================================
 

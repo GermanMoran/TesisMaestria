@@ -118,6 +118,14 @@ def DeleteRecordsGroup(Group, df):
     return df_new
 
 
+def compareCorrelation(CorelacionGruposCalidad, nuevaCorrelation, listaGrupos):
+    lista_grupos = listaGrupos
+    arr = np.array(nuevaCorrelation) -np.array(CorelacionGruposCalidad)
+    position = np.where(arr == np.amax(arr))
+    indexGrupoModificar = position[0][0]
+    lista_grupos.pop(indexGrupoModificar)
+    return lista_grupos, indexGrupoModificar
+
 
 # Variables Globales
 # =========================================================================================
@@ -125,6 +133,7 @@ Minimum_records = 80
 minimum_correlation= 0.88
 MAE_Allowed = 45
 group_acepted = []
+correlation_model =[]
 model_acepted = []
 additional_average_error = 50
 contador = 0
@@ -155,12 +164,14 @@ while (len(dataset) !=0):
                 group = group.drop(['index'], axis=1)
                 group_acepted.append(group)
                 model_acepted.append(group_model)
+                correlation_model.append(r2_group_mode)
                 group.to_excel(f"../Archivos Generados/PipelineResults/Grupo{contador}.xlsx")
                 MAE_Allowed = MAE_Allowed + additional_average_error
             else:
                 break  
     else:
         Orphans = dataset
+        Orphans = Orphans.drop(["yhat", "EA"],axis=1).reset_index(drop=True)
         print("Logitud Huerfanos: ", Orphans.shape)
         # Aqui hay que eliminar columnas EA , yhat
         Orphans.to_excel("../Archivos Generados/PipelineResults/Huerfanos.xlsx")
@@ -170,3 +181,36 @@ while (len(dataset) !=0):
 #  FASE 2
 # ==================================================================================================
 
+# Control Variables
+GruposCalidad = group_acepted
+CorelacionGruposCalidad = correlation_model
+print(f"Grupo Calidad 1: {len(GruposCalidad[0])} , Grupo de Calidad 2: {len(GruposCalidad[1])}, Grupo de Calidad 3: {len(GruposCalidad[2])}")
+
+listaGrupos = [0, 1, 2]
+nuevaCorrelation= []
+
+for register in range(len(Orphans)):
+    for group in range(len(GruposCalidad)):
+        GruposCalidad[group] = GruposCalidad[group].append(Orphans.loc[0], ignore_index = True)
+        new_mode, new_r2, new_that = LinearRegession(GruposCalidad[group],0.1, 0.97).CalcularModeloLR()
+  
+        nuevaCorrelation.append(new_r2)
+        
+
+
+    lista_id_grupos_retirar, index = compareCorrelation(CorelacionGruposCalidad, nuevaCorrelation, listaGrupos)
+    CorelacionGruposCalidad[index] = nuevaCorrelation[index]
+    nuevaCorrelation = []
+    listaGrupos = [0, 1, 2]
+ 
+    for i in lista_id_grupos_retirar:
+        GruposCalidad[i].drop([len(GruposCalidad[i]) -1 ],axis=0, inplace=True)
+
+    Orphans.drop([0],axis=0, inplace=True)
+    Orphans = Orphans.reset_index(drop=True)
+
+
+
+print(f"Grupo Calidad 1: {len(GruposCalidad[0])} , Grupo de Calidad 2: {len(GruposCalidad[1])}, Grupo de Calidad 3: {len(GruposCalidad[2])}")
+print("Correlacion grupos finales: ", CorelacionGruposCalidad)
+    

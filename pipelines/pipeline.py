@@ -74,7 +74,7 @@ class LinearRegession():
         # alpha=0.1, l1_ratio=0.97
         Y = self.df.RDT_AJUSTADO
         X = self.df.drop(["RDT_AJUSTADO","ID_LOTE"], axis=1) 
-        modelElasticNet = ElasticNet(alpha=self.alpha, l1_ratio=self.l1_ratio)
+        modelElasticNet = ElasticNet(alpha=self.alpha, l1_ratio=self.l1_ratio, random_state=123)
         model = modelElasticNet.fit(X,Y)
         r_2 = model.score(X,Y)
         # Pedicciones
@@ -118,10 +118,11 @@ def DeleteRecordsGroup(Group, df):
     return df_new
 
 
+
 def compareCorrelation(CorelacionGruposCalidad, nuevaCorrelation, listaGrupos):
     lista_grupos = listaGrupos
-    arr = np.array(nuevaCorrelation) -np.array(CorelacionGruposCalidad)
-    position = np.where(arr == np.amax(arr))
+    arr =  np.array(CorelacionGruposCalidad) - np.array(nuevaCorrelation)
+    position = np.where(arr == np.amin(arr))
     indexGrupoModificar = position[0][0]
     lista_grupos.pop(indexGrupoModificar)
     return lista_grupos, indexGrupoModificar
@@ -144,7 +145,7 @@ contador = 0
 # =========================================================================================
 
 dataset = OneHotCoding(df,bin_features).dummyCodification()
-print(dataset.RDT_AJUSTADO)
+#print(dataset.RDT_AJUSTADO)
 while (len(dataset) !=0):
     contador = contador+1
     print("Tamaño del dataset: ", dataset.shape)
@@ -185,6 +186,7 @@ while (len(dataset) !=0):
 GruposCalidad = group_acepted
 CorelacionGruposCalidad = correlation_model
 print(f"Grupo Calidad 1: {len(GruposCalidad[0])} , Grupo de Calidad 2: {len(GruposCalidad[1])}, Grupo de Calidad 3: {len(GruposCalidad[2])}")
+print("Correlaciones Grupos de calidad: ", CorelacionGruposCalidad)
 
 listaGrupos = [0, 1, 2]
 nuevaCorrelation= []
@@ -211,6 +213,12 @@ for register in range(len(Orphans)):
 
 
 
+
 print(f"Grupo Calidad 1: {len(GruposCalidad[0])} , Grupo de Calidad 2: {len(GruposCalidad[1])}, Grupo de Calidad 3: {len(GruposCalidad[2])}")
 print("Correlacion grupos finales: ", CorelacionGruposCalidad)
-    
+print("Longitud de los huerfanos: ", len(Orphans))
+
+# Guardamos los grupos de calidad definitivos
+GruposCalidad[0].to_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo1.xlsx")
+GruposCalidad[1].to_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo2.xlsx")
+GruposCalidad[2].to_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo3.xlsx")

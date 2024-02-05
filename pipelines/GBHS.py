@@ -1,4 +1,5 @@
 # Librerias y Dependencias
+import random
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
@@ -33,8 +34,8 @@ def build_groups_quality():
 
 
 
-# Funcion para Normlizar la vista minable a exepción de la etiqueta objetivo
-def Normalize_view_minable():
+# Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
+def Normalize_view_minable(df):
     norm = MinMaxScaler()
     df_norm = norm.fit_transform(df.values[:,:-1])
     return df_norm
@@ -46,10 +47,11 @@ def Normalize_view_minable():
 
 '''
 w: Longitud del vector de pesos, igual al numero de caracteristicas normalizadas.
+nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50]
 '''
-def generarVectorPesos(w):
+def generarVectorPesos(w, nc):
     # Se seleccionan diferentes posiciones(50) para hacerce cero.
-    posceros = np.random.choice(len(w), 50, replace=False)
+    posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
     #print(w)
     s  = np.sum(w)
@@ -71,7 +73,7 @@ df_norm: Dataset Normalizado.
 wi: Vector de Pesos.
 '''
 
-# Dependeindo del vector de pesos me extrae el acuracy - F1 score
+# Dependiendo del vector de pesos me extrae el acuracy - F1 score
 def qualityFunction(df_norm, wi):
     # Vector Distancias Euclideanas Ponderadas
     y_pred = []
@@ -104,22 +106,21 @@ def GenerateArmonyMemory(df_norm, MAC):
     for i in range (MAC):
         # 1. Generar pesos aleatorios | dim = cantidad de caracteristicas
         vp = np.random.rand(df_norm.shape[1])
-        wi = generarVectorPesos(vp)
+        wi = generarVectorPesos(vp, 50)
         # 2. Se obtiene el fitnes asociados a esos pesos.
         Qs = qualityFunction(df_norm, wi)
         wiq = np.append(wi, Qs)
         Lw.append(wiq)
 
     
-    # Se obtiene la memoria armonica ordenada de  Mayor- Menor
-    MA = Lw.sort(key=lambda x: x[-1], reverse=True)
-    return MA
+    # Se obtiene la memoria armonica ordenada de  Mayor- Menor (Deacuerdo al fitnes)
+    Lw.sort(key=lambda x: x[-1], reverse=True)
+    return Lw
 
 
-df = build_groups_quality()
 
 
-############################## PROCESO DE IMPROVISACIÓN ######################################
+
 '''
 lmp: Numero de improvisaciones (iteraciones) que realiza GBHS.
 P: Numero de Atributos
@@ -129,7 +130,70 @@ ParMax: Tasa de ajuste de tono máxima.
 hmns: Tamaño de la memoria armonica.
 '''
 lmp = 10
-P= len(MA[0])
-HMRC = 0.85
-PAR = 0.35              #[0.1, 0.12, 0.13 , 0.40]
-hmns = 5                #Tamaño de la memoria armonica
+#P=len(MA[0])                                       # Numero de Atributos | Caracteristicas  
+HMRC = 0.85                                         # Tasa de Consideración
+PAR =  0.35#[0.1,0.25, 0.35, 0.40]                        #[0.1, 0.12, 0.13 , 0.40]
+hmns = [5,10,15,20]                                 #Tamaño de la memoria armonica
+
+
+# Se contruyen los grupos de calidad
+df = build_groups_quality()
+# Se Normaliza el df
+df_norm = Normalize_view_minable(df)
+
+
+for hmn in hmns:
+
+   # Se genera la memoria Armonica - diferentes tamaños
+    MA = GenerateArmonyMemory(df_norm,hmn)
+    #print(MA)
+    P=len(MA[0]) 
+    curva = []
+    for i in range (lmp):
+        print(f"Iteracion {i}")
+        pesosAleatorios = np.random.rand(P-1)
+        # print("Vector de Pesos: ", pesosAleatorios)
+        # Donde P es el numero de variables
+        for j in range(P-1):
+            Aleatorio1 = random.random() 
+            if (Aleatorio1 < HMRC):
+                # pma: Numero entrero entre 0 y (hmns -1)
+                # hmns: Tamaño de la memoria armonica
+                pma = random.randint(0, hmn-1)
+                pesosAleatorios[j]= MA[pma][j]
+
+                Aleatorio2 = random.random()
+                if Aleatorio2 < PAR:
+                    # Se toma el valor de la mejor armonia
+                    pesosAleatorios[j] = MA[0][j]
+            
+            else:
+
+                Aleatorio3 = random.random()/(P/2)
+                pesosAleatorios[j] = Aleatorio3
+        
+        # Fin primer for - Conformación vector de pesosS
+        wf = generarVectorPesos(pesosAleatorios, 50)
+        fitnes = qualityFunction(df_norm, wf)
+        print("Funcion de calidad: ", fitnes)
+
+
+        # Remplazo
+        if MA[hmn -1][P-1] < fitnes:
+            # Creo el nuevo registro y  remplazo por el peor
+            new_register = np.append(wf, fitnes)
+            # Remplazo
+            MA[hmn-1] = new_register
+            # Ordeno la Armonia
+            print("------------------------------------")
+            MA.sort(key=lambda x: x[-1], reverse=True)
+        
+        else:
+            print("La funcion de calidad del ultimo armonico  es mejor que el fitnes")
+        
+        curva.append(MA[0][P-1])
+
+
+
+    # Curva de las iteraciones vs
+    print(f"Tamaño de la memoria{hmn}, y valores asociados", curva)

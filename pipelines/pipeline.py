@@ -142,7 +142,7 @@ contador = 0
 
 
 #  FASE 1
-# =========================================================================================
+# ========================================================================================================
 
 dataset = OneHotCoding(df,bin_features).dummyCodification()
 #print(dataset.RDT_AJUSTADO)
@@ -153,6 +153,7 @@ while (len(dataset) !=0):
     print("Ajuste del Modelo dataset Completo: ", r_2)
     DatasetOrdely = CLR(dataset,yhat).calcularMAE()
     group = DatasetOrdely.loc[DatasetOrdely.MAE < MAE_Allowed]
+    #print(f"Longitud de grupo{contador}: ", len(group))
     if (len(group) >= Minimum_records):
             print("El grupo cumple minimo de registros")
             group = group.drop(["yhat","EA","MAE"], axis=1)
@@ -169,15 +170,23 @@ while (len(dataset) !=0):
                 group.to_excel(f"../Archivos Generados/PipelineResults/Grupo{contador}.xlsx")
                 MAE_Allowed = MAE_Allowed + additional_average_error
             else:
+                print("No cumple con la correlacion")
+                Orphans = dataset
+                # Se eliminan las variables de trtamiento [yhat, EA]
+                Orphans = Orphans.drop(["yhat", "EA"],axis=1).reset_index(drop=True)
+                print("Logitud Huerfanos: ", Orphans.shape)
                 break  
     else:
         Orphans = dataset
+        # Se eliminan las variables de trtamiento [yhat, EA]
         Orphans = Orphans.drop(["yhat", "EA"],axis=1).reset_index(drop=True)
         print("Logitud Huerfanos: ", Orphans.shape)
-        # Aqui hay que eliminar columnas EA , yhat
+        # Se guardan los huerfanos en un archivo.
         Orphans.to_excel("../Archivos Generados/PipelineResults/Huerfanos.xlsx")
         break
 
+
+#print("Correlaciones: ", correlation_model)
 
 #  FASE 2
 # ==================================================================================================

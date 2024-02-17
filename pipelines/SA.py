@@ -14,6 +14,8 @@ from math import e
 
 print("Numero Aleatorio Flotante:", sys.float_info.max)
 print("Euler: ", e)
+
+
 # Funcion para construir el dataset - Asociado a los respectivos grupos
 def build_groups_quality():
     GC1 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo1.xlsx",index_col=0)
@@ -36,7 +38,7 @@ def build_groups_quality():
 
 
 # Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
-def Normalize_view_minable(df):
+def normalize_view_minable(df):
     norm = MinMaxScaler()
     df_norm = norm.fit_transform(df.values[:,:-1])
     return df_norm
@@ -50,7 +52,7 @@ def Normalize_view_minable(df):
 w: Longitud del vector de pesos, igual al numero de caracteristicas normalizadas.
 nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50]
 '''
-def generarVectorPesos(w, nc):
+def generar_vector_pesos(w, nc):
     # Se seleccionan diferentes posiciones(50) para hacerce cero.
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
@@ -75,7 +77,7 @@ wi: Vector de Pesos.
 '''
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
-def qualityFunction(df_norm, wi):
+def quality_function(df_norm, wi):
     # Vector Distancias Euclideanas Ponderadas
     y_pred = []
     minDep = sys.float_info.max
@@ -103,35 +105,39 @@ Recocido Simulado (Simulated Annealing, SA)
 
 # Se contruyen los grupos de calidad
 df = build_groups_quality()
-# Se Normaliza el df
-df_norm = Normalize_view_minable(df)
+df_norm = normalize_view_minable(df)
 
 temperature = 10
 
 # Generar pesos aleatorios 
 p = np.random.rand(174)
-s= generarVectorPesos(p,10)
-qs= qualityFunction(df_norm, s)
+s= generar_vector_pesos(p,10)
+qs= quality_function(df_norm, s)
 best = s
-qbest = qualityFunction(df_norm, best)
+qbest = quality_function(df_norm, best)
 print(f"Calidad s: {qs}")
 print(f"Calidad qbest: {qbest}")
 
 for t in range(temperature):
     #------- r = tweks(s) ------------
     temp = temperature-t
-    rv = np.random.rand(10)
-    r= generarVectorPesos(rv,10)
-    qr= qualityFunction(df_norm, r)
+    rv = np.random.rand(174)
+    r= generar_vector_pesos(rv,10)
+    qr= quality_function(df_norm, r)
     print("Calidad de r: ", qr)
     aleatorio = np.random.rand()
+    print((aleatorio < e**((qr-qs)/temp)))
+    print(" Termino 2: ",  e**((qr-qs)/temp))
     if (qr >= qs) or (aleatorio < e**((qr-qs)/temp)):
         s=r
+        qs = qr
     
     # Verficamos el remplazo
     if qs < qbest:
         best = s
+        qbest=qs
     
 
+print("Best Final: ", qbest)
 
 

@@ -53,6 +53,7 @@ def generarVectorPesos(w, nc):
     # Se seleccionan diferentes posiciones(50) para hacerce cero.
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
+    w = np.round(w,3)
     #print(w)
     s  = np.sum(w)
     # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
@@ -84,7 +85,8 @@ def qualityFunction(df_norm, wi):
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
-                dE = np.sqrt(np.sum(ri))
+                #dE = np.sqrt(np.sum(ri))
+                dE = np.sum(ri)
                 if dE < minDep:
                     posMinDep=j
                     minDep = dE
@@ -129,12 +131,12 @@ ParMin: Tasa de ajuste de tono mínima.
 ParMax: Tasa de ajuste de tono máxima.
 hmns: Tamaño de la memoria armonica.
 '''
-lmp = 10
+lmp = 20
 #P=len(MA[0])                                       # Numero de Atributos | Caracteristicas  
 HMRC = 0.85                                         # Tasa de Consideración
-PAR =  0.35#[0.1,0.25, 0.35, 0.40]                        #[0.1, 0.12, 0.13 , 0.40]
-hmns = [5,10,15,20]                                 #Tamaño de la memoria armonica
-
+PAR =  0.35#[0.1,0.25, 0.35, 0.40]                   #[0.1, 0.12, 0.13 , 0.40]
+hmns = [5]                               #Tamaño de la memoria armonica
+nc= 50
 
 # Se contruyen los grupos de calidad
 df = build_groups_quality()
@@ -146,8 +148,12 @@ for hmn in hmns:
 
    # Se genera la memoria Armonica - diferentes tamaños
     MA = GenerateArmonyMemory(df_norm,hmn)
-    #print(MA)
     P=len(MA[0]) 
+
+    for i in range(hmn):
+        print("Memoria Armonica: ", MA[i][P-1])
+
+    
     curva = []
     for i in range (lmp):
         print(f"Iteracion {i}")
@@ -168,12 +174,17 @@ for hmn in hmns:
                     pesosAleatorios[j] = MA[0][j]
             
             else:
-
-                Aleatorio3 = random.random()/(P/2)
+                Aleatorio3 = random.random()
+                if Aleatorio3 < nc/P:
+                    Aleatorio3 = 0
+                else:
+                    Aleatorio3 = random.random()/(P-nc)
+                    #Aleatorio3 = random.random()/(P/2)
+                
                 pesosAleatorios[j] = Aleatorio3
         
         # Fin primer for - Conformación vector de pesosS
-        wf = generarVectorPesos(pesosAleatorios, 50)
+        wf = generarVectorPesos(pesosAleatorios, 0)
         fitnes = qualityFunction(df_norm, wf)
         print("Funcion de calidad: ", fitnes)
 
@@ -195,5 +206,6 @@ for hmn in hmns:
 
 
 
+
     # Curva de las iteraciones vs
-    print(f"Tamaño de la memoria{hmn}, y valores asociados", curva)
+    print(curva)

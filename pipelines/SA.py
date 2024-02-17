@@ -87,7 +87,7 @@ def quality_function(df_norm, wi):
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
-                dE = np.sqrt(np.sum(ri))
+                dE = np.sum(ri)
                 if dE < minDep:
                     posMinDep=j
                     minDep = dE
@@ -108,21 +108,38 @@ df = build_groups_quality()
 df_norm = normalize_view_minable(df)
 
 temperature = 10
+nc = 50
+P= 174
+pm= 0.1
+bw = 1/((P-nc)/10)
 
 # Generar pesos aleatorios 
-p = np.random.rand(174)
-s= generar_vector_pesos(p,10)
+p = np.random.rand(P)
+s= generar_vector_pesos(p,nc)
 qs= quality_function(df_norm, s)
-best = s
-qbest = quality_function(df_norm, best)
+best = np.copy(s)
+qbest = qs
 print(f"Calidad s: {qs}")
 print(f"Calidad qbest: {qbest}")
 
 for t in range(temperature):
     #------- r = tweks(s) ------------
     temp = temperature-t
-    rv = np.random.rand(174)
-    r= generar_vector_pesos(rv,10)
+    rv = np.copy(s)
+    for d in range(P):
+        aleatorio2 = random.random()
+        if aleatorio2 < pm:
+            aleatorio2 = random.random()
+            if aleatorio2 < nc/P:
+                rv[0] = 0
+            else:
+                rv[d]=rv[d]+ np.random.uniform(-bw,bw)
+                if rv[d] < 0:
+                    rv[d] = 0
+
+
+
+    r= generar_vector_pesos(rv,0)
     qr= quality_function(df_norm, r)
     print("Calidad de r: ", qr)
     aleatorio = np.random.rand()
@@ -134,10 +151,10 @@ for t in range(temperature):
     
     # Verficamos el remplazo
     if qs < qbest:
-        best = s
+        best = np.copy(s)
         qbest=qs
     
 
-print("Best Final: ", qbest)
+    print("Best Final: ", qbest)
 
 

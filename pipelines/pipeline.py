@@ -98,13 +98,13 @@ class CLR():
         self.df["EA"] = abs(self.df.RDT_AJUSTADO - self.df.yhat)
         self.df_ordely = self.df.sort_values(by=['EA'],ascending=True).reset_index()
 
-        # We calculated MAE
+        # Calculamos el MAE
         for i in range(len(self.df_ordely)):
             Acumulador = Acumulador + self.df_ordely.loc[i].EA
             EPA = Acumulador/(i+1)
             accepted_average_error.append(EPA)
         
-        # we agregate the average to dataset ordely
+        # Agregamos el promedio al dataset Ordenado.
         self.df_ordely["MAE"] = pd.Series(accepted_average_error)
         #self.df_ordely.to_excel("../Archivos Generados/PipelineResults/DatasetOrdenadoMAE.xlsx")
         #self.df.to_excel("../Archivos Generados/PipelineResults/DatasetOriginal.xlsx")
@@ -228,6 +228,15 @@ print("Correlacion grupos finales: ", CorelacionGruposCalidad)
 print("Longitud de los huerfanos: ", len(Orphans))
 
 # Guardamos los grupos de calidad definitivos
+'''
 GruposCalidad[0].to_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo1.xlsx")
 GruposCalidad[1].to_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo2.xlsx")
 GruposCalidad[2].to_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo3.xlsx")
+
+'''
+GruposCalidad[0].to_excel("Final/Grupo1.xlsx")
+GruposCalidad[1].to_excel("Final/Grupo2.xlsx")
+GruposCalidad[2].to_excel("Final/Grupo3.xlsx")
+
+
+

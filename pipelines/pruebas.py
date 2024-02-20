@@ -115,4 +115,6 @@ for l in range(0, Max_iter):
     a = 2 - l * ((2) / Max_iter)
     # a decreases linearly fron 2 to 0
 
+    
+
 '''

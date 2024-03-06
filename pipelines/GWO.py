@@ -13,8 +13,11 @@ import math
 
 print("Numero Aleatorio Flotante:", sys.float_info.max)
 
+
+
+
 # Funcion para construir el dataset - Asociado a los respectivos grupos
-def build_groups_quality():
+def BuildGroupsQuality():
     GC1 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo1.xlsx",index_col=0)
     GC2 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo2.xlsx",index_col=0)
     GC3 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo3.xlsx",index_col=0)
@@ -35,7 +38,7 @@ def build_groups_quality():
 
 
 # Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
-def Normalize_view_minable(df):
+def NormalizeViewMinable(df):
     norm = MinMaxScaler()
     df_norm = norm.fit_transform(df.values[:,:-1])
     return df_norm
@@ -44,17 +47,17 @@ def Normalize_view_minable(df):
 
 
 
-
 '''
-w: Longitud del vector de pesos, igual al numero de caracteristicas normalizadas.
+Funcion para generar el vector de pesos aleatorio.
+Entradas:
+w: Vector de pesos w [0,1], igual al numero de caracteristicas normalizadas.
 nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50]
 '''
-
-def generarVectorPesos(w, nc):
-    # Se seleccionan diferentes posiciones(50) para hacerce cero.
+def GenerateWeightVector(w, nc):
+    # Se seleccionan diferentes posiciones| atributos a establecer  en cero
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
-    #print(w)
+    w = np.round(w,3)
     s  = np.sum(w)
     # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
     wf = np.round(w/s, 3)
@@ -67,12 +70,13 @@ def generarVectorPesos(w, nc):
 
 
 
-
-
 '''
------------ Funcion de Calidad (Maximizar) -----------
-df_norm: Dataset Normalizado.
-wi: Vector de Pesos.
+-Función de calidad, que retorna la metrica de calidad asociada a ese vector w especifico
+-Se debe tener en cunata la seleccion de la metrica de calidad asociada, para evaluar
+el desempeño del algoritmo (Problema de Clasificacion)
+Entradas:
+    df_norm: Dataset Normalizado.
+    wi: Vector de Pesos.
 '''
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
@@ -86,7 +90,8 @@ def qualityFunction(df_norm, wi):
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
-                dE = np.sqrt(np.sum(ri))
+                #dE = np.sqrt(np.sum(ri))
+                dE = np.sum(ri)
                 if dE < minDep:
                     posMinDep=j
                     minDep = dE
@@ -94,6 +99,8 @@ def qualityFunction(df_norm, wi):
         y_pred.append(df.values[posMinDep][-1])
     qs = accuracy_score(df.values[:,-1], y_pred)
     return qs
+
+
 
 
 
@@ -111,7 +118,7 @@ def GenerateWolfPopulation(df_norm,SearchAgents):
     for i in range (SearchAgents):
         # 1. Generar pesos aleatorios | dim = cantidad de caracteristicas
         vp = np.random.rand(df_norm.shape[1]) # 50
-        wi = generarVectorPesos(vp, 50)
+        wi = GenerateWeightVector(vp, 50)
         # 2. Contruyo la Población de lobos
         GWO.append(wi)
       
@@ -121,14 +128,17 @@ def GenerateWolfPopulation(df_norm,SearchAgents):
 
 
 '''
------------------- GWO --------------------------------
 
-# Max_iter=1000
-# Los limite UB, lb depnde de los limites ede los cuales tomara valores mi población..
-# lb=-100
-# ub=100
-# dim=30
-# SearchAgents_no=5  | pop size
+# GWO
+# ==============================================================================
+
+Entradas: 
+    # Max_iter=1000
+    # Los limite UB, lb depnde de los limites ede los cuales tomara valores mi población..
+    # lb=-100
+    # ub=100
+    # dim=30
+    # SearchAgents_no=5  | pop size
 '''
 
 # Variables Generales
@@ -137,11 +147,11 @@ SearchAgents=5
 
 
 # Se contruyen los grupos de calidad
-df = build_groups_quality()
+df = BuildGroupsQuality()
 #np.savetxt("df.csv", df, delimiter=",")
 
 # Se Normaliza el df
-df_norm = Normalize_view_minable(df)
+df_norm = NormalizeViewMinable(df)
 #np.savetxt("df_norm.csv", df_norm, delimiter=",")
 
 # df_norm_new = df_norm[0:5,0:10]
@@ -150,7 +160,7 @@ dim= df_norm.shape[1]
 #print("Datset Normalizado", df_norm_new)
 
 # Inicializo los lobos principales (Alfa, Beta, delta)
-# initialize alpha, beta, and delta_pos
+# Initialize alpha, beta, and delta_pos
 Alpha_pos = np.zeros(dim)
 Alpha_fitnes = float("-inf")
 
@@ -168,8 +178,8 @@ Convergence_curve = np.zeros(Max_iter,)
 
 # Inicialmente creo la población 
 GWO = GenerateWolfPopulation(df_norm, SearchAgents)
-print("Poblacion: ",GWO)
-
+#print("Poblacion: ",GWO)
+f = []
 # l: Numero de iteraciones
 for l in range(Max_iter):
 
@@ -178,35 +188,40 @@ for l in range(Max_iter):
     for i in range(SearchAgents):
         # Obtengo el fitnes asociado a cada elemento de la población 
         fitness = qualityFunction(df_norm,GWO[i])
+        f.append(fitness)
+        print("fitenes: ", fitness)
+        #print(type(fitness))
 
         # Se actualizan las posiciones de Alfa,Beta y delta
 
         # 1. Actualizo Alfa
         if fitness > Alpha_fitnes:
-            Alpha_fitnes = fitness
-            Alpha_pos = GWO[i][:]
             Beta_fitnes = Alpha_fitnes
             Beta_pos = Alpha_pos.copy()
             Delta_fitnes = Beta_fitnes
             Delta_pos = Beta_pos.copy()
+            Alpha_fitnes = fitness
+            Alpha_pos = GWO[i][:].copy()
         
         # 2. Actualizo Beta y Delta
         if fitness < Alpha_fitnes and fitness > Beta_fitnes:
-            Beta_fitnes = fitness
-            Beta_pos = GWO[i][:]
             Delta_fitnes = Beta_fitnes
             Delta_pos = Beta_pos.copy()
+            Beta_fitnes = fitness
+            Beta_pos = GWO[i][:].copy()
 
         # 3. Actualizo delta
         
-        if fitness < Alpha_fitnes and fitness < Beta_fitnes and fitness > Delta_fitnes:
+        if (fitness < Alpha_fitnes) and (fitness < Beta_fitnes) and (fitness > Delta_fitnes):
             Delta_fitnes = fitness
-            Delta_fitnes = GWO[i][:]
+            Delta_pos = GWO[i][:].copy()
+
+
 
     print("Alfa: Fitenes:  ", Alpha_fitnes) 
     print("Beta: Fitenes:  ", Beta_fitnes) 
     print("Delta: Fitenes:  ", Delta_fitnes) 
-
+    
     a = 2 - l * ((2) / Max_iter)
 
     # Etapa 2: Actualización de las posiciones de los lobos (Agentes) incluyendo los Omegas
@@ -251,11 +266,16 @@ for l in range(Max_iter):
             
             
             GWO[i][j] = (X1 + X2 + X3) / 3 
+            # Tener en cuenta  numeros negativos ... | si  son negativos colocar cero
+            print(GWO[i][j])
 
+        # Nomralizar     
+        print("Suma del nuevo vector de la población : ", sum(GWO[i]))
     
     Convergence_curve[l] = Alpha_fitnes
     if l % 1 == 0:
         print(["At iteration " + str(l) + " the best fitness is " + str(Alpha_fitnes)])
-
+    
+print(f)
 print("Curva de Convergencia: ", Convergence_curve)
 

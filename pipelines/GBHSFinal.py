@@ -26,12 +26,9 @@ def BuildGroupsQuality():
     GC2["Grupo"] = 2
     GC3["Grupo"] = 3
 
-    # Se Unen los diferentes Grupos en un unico dataset
+
     df = pd.concat([GC1, GC2,GC3], ignore_index=True)
-
-    # Elimino las variables no relevantes
     df = df.drop(["ID_LOTE", "RDT_AJUSTADO"], axis=1)
-
     return df
 
 
@@ -53,12 +50,10 @@ w: Vector de pesos w [0,1], igual al numero de caracteristicas normalizadas.
 nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50]
 '''
 def GenerateWeightVector(w, nc):
-    # Se seleccionan diferentes posiciones| atributos a establecer  en cero
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
     w = np.round(w,3)
     s  = np.sum(w)
-    # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
     wf = np.round(w/s, 3)
     sc = 1- np.sum(wf)
     pos = np.random.randint(len(wf))
@@ -82,7 +77,8 @@ Entradas:
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
 def qualityFunction(df_norm, wi):
-    # Vector Distancias Euclideanas Ponderadas
+    #print("longitud df_norm: ",len(df_norm))
+    #print("Longitud wi: ", len(wi))
     y_pred = []
     minDep = sys.float_info.max
     posMinDep = 0
@@ -91,12 +87,11 @@ def qualityFunction(df_norm, wi):
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
-                #dE = np.sqrt(np.sum(ri))
                 dE = np.sum(ri)
                 if dE < minDep:
                     posMinDep=j
                     minDep = dE
-              
+        #print(posMinDep)
         y_pred.append(df.values[posMinDep][-1])
     qs = accuracy_score(df.values[:,-1], y_pred)
     return qs
@@ -111,19 +106,17 @@ Entradas:
     wi: Vector de Pesos.
     nc: Numero de ceros (Selección de atributos)
 '''
+
 def GenerateArmonyMemory(df_norm, MAC,nc):
     Lw = []
     for i in range (MAC):
-        # 1. Generar pesos aleatorios | dim = cantidad de caracteristicas
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
-        # 2. Se obtiene el fitnes asociados a esos pesos.
         Qs = qualityFunction(df_norm, wi)
         wiq = np.append(wi, Qs)
         Lw.append(wiq)
 
     
-    # Se obtiene la memoria armonica ordenada de  Mayor- Menor (Deacuerdo al fitnes)
     Lw.sort(key=lambda x: x[-1], reverse=True)
     return Lw
 
@@ -145,83 +138,106 @@ Entradas
     nc: Numero de ceros [10,20,30,40,50]
 '''
 
-lmp = 20                                                                                
+excel = "ResultadosImprovisacion/resultados_GBHS.xlsx"
+lmp = 100                                                                                
 HMRC = 0.85                                        
-PAR =  0.35                                                         
-hmns = [5]                                          
-nc= 50
+PAR_array=[0.1,0.25,0.35,0.40]                                                         
+hmns_array = [5,10,15,20]  
+nc_array = [10,20,30,40,50,60,70]                                        
+
 
 #1. Se contruyen los grupos de calidad
 df = BuildGroupsQuality()
-#2. Se Normaliza el df
 df_norm = NormalizeViewMinable(df)
 
-# 3. Implementacion GBHS
 
-for hmn in hmns:
+cont = 1
+# 
+# GBHS - IMPROVISACIÓN
+# ==============================================================================
+for incero in range(len(nc_array)):
+    for ihmn in range(len(hmns_array)):
+        for ipar in range(len(PAR_array)):
+            print(f"PAR: {PAR_array[ipar]}, Longitud de la Memoria Armonica: {hmns_array[ihmn]}, Numero de ceros: {nc_array[incero]} ")
+            print(f"Iteracion {cont}")
+            # Parametros Bucle
+            PAR = PAR_array[ipar]
+            hmn = hmns_array[ihmn]
+            nc= nc_array[incero]
 
-   # Se genera la memoria Armonica - diferentes tamaños
-    MA = GenerateArmonyMemory(df_norm,hmn,nc)
-    P=len(MA[0]) 
+            # Se genera la memoria Armonica - diferentes tamaños
+            MA = GenerateArmonyMemory(df_norm,hmn,nc)
+            P=len(MA[0]) 
 
-    
-    #for i in range(hmn):
-    #    print("Memoria Armonica: ", MA[i][P-1])
 
-    
-    curva = []
-    for i in range (lmp):
-        print(f"Iteracion {i}")
-        pesosAleatorios = np.random.rand(P-1)
-        # print("Vector de Pesos: ", pesosAleatorios)
-        # Donde P es el numero de variables
-        for j in range(P-1):
-            Aleatorio1 = random.random() 
-            if (Aleatorio1 < HMRC):
-                # pma: Numero entrero entre 0 y (hmns -1)
-                # hmns: Tamaño de la memoria armonica
-                pma = random.randint(0, hmn-1)
-                pesosAleatorios[j]= MA[pma][j]
 
-                Aleatorio2 = random.random()
-                if Aleatorio2 < PAR:
-                    # Se toma el valor de la mejor armonia
-                    pesosAleatorios[j] = MA[0][j]
-            
-            else:
-                Aleatorio3 = random.random()
-                if Aleatorio3 < nc/P:
-                    Aleatorio3 = 0
-                else:
-                    Aleatorio3 = random.random()/(P-nc)
-                    #Aleatorio3 = random.random()/(P/2)
+            curvaFitnes = []
+            vectorIteration= []
+            for i in range (lmp):
+                pesosAleatorios = np.random.rand(P-1)
+                for j in range(P-1):
+                    Aleatorio1 = random.random() 
+                    if (Aleatorio1 < HMRC):
+                        pma = random.randint(0, hmn-1)
+                        pesosAleatorios[j]= MA[pma][j]
+
+                        Aleatorio2 = random.random()
+                        if Aleatorio2 < PAR:
+                            pesosAleatorios[j] = MA[0][j]
+                    
+                    else:
+                        Aleatorio3 = random.random()
+                        if Aleatorio3 < nc/P:
+                            Aleatorio3 = 0
+                        else:
+                            Aleatorio3 = random.random()/(P-nc)
+                        
+                        pesosAleatorios[j] = Aleatorio3
                 
-                pesosAleatorios[j] = Aleatorio3
+
+                # Normalización de los pesos
+                wf = GenerateWeightVector(pesosAleatorios, 0)
+                #print("longitud_wf",len(wf))
+                fitnes = qualityFunction(df_norm, wf)
+                #print("Funcion de calidad: ", fitnes)
+
+
+                # Remplazo
+                if MA[hmn -1][P-1] < fitnes:
+                    new_register = np.append(wf, fitnes)
+                    MA[hmn-1] = new_register
+                    #print("------------------------------------")
+                    MA.sort(key=lambda x: x[-1], reverse=True)
+                
+
+                
+                curvaFitnes.append(MA[0][P-1])
+                vectorIteration.append(MA[0])
+                
+ 
+            
+            print("Valor de la curva en la ultima poisción: ",curvaFitnes[-1])
+
+            dicc = {"vector":[MA[0]],
+                        "Fitnes": curvaFitnes[-1]}
+            
+    
+            df_new = pd.DataFrame(data=dicc)
+            #df = df.transpose()
+
+            #with pd.ExcelWriter(excel,engine="openpyxl", mode = 'a', if_sheet_exists="overlay"
+            #                    ) as writer:
+            #    df.to_excel(writer, index=None, header = None, sheet_name=nomenclaturaHoja)
+
+            df_new.to_csv(f"ResultadosImprovisacion/acc_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
+            cont=cont+1
+            dicc = dict()
+            
         
-        # Fin primer for - Conformación vector de pesos
-        # Normalización de los pesos
-        wf = GenerateWeightVector(pesosAleatorios, 0)
-        fitnes = qualityFunction(df_norm, wf)
-        print("Funcion de calidad: ", fitnes)
-
-
-        # Remplazo
-        if MA[hmn -1][P-1] < fitnes:
-            # Creo el nuevo registro y  remplazo por el peor
-            new_register = np.append(wf, fitnes)
-            # Remplazo
-            MA[hmn-1] = new_register
-            # Ordeno la Armonia
-            print("------------------------------------")
-            MA.sort(key=lambda x: x[-1], reverse=True)
-        
-        else:
-            print("La funcion de calidad del ultimo armonico  es mejor que el fitnes")
-        
-        curva.append(MA[0][P-1])
+  
 
 
 
+            
 
-    # Curva de las iteraciones 
-    print(curva)
+           

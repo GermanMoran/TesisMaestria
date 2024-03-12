@@ -264,9 +264,12 @@ for l in range(Max_iter):
             D_delta = abs(C3 * Delta_pos[j] - GWO[i][j])
             X3 = Delta_pos[j] - A3 * D_delta
             
+            sumdis = (X1 + X2 + X3) / 3 
+            if sumdis <=  0:
+                GWO[i][j] = 0
+            else:
+                GWO[i][j] = sumdis
             
-            GWO[i][j] = (X1 + X2 + X3) / 3 
-            # Tener en cuenta  numeros negativos ... | si  son negativos colocar cero
             print(GWO[i][j])
 
         # Nomralizar     

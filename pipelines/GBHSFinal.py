@@ -110,6 +110,8 @@ Entradas:
 def GenerateArmonyMemory(df_norm, MAC,nc):
     Lw = []
     for i in range (MAC):
+        # Creo la semilla
+        np.random.seed(i)
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
         Qs = qualityFunction(df_norm, wi)
@@ -135,15 +137,15 @@ Entradas
     ParMax: Tasa de ajuste de tono máxima.
     PAR: realación(ParMin, ParMax) : [0.1,0.25, 0.35, 0.40]
     hmns: Tamaño de la memoria armonica  [5,10,15,20].
-    nc: Numero de ceros [10,20,30,40,50]
+    nc: Numero de ceros [10,20,30,40,50]    [10,20,30,40,50,60,70]  
 '''
 
 excel = "ResultadosImprovisacion/resultados_GBHS.xlsx"
-lmp = 100                                                                                
-HMRC = 0.85                                        
-PAR_array=[0.1,0.25,0.35,0.40]                                                         
+lmp = 10                                                                                
+HMRC = 0.85                                          
+PAR_array=[0.25,0.3, 0.35,0.40]                                                         
 hmns_array = [5,10,15,20]  
-nc_array = [10,20,30,40,50,60,70]                                        
+nc_array = [50,55,60,65]                                        
 
 
 #1. Se contruyen los grupos de calidad
@@ -152,9 +154,10 @@ df_norm = NormalizeViewMinable(df)
 
 
 cont = 1
+
 # 
 # GBHS - IMPROVISACIÓN
-# ==============================================================================
+# ============================================================================================
 for incero in range(len(nc_array)):
     for ihmn in range(len(hmns_array)):
         for ipar in range(len(PAR_array)):
@@ -169,11 +172,11 @@ for incero in range(len(nc_array)):
             MA = GenerateArmonyMemory(df_norm,hmn,nc)
             P=len(MA[0]) 
 
-
-
             curvaFitnes = []
             vectorIteration= []
             for i in range (lmp):
+                # seed
+                np.random.seed(123)
                 pesosAleatorios = np.random.rand(P-1)
                 for j in range(P-1):
                     Aleatorio1 = random.random() 
@@ -188,18 +191,17 @@ for incero in range(len(nc_array)):
                     else:
                         Aleatorio3 = random.random()
                         if Aleatorio3 < nc/P:
-                            Aleatorio3 = 0
+                            Aleatorio4 = 0
                         else:
-                            Aleatorio3 = random.random()/(P-nc)
+                            Aleatorio4 = Aleatorio3/(P-nc)
                         
-                        pesosAleatorios[j] = Aleatorio3
+                        pesosAleatorios[j] = Aleatorio4
                 
 
                 # Normalización de los pesos
                 wf = GenerateWeightVector(pesosAleatorios, 0)
-                #print("longitud_wf",len(wf))
                 fitnes = qualityFunction(df_norm, wf)
-                #print("Funcion de calidad: ", fitnes)
+
 
 
                 # Remplazo
@@ -218,25 +220,15 @@ for incero in range(len(nc_array)):
             
             print("Valor de la curva en la ultima poisción: ",curvaFitnes[-1])
 
-            dicc = {"vector":[MA[0]],
-                        "Fitnes": curvaFitnes[-1]}
+            dicc = {"vector":vectorIteration,
+                        "Fitnes": curvaFitnes}
             
     
             df_new = pd.DataFrame(data=dicc)
-            #df = df.transpose()
-
-            #with pd.ExcelWriter(excel,engine="openpyxl", mode = 'a', if_sheet_exists="overlay"
-            #                    ) as writer:
-            #    df.to_excel(writer, index=None, header = None, sheet_name=nomenclaturaHoja)
-
-            df_new.to_csv(f"ResultadosImprovisacion/acc_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
+            df_new.to_csv(f"ResultadosImprovisacion/GBHS/accuracy_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
             cont=cont+1
             dicc = dict()
             
-        
-  
-
-
 
             
 

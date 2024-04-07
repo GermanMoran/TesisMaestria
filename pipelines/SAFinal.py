@@ -62,7 +62,7 @@ def GenerateWeightVector(w, nc):
     s  = np.sum(w)
     # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
     wf = np.round(w/s, 3)
-    sc = 1- np.sum(wf)
+    sc = abs(1- np.sum(wf))
     pos = np.random.randint(len(wf))
     if sc != 0:
         wf[pos]= wf[pos]+sc
@@ -111,9 +111,11 @@ def qualityFunction(df_norm, wi):
 
 #   PARAMETROS GENERALES
 # ==============================================================================
-temperature = 20
-P= 174                                                       
-nc_array = [10,20,30,40,50,60,70]      
+#temp = 100
+P= 174
+max_iterations = 15                                                       
+nc_array = [50,55,60,65]
+#nc_array = [50]          
 pm= 0.1                            
 
 #  SA
@@ -124,7 +126,7 @@ df_norm = NormalizeViewMinable(df)
 
 
 for nceros in range(len(nc_array)):
-    print(f"Numero de ceros {nceros} vector solucion")
+    print(f"Numero de ceros {nc_array[nceros]} vector solucion")
     
     p = np.random.rand(P)
     nc = nc_array[nceros]
@@ -135,8 +137,10 @@ for nceros in range(len(nc_array)):
     best = np.copy(s)
     qbest = qs
     curvaSA = []
-    for t in range(temperature):
-        temp = temperature-t
+    vectorBest = []
+    temp=100
+    print("Reinicio la Temperatura: ", temp)
+    for t in range(temp):
         rv = np.copy(s)
         # Generación del Twick
         for d in range(P):
@@ -146,11 +150,10 @@ for nceros in range(len(nc_array)):
                 if aleatorio2 < nc/P:
                     rv[d] = 0
                 else:
-                    rv[d]=rv[d]+ np.random.uniform(-bw,bw)
+                    rv[d]= rv[d]+ np.random.uniform(-bw,bw)
                     if rv[d] < 0:
                         rv[d] = 0
 
-        
         # Vuelvo a normmalizar el vector de pesos r sumado el twick
         rv = GenerateWeightVector(rv,0)
         qr= qualityFunction(df_norm, rv)
@@ -159,18 +162,21 @@ for nceros in range(len(nc_array)):
             s=rv
             qs = qr
         
+        # Disminuyo la termperatura
+        temp = temp-t
         # se verifica el remplazo
         if qs > qbest:
             best = np.copy(s)
             qbest=qs
         
         curvaSA.append(qbest)
+        vectorBest.append(best)
     
     #Guardo el Best y Qbest despeus de reducir al minimo la temepratura
     print("Curva SA: ", curvaSA)
-    dicc = {"vector":[best],
-             "curvaSA": curvaSA[-1],
-             "qbest": qbest}
+    dicc = {"vector":vectorBest,
+            "curvaSA": curvaSA
+            }
     
     df_new = pd.DataFrame(data=dicc)
     df_new.to_csv(f"ResultadosImprovisacion/SA/acc_nc_{nc}.csv")

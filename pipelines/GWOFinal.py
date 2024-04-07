@@ -61,7 +61,7 @@ def GenerateWeightVector(w, nc):
     s  = np.sum(w)
     # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
     wf = np.round(w/s, 3)
-    sc = 1- np.sum(wf)
+    sc = abs(1- np.sum(wf))
     pos = np.random.randint(len(wf))
     if sc != 0:
         wf[pos]= wf[pos]+sc

@@ -135,6 +135,7 @@ curva = []
 for t in range(temperature):
     temp = temperature-t
     rv = np.copy(s)
+    print("Primer vector R: ", rv)
     for d in range(P):
         aleatorio2 = random.random()
         if aleatorio2 < pm:

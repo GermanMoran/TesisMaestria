@@ -111,7 +111,7 @@ def GenerateArmonyMemory(df_norm, MAC,nc):
     Lw = []
     for i in range (MAC):
         # Creo la semilla
-        np.random.seed(i)
+        np.random.seed(2)
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
         Qs = qualityFunction(df_norm, wi)

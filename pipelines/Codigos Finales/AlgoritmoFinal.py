@@ -23,7 +23,6 @@ from pandas import read_csv
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import RepeatedKFold
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler
 
 
 
@@ -83,7 +82,6 @@ class CLR():
 
     
     def calcularMAE(self):
-        contador=0
         EPA = 0
         Acumulador = 0
         accepted_average_error= []
@@ -99,9 +97,8 @@ class CLR():
         
         # Agregamos el promedio al dataset Ordenado.
         self.df_ordely["MAE"] = pd.Series(accepted_average_error)
-        #self.df_ordely.to_excel(f"FASE1/DatasetOrdenadoIteraciónesss{contador +1}.xlsx")
+        #self.df_ordely.to_excel("../Archivos Generados/PipelineResults/DatasetOrdenadoMAE.xlsx")
         #self.df.to_excel("../Archivos Generados/PipelineResults/DatasetOriginal.xlsx")
-        contador=contador+1
         return self.df_ordely
     
 
@@ -125,19 +122,6 @@ def compareCorrelation(CorelacionGruposCalidad, nuevaCorrelation, listaGrupos):
     return lista_grupos, indexGrupoModificar
 
 
-def dataframeNormalized(dataset):
-    Y = dataset.RDT_AJUSTADO
-    X = dataset.drop(["RDT_AJUSTADO"], axis=1)
-    # Nombre columnas de X[Variables independientes]
-    X_name_columns= X.columns
-    scaler = MinMaxScaler()
-    X_normalized = scaler.fit_transform(X.values)
-    df_X_normalized = pd.DataFrame(X_normalized, columns= X_name_columns)
-    df_normalized = pd.concat([df_X_normalized, Y], axis=1)
-    print(df_normalized.shape)
-    return df_normalized
-
-
 
 def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_average_error):
     group_acepted = []
@@ -150,7 +134,6 @@ def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_av
         modellr, r_2, yhat = LinearRegession(dataset, 0.1, 0.97).CalcularModeloLR()
         print("Ajuste del Modelo dataset Completo: ", r_2)
         DatasetOrdely = CLR(dataset,yhat).calcularMAE()
-        #DatasetOrdely.to_excel(f"FASE1/DatasetOrdenado{contador}.xlsx")
 
         try:
             group = DatasetOrdely.loc[DatasetOrdely.MAE < MAE_Allowed]
@@ -173,7 +156,7 @@ def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_av
                     group_acepted.append(group)
                     model_acepted.append(group_model)
                     correlation_model.append(r2_group_mode)
-                    group.to_excel(f"FASE1/GrupoN_{contador}.xlsx")
+                    group.to_excel(f"FASE1/Grupo_{contador}.xlsx")
                     MAE_Allowed = MAE_Allowed + additional_average_error
                 else:
                     print("No cumple con la condición de  la correlacion")
@@ -189,7 +172,7 @@ def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_av
             Orphans = Orphans.drop(["yhat", "EA"],axis=1).reset_index(drop=True)
             print("Logitud Huerfanos: ", Orphans.shape)
             # Se guardan los huerfanos en un archivo.
-            Orphans.to_excel("FASE1/HuerfanosN.xlsx")
+            Orphans.to_excel("FASE1/Huerfanos.xlsx")
             break
     
     return [group_acepted, model_acepted, correlation_model, Orphans]
@@ -225,10 +208,6 @@ def fase2(group_acepted, correlation_model, Orphans):
 
 
 
-
-# Lectura del Dataset Principal
-# ==============================================================================
-
 df = pd.read_excel("../Archivos Generados/DatasetFinal.xlsx")
 print(df.head())
 # Ornial variables list
@@ -239,41 +218,27 @@ bin_features =['SEM_TRATADAS','DRENAJE','ALMACENAMIENTO_FINCA','CAP_ENDURE_RASTA
 
 
 
-
-
 # Variables Globales
 # ==============================================================================
+
 Minimum_records = 80
 minimum_correlation= 0.88
-MAE_Allowed = 45                #Aumentamos el MAE DE
-additional_average_error = 80
+MAE_Allowed = 45
+additional_average_error = 50
 contador = 0
 definitive_groups = []
 
 
-# Codificación de variables categoricas
-# ============================================================
-
 dataset = OneHotCoding(df,bin_features).dummyCodification()
-
-# Normalización del dataset y division entrenamiento y testeo
-# ============================================================
-
-#dataset_n= dataframeNormalized(dataset)
-dataset_train, dataset_test = train_test_split(dataset, test_size = 0.2,random_state=42)
-print("Longitud Dataset Entrenamiento:",  dataset_train)
-
-# ============================================================
-group_acepted, model_acepted, correlation_model, Orphans = fase1(dataset_train,Minimum_records,minimum_correlation, MAE_Allowed,additional_average_error)
+group_acepted, model_acepted, correlation_model, Orphans = fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_average_error)
 print("---------------- FASE 1---------------------")
 print("Correlaciones Iniciales: ", correlation_model)
-#print(f"Grupo 1 {len(group_acepted[0])}, Grupo 2: {len(group_acepted[1])}, Grupo 3: {len(group_acepted[2])}")
+print(f"Grupo 1 {len(group_acepted[0])}, Grupo 2: {len(group_acepted[1])}, Grupo 3: {len(group_acepted[2])}")
 print("Huerfanos: ", Orphans.shape)
 
 
 
 
-'''
 if len(group_acepted) > 1:
     if len(Orphans) == 0:
         definitive_groups = group_acepted
@@ -304,5 +269,3 @@ else:
 
 
 print("Grupos Definitivos: ", len(definitive_groups))
-
-'''

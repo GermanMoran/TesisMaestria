@@ -17,9 +17,9 @@ print("Numero Aleatorio Flotante:", sys.float_info.max)
 
 # Funcion para construir el dataset - Asociado a los respectivos grupos
 def BuildGroupsQuality():
-    GC1 = pd.read_excel("FASE2/grupo_N0.xlsx",index_col=0)
-    GC2 = pd.read_excel("FASE2/grupo_N1.xlsx",index_col=0)
-    GC3 = pd.read_excel("FASE2/grupo_N2.xlsx",index_col=0)
+    GC1 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo1.xlsx",index_col=0)
+    GC2 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo2.xlsx",index_col=0)
+    GC3 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo3.xlsx",index_col=0)
 
 
     GC1["Grupo"] = 1
@@ -33,27 +33,12 @@ def BuildGroupsQuality():
 
 
 
-
-# Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
-# df: es la matriz df.values [] , no incluye la etiqueta del grupo
-def NormalizeViewMinable(df,valMin, dataRange):
-    dataset_normalizado = np.empty((df.shape[0], df.shape[1]))
-    for i in range(df.shape[0]):
-        for j in range(df.shape[1]):
-            dataset_normalizado[i][j]= (df[i][j] - valMin[j])/dataRange[j]
-
-    return dataset_normalizado
-
-
-
-'''
 # Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
 def NormalizeViewMinable(df):
     norm = MinMaxScaler()
     df_norm = norm.fit_transform(df.values[:,:-1])
     return df_norm
 
-'''
 
 
 
@@ -126,7 +111,7 @@ def GenerateArmonyMemory(df_norm, MAC,nc):
     Lw = []
     for i in range (MAC):
         # Creo la semilla
-        np.random.seed(i)
+        np.random.seed(2)
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
         Qs = qualityFunction(df_norm, wi)
@@ -165,12 +150,7 @@ nc_array = [50,55,60,65]
 
 #1. Se contruyen los grupos de calidad
 df = BuildGroupsQuality()
-# Lectura de los Encoders
-valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
-dataRange = np.loadtxt('FASE2/Encoder_dataRange.txt')
-df_matriz = df.values[:,:-1]
-print(df_matriz.shape)
-df_norm = NormalizeViewMinable(df_matriz,valMin,dataRange)
+df_norm = NormalizeViewMinable(df)
 
 
 cont = 1
@@ -196,6 +176,7 @@ for incero in range(len(nc_array)):
             vectorIteration= []
             for i in range (lmp):
                 # seed
+                np.random.seed(123)
                 pesosAleatorios = np.random.rand(P-1)
                 for j in range(P-1):
                     Aleatorio1 = random.random() 
@@ -244,7 +225,7 @@ for incero in range(len(nc_array)):
             
     
             df_new = pd.DataFrame(data=dicc)
-            df_new.to_csv(f"ResultadosImprovisacion/GBHS/Training/accuracy_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
+            df_new.to_csv(f"ResultadosImprovisacion/GBHS/accuracy_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
             cont=cont+1
             dicc = dict()
             

@@ -18,10 +18,16 @@ print("Numero Aleatorio Flotante:", sys.float_info.max)
 
 # Funcion para construir el dataset - Asociado a los respectivos grupos
 def BuildGroupsQuality():
+
+    GC1 = pd.read_excel("FASE2/grupo_N0.xlsx",index_col=0)
+    GC2 = pd.read_excel("FASE2/grupo_N1.xlsx",index_col=0)
+    GC3 = pd.read_excel("FASE2/grupo_N2.xlsx",index_col=0)
+
+    '''
     GC1 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo1.xlsx",index_col=0)
     GC2 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo2.xlsx",index_col=0)
     GC3 = pd.read_excel("../Archivos Generados/PipelineResults/GruposCalidad-Fase2/Grupo3.xlsx",index_col=0)
-
+    '''
 
     GC1["Grupo"] = 1
     GC2["Grupo"] = 2
@@ -37,11 +43,17 @@ def BuildGroupsQuality():
 
 
 
+
 # Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
-def NormalizeViewMinable(df):
-    norm = MinMaxScaler()
-    df_norm = norm.fit_transform(df.values[:,:-1])
-    return df_norm
+# df: es la matriz df.values [] , no incluye la etiqueta del grupo
+def NormalizeViewMinable(df,valMin, dataRange):
+    dataset_normalizado = np.empty((df.shape[0], df.shape[1]))
+    for i in range(df.shape[0]):
+        for j in range(df.shape[1]):
+            dataset_normalizado[i][j]= (df[i][j] - valMin[j])/dataRange[j]
+
+    return dataset_normalizado
+
 
 
 
@@ -80,7 +92,7 @@ Entradas:
 '''
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
-def qualityFunction(df_norm, wi):
+def qualityFunction(df_norm, wi,df):
     # Vector Distancias Euclideanas Ponderadas
     y_pred = []
     minDep = sys.float_info.max
@@ -143,14 +155,18 @@ Entradas:
 '''
 
 # Variables Generales
-Max_iter=15
-#SearchAgents=5
+Max_iter=20
 nc_array = [50,55,60,65]   
 popzize_array= [5,10,15,20]
 
 
 df = BuildGroupsQuality()
-df_norm = NormalizeViewMinable(df)
+# Lectura de los Encoders
+valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
+dataRange = np.loadtxt('FASE2/Encoder_dataRange.txt')
+df_matriz = df.values[:,:-1]
+
+df_norm = NormalizeViewMinable(df_matriz, valMin, dataRange)
 dim= df_norm.shape[1]
 
 
@@ -189,7 +205,7 @@ for inc in range(len(nc_array)):
 
             for i in range(SearchAgents):
                 # Obtengo el fitnes asociado a cada elemento de la población 
-                fitness = qualityFunction(df_norm,GWO[i])
+                fitness = qualityFunction(df_norm,GWO[i],df)
                 print("fitenes: ", fitness)
 
 
@@ -292,7 +308,7 @@ for inc in range(len(nc_array)):
 
     
         df_new = pd.DataFrame(data=dicc)
-        df_new.to_csv(f"ResultadosImprovisacion/GWO/accuracy_nc_{nc}_PopZize_{SearchAgents}.csv")
+        df_new.to_csv(f"ResultadosImprovisacion/GWO/Training/accuracy_nc_{nc}_PopZize_{SearchAgents}.csv")
         dicc = dict()
 
         

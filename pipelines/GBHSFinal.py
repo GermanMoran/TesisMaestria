@@ -20,14 +20,16 @@ def BuildGroupsQuality():
     GC1 = pd.read_excel("FASE2/grupo_N0.xlsx",index_col=0)
     GC2 = pd.read_excel("FASE2/grupo_N1.xlsx",index_col=0)
     GC3 = pd.read_excel("FASE2/grupo_N2.xlsx",index_col=0)
+    GC4 = pd.read_excel("FASE2/grupo_N3.xlsx",index_col=0)
 
 
     GC1["Grupo"] = 1
     GC2["Grupo"] = 2
     GC3["Grupo"] = 3
+    GC4["Grupo"] = 4
 
 
-    df = pd.concat([GC1, GC2,GC3], ignore_index=True)
+    df = pd.concat([GC1, GC2,GC3,GC4], ignore_index=True)
     df = df.drop(["ID_LOTE", "RDT_AJUSTADO"], axis=1)
     return df
 
@@ -126,7 +128,6 @@ def GenerateArmonyMemory(df_norm, MAC,nc):
     Lw = []
     for i in range (MAC):
         # Creo la semilla
-        np.random.seed(i)
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
         Qs = qualityFunction(df_norm, wi)
@@ -160,13 +161,16 @@ lmp = 10
 HMRC = 0.85                                          
 PAR_array=[0.25,0.3, 0.35,0.40]                                                         
 hmns_array = [5,10,15,20]  
-nc_array = [50,55,60,65]                                        
+nc_array = [10,20,30,40,50,60,65]                                        
 
 
 #1. Se contruyen los grupos de calidad
-df = BuildGroupsQuality()
+#df = BuildGroupsQuality()
+df = pd.read_csv("FASE2/Final_dataset_join.csv")
+print("Longitud df: ", df.shape)
 # Lectura de los Encoders
 valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
+print("Encoder: ", len(valMin))
 dataRange = np.loadtxt('FASE2/Encoder_dataRange.txt')
 df_matriz = df.values[:,:-1]
 print(df_matriz.shape)
@@ -189,6 +193,7 @@ for incero in range(len(nc_array)):
             nc= nc_array[incero]
 
             # Se genera la memoria Armonica - diferentes tamaños
+            np.random.seed(43)
             MA = GenerateArmonyMemory(df_norm,hmn,nc)
             P=len(MA[0]) 
 

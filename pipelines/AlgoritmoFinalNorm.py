@@ -29,6 +29,8 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import mean_absolute_error,max_error,mean_squared_error
 import sys
 import random
+import joblib
+
 
 '''
     Esta clase permite realizar la codificación en caliente especificameente variables categoricas
@@ -250,7 +252,7 @@ def fase2(group_acepted, correlation_model, Orphans):
 # Construir grupos de Calidad
 def BuildGroupsQuality(definitive_groups):
     for i in range(len(definitive_groups)):
-        definitive_groups[i]["Grupo"]= (i+1)
+        definitive_groups[i]["Grupo"]= i
 
     df = pd.concat(definitive_groups, ignore_index=True)
     df = df.drop(["ID_LOTE", "RDT_AJUSTADO"], axis=1)
@@ -296,7 +298,8 @@ def qualityFunction(df_norm, wi,df):
     minDep = sys.float_info.max
     posMinDep = 0
     for i in range(len(df_norm)):
-        vrf = df_norm[i] 
+        vrf = df_norm[i]
+        minDep = sys.float_info.max
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
@@ -426,6 +429,7 @@ def predictionTest(dataset_test_norm, df_norm, vector_pesos_optmizacion, final_d
     PSI15 =0 
     y_pred_test = []
     for z in range(int(dataset_test_norm.shape[0])):
+        minDep = sys.float_info.max
         for k in range(int(df_groups_finally.shape[0])):
             ri = vector_pesos_optmizacion * np.power((dataset_test_norm[z]- df_groups_finally[k]),2) 
             dE = np.sum(ri)
@@ -435,7 +439,7 @@ def predictionTest(dataset_test_norm, df_norm, vector_pesos_optmizacion, final_d
         
         #print("zz, " , z)
         # Grupo seleccionado
-        grupoSelected = int(final_datset_join.values[posMinDep][-1]) -1 
+        grupoSelected = int(final_datset_join.values[posMinDep][-1])
         #print(grupoSelected)
         #model_final, r2_final, yhat_final = LinearRegession(definitive_groups[i],0.1, 0.97).CalcularModeloLR() 
         psi_predicho = list_final_models[grupoSelected].predict(dataset_validation.values[z].reshape(1,-1))
@@ -512,6 +516,8 @@ np.savetxt('FASE2/Encoder_dataRange.txt', dataRange)
 
 dataset_train, dataset_test = train_test_split(dataset, test_size = 0.05, random_state=43)
 print("Longitud Dataset Entrenamiento:",  dataset_train.shape)
+#Guardamose l dataset de testeo.
+dataset_test.to_csv('FASE2/dataset_test.csv',index=False)
 dataset_training = dataset_train.copy()
 
 
@@ -567,6 +573,8 @@ print("Grupos Definitivos: ", len(definitive_groups))
 list_final_models = []
 for i in range(len(definitive_groups)):
     model_final, r2_final, yhat_final = LinearRegession(definitive_groups[i],0.1, 0.97).CalcularModeloLR()
+    Name_model = f"FASE2/modelo_entrenado_{i}.pkl"
+    joblib.dump(model_final, Name_model) # Guardo el modelo.
     print("R2: ", r2_final)
     list_final_models.append(model_final)
     
@@ -581,24 +589,30 @@ grupos_finales = definitive_groups.copy()
 
 #1.Union grupos | unico dataset
 final_datset_join = BuildGroupsQuality(grupos_finales)
-final_datset_join.to_csv('FASE2/Final_dataset_join.csv',index=False)
+#final_datset_join.to_csv('FASE2/Final_dataset_join.csv',index=False)
 print(final_datset_join.shape)
 
 #2.Normalizacion dataset
 df_norm = NormalizeViewMinable(final_datset_join.values[:,:-1],valMin, dataRange)
 print(df_norm.shape)
 
-
 '''
+
 #3.Optimización GBHS
 # Se jecuta la mejor metahurtistica de acuerdo a los resultados obtenidos
-metric,vector_pesos =  ImprovisationGBHS(0.35, 20, 40, df_norm, 20, 0.85, final_datset_join)
+metric,vector_pesos =  ImprovisationGBHS(0.35, 5, 40, df_norm, 50, 0.85, final_datset_join)
 #metric,vector_pesos =  ImprovisationGBHS(0.4, 20, 50, df_norm, 30, 0.85, final_datset_join)
 vector_pesos_optmizacion = vector_pesos[0: -1]
 print("-------------------------- RESULTADOS OPTMIZACIÓN-------------------------")
 print("Mejor Fitnes: ",metric)
+print("Vector de pesos: ", vector_pesos_optmizacion)
 print("Longitud del vector de pesos: ", len(vector_pesos_optmizacion))
 
+
+
+# Cargar un array desde una rchivo excel
+#vp = np.loadtxt('FASE2/bestFGWO.txt')
+#vector_pesos_optmizacion = vp.flatten()
 
 
 #  Proceso Para el conjunto de Testeo.

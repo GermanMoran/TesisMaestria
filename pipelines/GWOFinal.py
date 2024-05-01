@@ -129,7 +129,7 @@ def GenerateWolfPopulation(df_norm,SearchAgents,nc):
     GWO = []
     for i in range (SearchAgents):
         # 1. Generar pesos aleatorios | dim = cantidad de caracteristicas
-        np.random.seed(i)
+        #np.random.seed(i)
         vp = np.random.rand(df_norm.shape[1]) # 50
         wi = GenerateWeightVector(vp, nc)
         # 2. Contruyo la Población de lobos
@@ -192,7 +192,7 @@ for inc in range(len(nc_array)):
         Delta_pos = np.zeros(dim)
         Delta_fitnes = float("-inf")
 
-
+        np.random.seed(43)
         GWO = GenerateWolfPopulation(df_norm, SearchAgents,nc)
 
 

@@ -163,7 +163,8 @@ Entradas
                
 
 #1. Se contruyen los grupos de calidad
-df = BuildGroupsQuality()
+#df = BuildGroupsQuality()
+df = pd.read_csv("FASE2/Final_dataset_join.csv")
 df1 = df.copy()
 # Lectura de los Encoders
 valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
@@ -180,14 +181,14 @@ cont = 1
 # ============================================================================================
 
 
-lmp = 20                                                                                
+lmp = 100                                                                                
 HMRC = 0.85                                                      
-PAR = 0.35
+PAR = 0.3
 hmn = 5
-nc=  55
+nc=  30
 
 # Se genera la memoria Armonica - diferentes tamaños
-np.random.seed(123)
+np.random.seed(43)
 MA = GenerateArmonyMemory(df_norm,hmn,nc,df1)
 print("Memoria Armonica: ",MA)
 P=len(MA[0]) 

@@ -72,7 +72,8 @@ def GenerateWeightVector(w, nc):
     w = np.round(w,3)
     s  = np.sum(w)
     wf = np.round(w/s, 3)
-    sc = 1- np.sum(wf)
+    # Agregue el abs
+    sc = abs(1- np.sum(wf))
     pos = np.random.randint(len(wf))
     if sc != 0:
         wf[pos]= wf[pos]+sc
@@ -85,22 +86,24 @@ def GenerateWeightVector(w, nc):
 
 '''
 -Función de calidad, que retorna la metrica de calidad asociada a ese vector w especifico
--Se debe tener en cunata la seleccion de la metrica de calidad asociada, para evaluar
+-Se debe tener en cuenta la seleccion de la metrica de calidad asociada, para evaluar
 el desempeño del algoritmo (Problema de Clasificacion)
 Entradas:
     df_norm: Dataset Normalizado.
     wi: Vector de Pesos.
+    df: Grupos de calidad armados.
 '''
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
-def qualityFunction(df_norm, wi):
+def qualityFunction(df_norm, wi,df):
     #print("longitud df_norm: ",len(df_norm))
     #print("Longitud wi: ", len(wi))
     y_pred = []
     minDep = sys.float_info.max
-    posMinDep = 0
     for i in range(len(df_norm)):
-        vrf = df_norm[i] 
+        vrf = df_norm[i]
+        posMinDep = 0
+        minDep = sys.float_info.max 
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
@@ -124,13 +127,13 @@ Entradas:
     nc: Numero de ceros (Selección de atributos)
 '''
 
-def GenerateArmonyMemory(df_norm, MAC,nc):
+def GenerateArmonyMemory(df_norm, MAC,nc,df):
     Lw = []
     for i in range (MAC):
         # Creo la semilla
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
-        Qs = qualityFunction(df_norm, wi)
+        Qs = qualityFunction(df_norm, wi,df)
         wiq = np.append(wi, Qs)
         Lw.append(wiq)
 
@@ -157,11 +160,11 @@ Entradas
 '''
 
 excel = "ResultadosImprovisacion/resultados_GBHS.xlsx"
-lmp = 10                                                                                
+lmp = 15                                                                                
 HMRC = 0.85                                          
 PAR_array=[0.25,0.3, 0.35,0.40]                                                         
 hmns_array = [5,10,15,20]  
-nc_array = [10,20,30,40,50,60,65]                                        
+nc_array = [20,30,40,50,60,65]                                        
 
 
 #1. Se contruyen los grupos de calidad
@@ -194,7 +197,7 @@ for incero in range(len(nc_array)):
 
             # Se genera la memoria Armonica - diferentes tamaños
             np.random.seed(43)
-            MA = GenerateArmonyMemory(df_norm,hmn,nc)
+            MA = GenerateArmonyMemory(df_norm,hmn,nc,df)
             P=len(MA[0]) 
 
             curvaFitnes = []
@@ -224,7 +227,7 @@ for incero in range(len(nc_array)):
 
                 # Normalización de los pesos
                 wf = GenerateWeightVector(pesosAleatorios, 0)
-                fitnes = qualityFunction(df_norm, wf)
+                fitnes = qualityFunction(df_norm, wf,df)
 
 
 
@@ -249,7 +252,7 @@ for incero in range(len(nc_array)):
             
     
             df_new = pd.DataFrame(data=dicc)
-            df_new.to_csv(f"ResultadosImprovisacion/GBHS/Training/accuracy_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
+            df_new.to_csv(f"ResultadosImprovisacion/GBHS/Training2/accuracy_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
             cont=cont+1
             dicc = dict()
             

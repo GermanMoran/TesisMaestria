@@ -72,11 +72,8 @@ def GenerateWeightVector(w, nc):
     w[posceros] = 0
     w = np.round(w,3)
     s  = np.sum(w)
-    wf = np.round(w/s, 3)
-    sc = 1- np.sum(wf)
-    pos = np.random.randint(len(wf))
-    if sc != 0:
-        wf[pos]= wf[pos]+sc
+    wf = np.round(w/s, 4)
+    # Agregue el abs
 
     return wf
 
@@ -93,14 +90,15 @@ Entradas:
     wi: Vector de Pesos.
 '''
 
+'''
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
 def qualityFunction(df_norm, wi,df):
     #print("longitud df_norm: ",len(df_norm))
     #print("Longitud wi: ", len(wi))
     y_pred = []
-    minDep = sys.float_info.max
-    posMinDep = 0
     for i in range(len(df_norm)):
+        minDep = sys.float_info.max
+        posMinDep = 0
         vrf = df_norm[i] 
         for j in range(len(df_norm)):
             if i != j:
@@ -114,7 +112,43 @@ def qualityFunction(df_norm, wi,df):
     qs = accuracy_score(df.values[:,-1], y_pred)
     return qs
 
+'''
 
+def qualityFunction(df_norm, wi,df,k):
+    #print("longitud df_norm: ",len(df_norm))
+    #print("Longitud wi: ", len(wi))
+    y_pred = []
+    for i in range(len(df_norm)):
+        vrf = df_norm[i]
+        #print(f"Vector {i} :", vrf) 
+        ListaPesosPonderados= [[sys.float_info.max,0] for a in range(k)]
+        for j in range(len(df_norm)):
+            if i != j:
+                #print(ListaPesosPonderados)
+                ri = wi* np.power((df_norm[j] - vrf), 2)
+                dE = np.sum(ri)
+                #print("Distancia Euclideana: ", dE)
+                if dE < ListaPesosPonderados[k-1][0]:
+                    ListaPesosPonderados[k-1][0]=dE
+                    ListaPesosPonderados[k-1][1]=j
+                    ListaPesosPonderados.sort(key=lambda x: x[0], reverse=False)
+        #print(f"vector {i} es muy similar a los vectores en la posición {ListaPesosPonderados}")
+
+        grupos = []
+        for i in range(len(ListaPesosPonderados)):
+            index=ListaPesosPonderados[i][1]
+            g = df.values[index][-1]
+            grupos.append(g)
+        
+        #print("Grupos asociados: ", grupos)
+        grupoSelected = int(pd.Series(grupos).value_counts().index[0])
+        #print("Grupo seleccionado: ", grupoSelected)
+        y_pred.append(grupoSelected)
+    qs = accuracy_score(df.values[:,-1], y_pred)
+    #mc = confusion_matrix(df.values[:,-1], y_pred)
+    #print("Matriz de Confusión: ", mc)
+
+    return qs
 
 
 '''
@@ -125,14 +159,14 @@ Entradas:
     nc: Numero de ceros (Selección de atributos)
 '''
 
-def GenerateArmonyMemory(df_norm, MAC,nc,df):
+def GenerateArmonyMemory(df_norm, MAC,nc,df,k):
 
     Lw = []
     for i in range (MAC):
         # Creo la semilla
         vp = np.random.rand(df_norm.shape[1])
         wi = GenerateWeightVector(vp, nc)
-        Qs = qualityFunction(df_norm, wi,df)
+        Qs = qualityFunction(df_norm, wi,df,k)
         wiq = np.append(wi, Qs)
         Lw.append(wiq)
 
@@ -181,16 +215,17 @@ cont = 1
 # ============================================================================================
 
 
-lmp = 100                                                                                
+lmp = 10                                                                                
 HMRC = 0.85                                                      
 PAR = 0.3
-hmn = 5
-nc=  30
+hmn = 15
+nc=  0
+k=7
 
 # Se genera la memoria Armonica - diferentes tamaños
-np.random.seed(43)
-MA = GenerateArmonyMemory(df_norm,hmn,nc,df1)
-print("Memoria Armonica: ",MA)
+#np.random.seed(43)
+MA = GenerateArmonyMemory(df_norm,hmn,nc,df1,k)
+#print("Memoria Armonica: ",MA)
 P=len(MA[0]) 
 
 curvaFitnes = []
@@ -220,7 +255,7 @@ for i in range (lmp):
 
     # Normalización de los pesos
     wf = GenerateWeightVector(pesosAleatorios, 0)
-    fitnes = qualityFunction(df_norm, wf, df1)
+    fitnes = qualityFunction(df_norm, wf, df1,k)
 
 
 
@@ -246,10 +281,10 @@ dicc = {"vector":vectorIteration,
             "Fitnes": curvaFitnes}
 
 
-'''df_new = pd.DataFrame(data=dicc)
-df_new.to_csv(f"ResultadosImprovisacion/GBHS/Training/accuracy_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
+df_new = pd.DataFrame(data=dicc)
+df_new.to_csv(f"ResultadosImprovisacion/GBHS/Training/accuracykvecinos_PAR_{PAR}_Tmem_{hmn}_nc_{nc}.csv")
 cont=cont+1
-dicc = dict() '''
+dicc = dict() 
 
 
             

@@ -585,9 +585,10 @@ grupos_finales = definitive_groups.copy()
 
 #1.Union grupos | unico dataset
 final_datset_join = BuildGroupsQuality(grupos_finales)
-#final_datset_join.to_csv('FASE2/Final_dataset_join.csv',index=False)
+final_datset_join.to_csv('FASE2/Final_dataset_join.csv',index=False)
 print(final_datset_join.shape)
 
+'''
 #2.Normalizacion dataset
 df_norm = NormalizeViewMinable(final_datset_join.values[:,:-1],valMin, dataRange)
 print(df_norm.shape)
@@ -636,3 +637,4 @@ np.savetxt('ResultadosImprovisacion/Comparaciones/ytrue.csv', y_true, delimiter=
 
 metrics = metricasPerformanceCLR(y_true, yhat_test)
 
+'''

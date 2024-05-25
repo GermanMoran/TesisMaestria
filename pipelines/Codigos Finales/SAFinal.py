@@ -81,12 +81,12 @@ Entradas:
 '''
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
-def qualityFunction(df_norm, wi):
+def qualityFunction(df_norm, wi,df):
     y_pred = []
     minDep = sys.float_info.max
-    posMinDep = 0
+    posMinDep = 0 
     for i in range(len(df_norm)):
-        vrf = df_norm[i] 
+        vrf = df_norm[i]
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)

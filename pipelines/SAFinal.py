@@ -37,14 +37,15 @@ def BuildGroupsQuality():
     return df
 
 
-
 # Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
-def NormalizeViewMinable(df):
-    norm = MinMaxScaler()
-    df_norm = norm.fit_transform(df.values[:,:-1])
-    return df_norm
+# df: es la matriz df.values [] , no incluye la etiqueta del grupo
+def NormalizeViewMinable(df,valMin, dataRange):
+    dataset_normalizado = np.empty((df.shape[0], df.shape[1]))
+    for i in range(df.shape[0]):
+        for j in range(df.shape[1]):
+            dataset_normalizado[i][j]= (df[i][j] - valMin[j])/dataRange[j]
 
-
+    return dataset_normalizado
 
 
 
@@ -54,18 +55,13 @@ Entradas:
 w: Vector de pesos w [0,1], igual al numero de caracteristicas normalizadas.
 nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50]
 '''
+
 def GenerateWeightVector(w, nc):
-    # Se seleccionan diferentes posiciones| atributos a establecer  en cero
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
-    w = np.round(w,3)
     s  = np.sum(w)
-    # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
-    wf = np.round(w/s, 3)
-    sc = abs(1- np.sum(wf))
-    pos = np.random.randint(len(wf))
-    if sc != 0:
-        wf[pos]= wf[pos]+sc
+    wf = np.round(w/s, 4)
+
 
     return wf
 
@@ -81,11 +77,11 @@ Entradas:
 '''
 
 # Dependiendo del vector de pesos me extrae el acuracy - F1 score
-def qualityFunction(df_norm, wi):
+def qualityFunction(df_norm, wi,df):
     y_pred = []
-    minDep = sys.float_info.max
-    posMinDep = 0
     for i in range(len(df_norm)):
+        minDep = sys.float_info.max
+        posMinDep = 0
         vrf = df_norm[i] 
         for j in range(len(df_norm)):
             if i != j:
@@ -97,6 +93,7 @@ def qualityFunction(df_norm, wi):
               
         y_pred.append(df.values[posMinDep][-1])
     qs = accuracy_score(df.values[:,-1], y_pred)
+    #qs = f1_score(df.values[:,-1], y_pred, average='micro')
     return qs
 
 
@@ -113,7 +110,7 @@ def qualityFunction(df_norm, wi):
 # ==============================================================================
 #temp = 100
 P= 174
-max_iterations = 15                                                       
+max_iterations = 100                                                       
 nc_array = [50,55,60,65]
 #nc_array = [50]          
 pm= 0.1                            
@@ -121,8 +118,20 @@ pm= 0.1
 #  SA
 # ==============================================================================
 
-df = BuildGroupsQuality()
-df_norm = NormalizeViewMinable(df)
+#df = BuildGroupsQuality()
+#df_norm = NormalizeViewMinable(df)
+
+df = pd.read_csv("FASE2/Final_dataset_join.csv")
+print("Longitud df: ", df.shape)
+#2. Lectura de los Encoders
+valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
+dataRange = np.loadtxt('FASE2/Encoder_dataRange.txt')
+df_matriz = df.values[:,:-1]
+
+df_norm = NormalizeViewMinable(df_matriz, valMin, dataRange)
+
+
+
 
 
 for nceros in range(len(nc_array)):
@@ -133,7 +142,7 @@ for nceros in range(len(nc_array)):
     bw = 1/((P-nc)/10)
 
     s= GenerateWeightVector(p,nc)
-    qs= qualityFunction(df_norm, s)
+    qs= qualityFunction(df_norm, s,df)
     best = np.copy(s)
     qbest = qs
     curvaSA = []
@@ -156,7 +165,7 @@ for nceros in range(len(nc_array)):
 
         # Vuelvo a normmalizar el vector de pesos r sumado el twick
         rv = GenerateWeightVector(rv,0)
-        qr= qualityFunction(df_norm, rv)
+        qr= qualityFunction(df_norm, rv,df)
         aleatorio = np.random.rand()
         if (qr >= qs) or (aleatorio < e**((qr-qs)/temp)):
             s=rv
@@ -179,7 +188,7 @@ for nceros in range(len(nc_array)):
             }
     
     df_new = pd.DataFrame(data=dicc)
-    df_new.to_csv(f"ResultadosImprovisacion/SA/acc_nc_{nc}.csv")
+    df_new.to_csv(f"ResultadosImprovisacion/SA/Training2/acc_nc_{nc}.csv")
     dicc = dict()
 
 

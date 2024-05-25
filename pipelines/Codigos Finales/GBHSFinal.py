@@ -143,9 +143,12 @@ Entradas
 excel = "ResultadosImprovisacion/resultados_GBHS.xlsx"
 lmp = 10                                                                                
 HMRC = 0.85                                          
-PAR_array=[0.25,0.3, 0.35,0.40]                                                         
+#PAR_array=[0.25,0.3, 0.35,0.40]                                                         
+#hmns_array = [5,10,15,20]  
+#nc_array = [50,55,60,65]
+PAR_array=[0.35]                                                         
 hmns_array = [5,10,15,20]  
-nc_array = [50,55,60,65]                                        
+nc_array = [50,55,60,65]                                            
 
 
 #1. Se contruyen los grupos de calidad

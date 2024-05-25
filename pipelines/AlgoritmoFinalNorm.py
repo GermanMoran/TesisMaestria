@@ -479,7 +479,7 @@ definitive_groups = []
 #1. Lectura del Dataset Principal
 # ==============================================================================
 
-df = pd.read_excel("../Archivos Generados/DatasetFinal.xlsx")
+df = pd.read_excel("../Archivos Generados/DatasetFinalPrueba.xlsx")
 #print(df.head())
 # Ornial variables list
 bin_features =['SEM_TRATADAS','DRENAJE','ALMACENAMIENTO_FINCA','CAP_ENDURE_RASTA','MOTEADOS_RASTA','MOTEADOS_MAS70cm._RASTA',
@@ -507,8 +507,8 @@ dataset_vindep= dataset_vindep.drop(["RDT_AJUSTADO","ID_LOTE"],axis=1)
 valMin, valMax, dataRange = EncoderViewMinable(dataset_vindep)
 print("Longitudes : ", len(valMin), len(valMax), len(dataRange))
 # Guardamos los encoders apra posteriores usos
-np.savetxt('FASE2/Encoder_ValMin.txt', valMin)
-np.savetxt('FASE2/Encoder_dataRange.txt', dataRange)
+np.savetxt('FASE2/Prueba/Encoder_ValMin.txt', valMin)
+np.savetxt('FASE2/Prueba/Encoder_dataRange.txt', dataRange)
 
 
 #3. División de datset Training and Test seed 123
@@ -517,7 +517,7 @@ np.savetxt('FASE2/Encoder_dataRange.txt', dataRange)
 dataset_train, dataset_test = train_test_split(dataset, test_size = 0.05, random_state=43)
 print("Longitud Dataset Entrenamiento:",  dataset_train.shape)
 #Guardamose l dataset de testeo.
-dataset_test.to_csv('FASE2/dataset_test.csv',index=False)
+dataset_test.to_csv('FASE2/Prueba/dataset_test.csv',index=False)
 dataset_training = dataset_train.copy()
 
 
@@ -549,7 +549,7 @@ if len(group_acepted) > 1:
         print("Huerfanos: ", orphans.shape)
         # Guardamos los grupos Finales
         for c, g in enumerate (quality_groups):
-            g.to_excel(f"FASE2/grupo_N{c}.xlsx")
+            g.to_excel(f"FASE2/Prueba/grupo_N{c}.xlsx")
    
         
         for c, value in enumerate (correlation_quality_groups):
@@ -573,7 +573,7 @@ print("Grupos Definitivos: ", len(definitive_groups))
 list_final_models = []
 for i in range(len(definitive_groups)):
     model_final, r2_final, yhat_final = LinearRegession(definitive_groups[i],0.1, 0.97).CalcularModeloLR()
-    Name_model = f"FASE2/modelo_entrenado_{i}.pkl"
+    Name_model = f"FASE2/Prueba/modelo_entrenado_{i}.pkl"
     joblib.dump(model_final, Name_model) # Guardo el modelo.
     print("R2: ", r2_final)
     list_final_models.append(model_final)
@@ -589,14 +589,15 @@ grupos_finales = definitive_groups.copy()
 
 #1.Union grupos | unico dataset
 final_datset_join = BuildGroupsQuality(grupos_finales)
-#final_datset_join.to_csv('FASE2/Final_dataset_join.csv',index=False)
+final_datset_join.to_csv('FASE2/Prueba/Final_dataset_join.csv',index=False)
 print(final_datset_join.shape)
 
+'''
 #2.Normalizacion dataset
 df_norm = NormalizeViewMinable(final_datset_join.values[:,:-1],valMin, dataRange)
 print(df_norm.shape)
 
-'''
+
 
 #3.Optimización GBHS
 # Se jecuta la mejor metahurtistica de acuerdo a los resultados obtenidos

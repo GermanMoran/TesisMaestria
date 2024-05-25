@@ -69,14 +69,14 @@ def GenerateWeightVector(w, nc):
     # Se seleccionan diferentes posiciones| atributos a establecer  en cero
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
-    w = np.round(w,3)
     s  = np.sum(w)
     # Normalizo los pesos - Solo obtengo los 3 decimales de c/d peso
-    wf = np.round(w/s, 3)
-    sc = abs(1- np.sum(wf))
-    pos = np.random.randint(len(wf))
-    if sc != 0:
-        wf[pos]= wf[pos]+sc
+    wf = np.round(w/s, 4)
+    # No sirve colocar abs
+    #sc = abs(1- np.sum(wf))
+    #pos = np.random.randint(len(wf))
+    #if sc != 0:
+    #    wf[pos]= wf[pos]+sc
 
     return wf
 
@@ -95,10 +95,10 @@ Entradas:
 def qualityFunction(df_norm, wi,df):
     # Vector Distancias Euclideanas Ponderadas
     y_pred = []
-    minDep = sys.float_info.max
-    posMinDep = 0
     for i in range(len(df_norm)):
-        vrf = df_norm[i] 
+        vrf = df_norm[i]
+        minDep = sys.float_info.max
+        posMinDep = 0 
         for j in range(len(df_norm)):
             if i != j:
                 ri = wi* np.power((df_norm[j] - vrf), 2)
@@ -156,12 +156,15 @@ Entradas:
 
 # Variables Generales
 Max_iter=20
-nc_array = [50,55,60,65]   
+nc_array = [20,30,40,50,55,60,65]   
 popzize_array= [5,10,15,20]
 
 
-df = BuildGroupsQuality()
-# Lectura de los Encoders
+#df = BuildGroupsQuality()
+#1. Dataframe original
+df = pd.read_csv("FASE2/Final_dataset_join.csv")
+print("Longitud df: ", df.shape)
+#2. Lectura de los Encoders
 valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
 dataRange = np.loadtxt('FASE2/Encoder_dataRange.txt')
 df_matriz = df.values[:,:-1]
@@ -308,7 +311,7 @@ for inc in range(len(nc_array)):
 
     
         df_new = pd.DataFrame(data=dicc)
-        df_new.to_csv(f"ResultadosImprovisacion/GWO/Training/accuracy_nc_{nc}_PopZize_{SearchAgents}.csv")
+        df_new.to_csv(f"ResultadosImprovisacion/GWO/Training2/accuracy_nc_{nc}_PopZize_{SearchAgents}.csv")
         dicc = dict()
 
         

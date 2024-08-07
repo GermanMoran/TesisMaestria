@@ -13,29 +13,14 @@ import math
 
 
 
-# Funcion para construir el dataset - Asociado a los respectivos grupos
-def BuildGroupsQuality():
-    GC1 = pd.read_excel("FASE2/grupo_N0.xlsx",index_col=0)
-    GC2 = pd.read_excel("FASE2/grupo_N1.xlsx",index_col=0)
-    GC3 = pd.read_excel("FASE2/grupo_N2.xlsx",index_col=0)
-    GC4 = pd.read_excel("FASE2/grupo_N3.xlsx",index_col=0)
 
-
-    GC1["Grupo"] = 1
-    GC2["Grupo"] = 2
-    GC3["Grupo"] = 3
-    GC4["Grupo"] = 4
-
-
-    df = pd.concat([GC1, GC2,GC3,GC4], ignore_index=True)
-    df = df.drop(["ID_LOTE", "RDT_AJUSTADO"], axis=1)
-    return df
-
-
-
-
+'''
 # Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
 # df: es la matriz df.values [] , no incluye la etiqueta del grupo
+# valMin: Valores minimos de cada columna , utilizadas para hacer la normalización
+# dataRange: Rango de datos [valmax - val min] para cada columna
+'''
+
 def NormalizeViewMinable(df,valMin, dataRange):
     dataset_normalizado = np.empty((df.shape[0], df.shape[1]))
     for i in range(df.shape[0]):
@@ -46,32 +31,22 @@ def NormalizeViewMinable(df,valMin, dataRange):
 
 
 
-'''
-# Funcion para Normalizar la Vista minable a exepción de la etiqueta(Variable Objetivo)
-def NormalizeViewMinable(df):
-    norm = MinMaxScaler()
-    df_norm = norm.fit_transform(df.values[:,:-1])
-    return df_norm
-
-'''
-
 
 
 
 '''
 Funcion para generar el vector de pesos aleatorio.
 Entradas:
-w: Vector de pesos w [0,1], igual al numero de caracteristicas normalizadas.
-nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50]
+    w: Vector de pesos w [0,1], igual al numero de caracteristicas normalizadas.
+    nc: Nunero de ceros que debe contener el vector de pesos [10,20,30,40,50..]
+salidas:
+    wf: vector de pesos normalizado
 '''
 def GenerateWeightVector(w, nc):
     posceros = np.random.choice(len(w), nc, replace=False)
     w[posceros] = 0
-    w = np.round(w,3)
     s  = np.sum(w)
-    wf = np.round(w/s, 4)
-    # Agregue el abs
-
+    wf = w/s
     return wf
 
 
@@ -85,14 +60,11 @@ el desempeño del algoritmo (Problema de Clasificacion)
 Entradas:
     df_norm: Dataset Normalizado.
     wi: Vector de Pesos.
-    df: Grupos de calidad armados.
+    df: Dataframe Original con grupos armados
 '''
 
 
-# Dependiendo del vector de pesos me extrae el acuracy - F1 score
 def qualityFunction(df_norm, wi,df):
-    #print("longitud df_norm: ",len(df_norm))
-    #print("Longitud wi: ", len(wi))
     y_pred = []
     for i in range(len(df_norm)):
         posMinDep = 0
@@ -105,13 +77,14 @@ def qualityFunction(df_norm, wi,df):
                 if dE < minDep:
                     posMinDep=j
                     minDep = dE
-        #print(posMinDep)
+
         y_pred.append(df.values[posMinDep][-1])
     qs = accuracy_score(df.values[:,-1], y_pred)
     return qs
 
 
 '''
+Implmentación de la funcion voto simple (K valores)
 def qualityFunction(df_norm, wi,df,k):
     y_pred = []
     for i in range(len(df_norm)):
@@ -138,21 +111,28 @@ def qualityFunction(df_norm, wi,df,k):
 '''
 
 
+
+
+
 '''
 Función para generar la memoria Armonica
 Entradas:
+    df_norm: datataframe normalizado. [Matriz]
     MAC: Tamaño de la  Memoria Armonica
-    wi: Vector de Pesos.
     nc: Numero de ceros (Selección de atributos)
+    df: Dataframe original , para ubicar el grupo asociado a la menor distancia.
+
+Salidas:
+    Memoria Armonica [wi | fitnes] ordenada de mayor a menor decuerdo al fitnes.
 '''
 
-def GenerateArmonyMemory(df_norm, MAC,nc,df,k):
+def GenerateArmonyMemory(df_norm, MAC,nc,df):
     Lw = []
     for i in range (MAC):
-        # Creo la semilla
         vp = np.random.rand(df_norm.shape[1])
+        # Normalizacion vector de pesos.
         wi = GenerateWeightVector(vp, nc)
-        Qs = qualityFunction(df_norm, wi,df,k)
+        Qs = qualityFunction(df_norm, wi,df)
         wiq = np.append(wi, Qs)
         Lw.append(wiq)
 
@@ -178,21 +158,21 @@ Entradas
     nc: Numero de ceros [10,20,30,40,50]    [10,20,30,40,50,60,70]  
 '''
 
-excel = "ResultadosImprovisacion/resultados_GBHS.xlsx"
-# 100
-lmp = 500                                                                                
+
+lmp = 100                                                                               
 HMRC_array = [0.85,0.90]                                          
 PAR_array=[0.3, 0.35,0.40]                                                         
 hmns_array = [10,5,15,20]  
-nc_array = [30,40,50,60]
-k_array=[1,3,5,7]                                        
+#nc_array = [30,40,50,60]
+nc_array = [0]
+#k_array=[1,3,5,7]   
+k_array=[1]                                       
 
 
 #1. Se contruyen los grupos de calidad
-#df = BuildGroupsQuality()
 df = pd.read_csv("FASE2/Final_dataset_join.csv")
 print("Longitud df: ", df.shape)
-# Lectura de los Encoders
+# Lectura de los Encoders | Normalización del dataframe
 valMin = np.loadtxt('FASE2/Encoder_ValMin.txt')
 print("Encoder: ", len(valMin))
 dataRange = np.loadtxt('FASE2/Encoder_dataRange.txt')
@@ -224,13 +204,13 @@ for ik in range(len(k_array)):
 
                     # Se genera la memoria Armonica - diferentes tamaños
                     #np.random.seed(43)
-                    MA = GenerateArmonyMemory(df_norm,hmn,nc,df,k)
+                    MA = GenerateArmonyMemory(df_norm,hmn,nc,df)
+                    # (P-1): Numero de atributos y/o dimensiones
                     P=len(MA[0]) 
 
                     curvaFitnes = []
                     vectorIteration= []
                     for i in range (lmp):
-                        # seed
                         pesosAleatorios = np.random.rand(P-1)
                         for j in range(P-1):
                             Aleatorio1 = random.random() 
@@ -254,7 +234,7 @@ for ik in range(len(k_array)):
 
                         # Normalización de los pesos
                         wf = GenerateWeightVector(pesosAleatorios, 0)
-                        fitnes = qualityFunction(df_norm, wf,df,k)
+                        fitnes = qualityFunction(df_norm, wf,df)
 
 
 
@@ -262,7 +242,6 @@ for ik in range(len(k_array)):
                         if MA[hmn -1][P-1] < fitnes:
                             new_register = np.append(wf, fitnes)
                             MA[hmn-1] = new_register
-                            #print("------------------------------------")
                             MA.sort(key=lambda x: x[-1], reverse=True)
                         
 

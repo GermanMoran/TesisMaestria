@@ -70,7 +70,7 @@ class LinearRegession():
     def CalcularModeloLR(self):
         # alpha=0.1, l1_ratio=0.97
         Y = self.df.RDT_AJUSTADO.values
-        X = self.df.drop(["RDT_AJUSTADO","ID_LOTE"], axis=1).values 
+        X = self.df.drop(["RDT_AJUSTADO"], axis=1).values 
         modelElasticNet = ElasticNet(alpha=self.alpha, l1_ratio=self.l1_ratio, random_state=123)
         model = modelElasticNet.fit(X,Y)
         #r_2 = model.score(X,Y)
@@ -169,7 +169,7 @@ def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_av
         modellr, r_2, yhat = LinearRegession(dataset, 0.1, 0.97).CalcularModeloLR()
         print("Ajuste del Modelo dataset Completo: ", r_2)
         DatasetOrdely = CLR(dataset,yhat).calcularMAE()
-        DatasetOrdely.to_excel(f"FASE1/DatasetOrdenado{contador}.xlsx")
+        #DatasetOrdely.to_excel(f"FASE1/DatasetOrdenado{contador}.xlsx")
 
         try:
             group = DatasetOrdely.loc[DatasetOrdely.MAE < MAE_Allowed]
@@ -192,7 +192,7 @@ def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_av
                     group_acepted.append(group)
                     model_acepted.append(group_model)
                     correlation_model.append(r2_group_mode)
-                    group.to_excel(f"FASE1/GrupoN_{contador}.xlsx")
+                    #group.to_excel(f"FASE1/GrupoN_{contador}.xlsx")
                     MAE_Allowed = MAE_Allowed + additional_average_error
                 else:
                     print("No cumple con la condición de  la correlacion")
@@ -208,7 +208,7 @@ def fase1(dataset,Minimum_records,minimum_correlation, MAE_Allowed,additional_av
             Orphans = Orphans.drop(["yhat", "EA"],axis=1).reset_index(drop=True)
             print("Logitud Huerfanos: ", Orphans.shape)
             # Se guardan los huerfanos en un archivo.
-            Orphans.to_excel("FASE1/HuerfanosN.xlsx")
+            #Orphans.to_excel("FASE1/HuerfanosN.xlsx")
             break
     
     return [group_acepted, model_acepted, correlation_model, Orphans]
@@ -479,23 +479,14 @@ definitive_groups = []
 #1. Lectura del Dataset Principal
 # ==============================================================================
 
-df = pd.read_excel("../Archivos Generados/DatasetFinalPrueba.xlsx")
-#print(df.head())
-# Ornial variables list
-bin_features =['SEM_TRATADAS','DRENAJE','ALMACENAMIENTO_FINCA','CAP_ENDURE_RASTA','MOTEADOS_RASTA','MOTEADOS_MAS70cm._RASTA',
-               'OBSERVA_EROSION_RASTA','OBSERVA_MOHO_RASTA','OBSERVA_RAICES_VIVAS_RASTA','OBSERVA_HOJARASCA_MO_RASTA',
-                'SUELO_NEGRO_BLANDO_RASTA','CUCHILLO_PRIMER_HTE_RASTA','CERCA_RIOS_QUEBRADAS_RASTA',
-               ]
+df = pd.read_csv("ResultadosImprovisacion/Pruebas/dataset_prueba_30.csv")
 
-
-#2. Codificación de variables categoricas - Dummy
-# ============================================================
-dataset = OneHotCoding(df,bin_features).dummyCodification()
+dataset = df.copy()
 print("Dimension dataset Original: ", dataset.shape)
 
 dataset_original = dataset.copy()
 dataset_vindep = dataset.copy()
-dataset_vindep= dataset_vindep.drop(["RDT_AJUSTADO","ID_LOTE"],axis=1)
+dataset_vindep= dataset_vindep.drop(["RDT_AJUSTADO"],axis=1)
 
 
 
@@ -507,17 +498,17 @@ dataset_vindep= dataset_vindep.drop(["RDT_AJUSTADO","ID_LOTE"],axis=1)
 valMin, valMax, dataRange = EncoderViewMinable(dataset_vindep)
 print("Longitudes : ", len(valMin), len(valMax), len(dataRange))
 # Guardamos los encoders apra posteriores usos
-np.savetxt('FASE2/Prueba/Encoder_ValMin.txt', valMin)
-np.savetxt('FASE2/Prueba/Encoder_dataRange.txt', dataRange)
+np.savetxt('ResultadosImprovisacion/Pruebas/Encoder_ValMin.txt', valMin)
+np.savetxt('ResultadosImprovisacion/Pruebas/Encoder_dataRange.txt', dataRange)
 
 
 #3. División de datset Training and Test seed 123
 # ============================================================
 
-dataset_train, dataset_test = train_test_split(dataset, test_size = 0.05, random_state=43)
+dataset_train, dataset_test = train_test_split(dataset, test_size = 0.10, random_state=43)
 print("Longitud Dataset Entrenamiento:",  dataset_train.shape)
 #Guardamose l dataset de testeo.
-dataset_test.to_csv('FASE2/Prueba/dataset_test_p_12_9_2024.csv',index=False)
+dataset_test.to_csv('ResultadosImprovisacion/Pruebas/dataset_test.csv',index=False)
 dataset_training = dataset_train.copy()
 
 
@@ -549,7 +540,7 @@ if len(group_acepted) > 1:
         print("Huerfanos: ", orphans.shape)
         # Guardamos los grupos Finales
         for c, g in enumerate (quality_groups):
-            g.to_excel(f"FASE2/Prueba/grupo_N_12_{c}.xlsx")
+            g.to_excel(f"ResultadosImprovisacion/Pruebas/grupo_N_12_{c}.xlsx")
    
         
         for c, value in enumerate (correlation_quality_groups):

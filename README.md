@@ -2,16 +2,15 @@
 ## Acerca de este proyecto
 Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Predicción del rendimiento del cultivo del maíz mediante el uso de CLR y metaheurísticas."
 
-```
 ## Estructura del Proyecto
-
+```
 ├── app                <- Source code for use in this project
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   ├── external       <- Fuentes de datos externas
+│   ├── Silver         <- Datos intermedios que han sido procesados y transformados.
+│   ├── Gold           <- Dataset Final utilizado  para modelos de ML.
+│   └── Bronze         <- Fuentes originales suministradas por la entidad.
 │
 ├── functional_tests   <- All functional tests
 │

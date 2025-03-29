@@ -1,9 +1,0 @@
-Metricas de Evaluación modelos de regresion
-https://sitiobigdata.com/2018/08/27/machine-learning-metricas-regresion-mse/#
-Implementación de un regresor lineal lasso
-https://machinelearningmastery.com/lasso-regression-with-python/
-Implentacion del regresor lineal Ridgue
-https://machinelearningmastery.com/ridge-regression-with-python/
-Implemtacion ElasticNet
-https://machinelearningmastery.com/elastic-net-regression-in-python/
-

@@ -1,0 +1,70 @@
+/*This document contains the styles that use the app. You can change these as you wish.*/
+
+/** General Styles **/
+html{
+    background-color:  #1f2630;
+}
+
+/** Styles for the font **/
+body {
+    font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #7fafdf;
+    margin: 0;
+}
+
+.clr-app {
+    display: flex;
+    flex-direction: column; /* Organiza elementos en columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    text-align: center; /* Centra el texto de los elementos */
+}
+
+
+/*Estilos Body*/ 
+.ds4a-body {
+    padding: 2rem 1rem;
+    background-color:  #252e3f;
+    width: 90%;
+    height: 100%;  
+}
+
+/* Estilos Header  */
+.header-clr {
+    width: 90%;
+    background-color:  #252e3f;
+}
+
+.header-clr {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 90%;
+    background-color:  #252e3f;
+}
+
+
+.custom-dropdown {
+    color: #3a4552;
+    background-color:#252e3f;;
+}
+
+.custom-dropdown .VirtualizedSelectOption:hover {
+    background-color: #ececec;
+    color: #3a4552;
+}
+
+.custom-dropdown .Select-control:focus-within {
+    border-color: #aaa;
+    box-shadow: none;
+}
+
+.custom-dropdown .Select-placeholder {
+    text-align: left !important;
+}
+
+.card-body {
+    max-height: 600px; 
+    overflow-y: auto;  
+}

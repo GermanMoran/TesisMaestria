@@ -1,0 +1,21 @@
+@import url("variables.css");
+
+/*
+.navbar,
+.navbar ul {
+    margin: 0;
+    padding: 0;
+}
+*/
+
+footer {
+    /*
+    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+    padding: 2px 0;
+    
+}

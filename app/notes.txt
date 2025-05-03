@@ -1,0 +1,264 @@
+instalar 
+python
+pip
+
+python v 3.10.6
+pip 22.2.1
+django 4.2.18
+
+pip install virtualenv
+
+virtualenv venv
+
+./venv/Scripts/activate
+
+pip install django
+
+django-admin --version
+
+python -m django --version
+
+import django
+django.get_version()
+
+django-admin startproject mysite .
+#django-admin startproject config .
+
+python manage.py runserver
+
+python manage.py runserver 3000
+
+python manage.py --help
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py shell
+
+
+#docker group add
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+
+su - $USER
+
+sudo apt install python3-pip
+
+pip install django==4.2.18
+
+python3 -m django --version
+
+python3 -m django startproject config .
+
+docker-compose up -d --build
+
+git checkout -b testing-django   #para crear la rama
+
+git checkout master
+
+git branch -D nombre-de-la-rama
+
+ip route | awk '/default/ { print $3 }'   #dentro del contenedor
+
+ip a show eth0 | grep inet | awk '{print $2}' | cut -d/ -f1     # en wsl
+
+hostname -I
+
+docker exec -it django_web bash
+
+docker exec django_web python manage.py makemigrations myapp
+
+docker exec django_web python manage.py migrate
+
+python manage.py createsuperuser
+username
+email
+password
+
+pip list | grep debug-toolbar     # en el contenedor  
+
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+
+docker-compose down -v
+
+docker volume rm django_db_data
+
+docker stop $(docker ps -aq)
+
+docker rm $(docker ps -aq)
+
+docker image ls
+
+docker image prune
+
+docker rmi $(docker images -aq)
+docker images -aq | xargs docker rmi
+
+docker network ls
+
+docker network prune
+
+docker network prune -f
+
+docker network inspect app_network
+
+visitar localhost:8080
+email: admin@email.com
+contraseña: admin
+click derecho en servers -> registrar -> servidor
+pestaña general -> nombre: postgres-docker
+pestaña conexion -> direccion del servidor: db
+puerto: 5432
+base de datos de mantenimiento: mydatabase
+nombre usuario: myuser
+contraseña: mypassword
+
+docker exec -it postgres_db psql -U myuser -d cultivo_maiz 
+
+\dt             #barra invertida, listar tablas del esquema actual
+\dt+            #ver detalles de las tablas
+\l              #listar bases de datos
+\du             #listar usuarios y roles
+\?              #ayuda de comandos psql
+\q              #salir
+
+\c mydatabase;
+\dt auth_user;
+select * from auth_user;                                                        #q para salir (id, username, email, password, date_joined)
+select id, username, email, is_active, date_joined from auth_user;
+SELECT "ID_LOTE", "TIPO_SIEMBRA", "SEM_TRATADAS", "MATERIAL_GENETICO" FROM myapp_cultivomaiz
+ORDER BY id ASC
+
+select * from myapp_cultivomaiz;
+ id | ID_LOTE | TIPO_SIEMBRA | SEM_TRATADAS | MATERIAL_GENETICO | CULT_ANT | DRENAJE | METODO_COSECHA | ALMACENAMIENTO_FINCA | DIAS_EN_EMERGER | DIAS_EN_EMERGER_A_FLORECER | DIAS_EN_FLORECER_A_COSECHAR | POBLACION_20DIAS_AJT | ALTURA_LOT 
+----+---------+--------------+--------------+-------------------+----------+---------+----------------+----------------------+-----------------+----------------------------+-----------------------------+----------------------+------------
+  1 |    3734 | Mecanizado   | SI           | DK 234            | Algodon  | NO      | Manual         | NO                   |               5 |                         49 |                          84 |                65000 |          7
+(1 row)
+
+
+python manage.py shell
+from myapp.models import CultivoMaiz
+nuevo_cultivo = CultivoMaiz(
+    ID_LOTE=3734,
+    TIPO_SIEMBRA="Mecanizado",
+    SEM_TRATADAS="SI",
+        ="DK 234",
+    CULT_ANT="Algodon",
+    DRENAJE="NO",
+    METODO_COSECHA="Manual",
+    ALMACENAMIENTO_FINCA="NO",
+    DIAS_EN_EMERGER=5,
+    DIAS_EN_EMERGER_A_FLORECER=49,
+    DIAS_EN_FLORECER_A_COSECHAR=84,
+    POBLACION_20DIAS_AJT=65000,
+    ALTURA_LOT=7  
+)
+cultivo = CultivoMaiz(ID_LOTE=3734, TIPO_SIEMBRA="Mecanizado", SEM_TRATADAS="SI", MATERIAL_GENETICO="DK 234", CULT_ANT="Algodon", DRENAJE="NO", METODO_COSECHA="Manual", ALMACENAMIENTO_FINCA="NO", DIAS_EN_EMERGER=5, DIAS_EN_EMERGER_A_FLORECER=49, DIAS_EN_FLORECER_A_COSECHAR=84, POBLACION_20DIAS_AJT=65000, ALTURA_LOT=7);
+cultivo.save()
+print(cultivo)
+print(cultivo.MATERIAL_GENETICO)
+CultivoMaiz.objects.all()
+CultivoMaiz.objects.get(id=1)
+CultivoMaiz.objects.filter(ID_LOTE=3734)
+CultivoMaiz.objects.filter(CULT_ANT__startswith="Alg")
+
+docker-compose down && docker-compose up -d
+
+python -m myapp.ml_models.sistema_recomendaciones_gwo   (en el contenedor)
+
+docker exec django_web python -m myapp.ml_models.sistema_recomendaciones_gwo
+
+python manage.py load_csv_data      (en el contenedor)
+
+docker exec django_web python manage.py load_csv_data
+
+curl ifconfig.me          (ip publica)
+
+pip install dash
+pip install django-plotly-dash
+pip install dash dash-bootstrap-components
+
+pip show dash
+pip show django-plotly-dash
+
+docker exec django_web python manage.py collectstatic --noinput
+
+
+Name: dash-bootstrap-components
+Version: 1.7.1
+Name: dash
+Version: 2.18.2
+Name: django-plotly-dash
+Version: 2.4.5
+Name: channels
+Version: 4.2.0
+
+sudo apt install -y ngrok
+
+ngrok --version
+
+ngrok config add-authtoken 2uW0BjrRcD6EBVHvWtVP9n7voDf_71tRhHbbZctFWKtZxerox
+
+ngrok http 8000
+
+pip install django-extensions
+
+pip install pygraphviz
+
+apt-get install graphviz graphviz-dev
+
+python manage.py graph_models -a -g -o diagrama_modelos.png
+
+apt-get install graphviz graphviz-dev
+
+grep -r "El rendimiento predicho es" web/
+
+
+
+
+docker exec -it postgres_db pg_dump -U myuser cultivo_maiz > cultivo_maiz_backup.sql
+mkdir -p init
+mv cultivo_maiz_backup.sql init/init.sql
+
+tar -czvf django.tar.gz django
+
+tar -xzvf django.tar.gz         #extraer
+
+docker logs -f django_web
+
+pip install django-bootstrap5
+
+pip show django-bootstrap5
+Version: 25.1
+
+pip install dpd-static-support
+
+
+UPDATE public.myapp_cultivomaiz
+SET user_id = 2
+WHERE ctid IN (
+    SELECT ctid
+    FROM public.myapp_cultivomaiz
+    WHERE user_id = 1
+    ORDER BY id ASC
+    LIMIT 500
+);
+
+SELECT * FROM public.myapp_cultivomaiz
+ORDER BY id ASC 
+
+
+UPDATE public.myapp_cultivomaiz
+SET user_id = 1
+WHERE ctid IN (
+    SELECT ctid
+    FROM public.myapp_cultivomaiz
+    WHERE user_id = 2
+    ORDER BY id ASC
+    LIMIT 500
+);
+
+
+docker stats django_web

@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivo Maiz</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toast.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+    <div class="notifications"></div>
+
+    <div id="background">
+        <div id="loginContainer">
+            <div id="inputContainer">
+                
+                <form id="loginForm" action="{% url 'login_view' %}" method="POST">
+                    {% csrf_token %}
+                    <h2>Ingresar a su cuenta</h2>
+                    <p>
+                        <label for="loginUsername">Usuario</label>
+                        <input id="loginUsername" name="loginUsername" type="text" placeholder="ejemplo bartSimpson" required>
+                    </p>
+                    <p>
+                        <label for="loginPassword">Contraseña</label>
+                        <input id="loginPassword" name="loginPassword" type="password" placeholder="Su contraseña" required>
+                    </p>
+                    <button type="submit" name="loginButton">INGRESAR</button>
+                    <div class="hasAccountText">
+                        <span id="hideLogin">¿Aún no tienes una cuenta? Regístrate aquí.</span>
+                    </div>
+                </form>
+
+                <form id="registerForm" action="{% url 'signup_view' %}" method="POST">
+                    {% csrf_token %}
+                    <h2>Crear una cuenta</h2>
+                    
+                    <p>
+                        <label for="{{ form.username.id_for_label }}">Usuario</label>
+                        {{ form.username }}
+                    </p>
+                    <p>
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email }}
+                    </p>
+                    
+                    <p>
+                        <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                        {{ form.password1 }}
+                    </p>
+                    
+                    <p>
+                        <label for="{{ form.password2.id_for_label }}">Confirmar contraseña</label>
+                        {{ form.password2 }}
+                    </p>
+                    <button type="submit" name="registerButton">Crear Cuenta</button>
+
+                    <div class="hasAccountText">
+                        <span id="hideRegister">¿Ya tienes una cuenta? Inicia sesión aquí.</span>
+                    </div>
+                </form>
+            </div>
+            <div id="loginText">
+                <h1>Optimiza tu cultivo de maíz</h1>
+                <h2>Descubre soluciones innovadoras para maximizar tu producción</h2>
+                <ul>
+                    <li>Identifica las mejores prácticas agronómicas</li>
+                    <li>Toma decisiones basadas en datos reales</li>
+                    <li>Aumenta tu productividad de forma sostenible</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/toast.js' %}"></script>
+<script>
+    const errorMsg = "{{ error|default:''|escapejs }}";
+
+    const showRegister = {{ show_register|default:"false"|yesno:"true,false" }};
+    if (showRegister) {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const hideLoginBtn = document.getElementById('hideLogin');
+    const hideRegisterBtn = document.getElementById('hideRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    if (errorMsg) {
+        createToast('error', 'fa-solid fa-circle-exclamation', 'Error', errorMsg);
+        console.log('error message');
+    }
+
+    if (hideLoginBtn) {
+        hideLoginBtn.addEventListener('click', function() {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        });
+    }
+
+    if (hideRegisterBtn) {
+        hideRegisterBtn.addEventListener('click', function() {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        });
+    }
+});
+</script>
+
+</html>

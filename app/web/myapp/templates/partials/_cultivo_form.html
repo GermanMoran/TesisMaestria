@@ -1,0 +1,17 @@
+{% load extra_tags %}
+{% for group_title, fields in form.get_field_groups %}
+<fieldset class="collapsible-fieldset">
+    <legend>
+        <button type="button" class="collapse-toggle">
+            <span class="toggle-icon">▼</span>
+        </button>
+        {{ group_title }}
+    </legend>
+    <div class="fieldset-content">
+        {% for field in fields %}
+        {{ field.label_tag }}
+        {{ field }}
+        {% endfor %}
+    </div>
+</fieldset>
+{% endfor %}

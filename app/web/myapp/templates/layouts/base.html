@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivo Maiz</title>
+    <link href="{% static 'favicon.ico' %}" rel="shortcut icon">
+    <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"> -->
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/animate-css/animate.min.css' %}" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/toast.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libs/font-awesome/6.7.2/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cultivo_maiz_table.css' %}">
+    <link rel="stylesheet" href="{% static 'css/predict_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sistema_recomendacion.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+    <div class="notifications"></div>
+
+    <!--==========================
+  Sección de encabezado
+  ============================-->
+    <header id="header">
+        <div class="container">
+            <div id="logo" class="pull-left">
+                <a href="#hero"><img src="{% static 'images/lg2v2.png' %}" alt="" title="" /></img></a>
+                <!-- Descomenta abajo si prefieres usar una imagen de texto -->
+                <!--<h1><a href="#hero">Encabezado 1</a></h1>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="{% url 'home_view' %}">Home</a></li>
+                    <li><a href="{% url 'plotly_view' %}">Estadisticas</a></li>
+                    {% if not request.user.is_superuser %}
+                    <li><a href="{% url 'prediccion_formulario_view' %}">Predicción</a></li>
+                    <li><a href="{% url 'cultivo_maiz_recomendacion_view' %}">Recomendaciones</a></li>
+                    {% endif %}
+                    <li> <a href="{% url 'cultivo_maiz_table_view' %}">Cultivos</a> </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="welcome-li">
+                        Bienvenido, {{ request.user.username }}
+                        (<a href="{% url 'logout_view' %}">Salir</a>)
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'signup_view' %}">Registrarse / Ingresar</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <!-- #nav-menu-container -->
+        </div>
+    </header>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+
+    <!--==========================
+    Footer
+    ============================-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        &copy; Copyright <strong>CLR_APP</strong>. All Rights Reserved
+                    </div>
+                    <div class="contac">
+                        <p><strong>email</strong> homerogpm@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- #footer 
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+     -->
+</body>
+
+<!-- Required JavaScript Libraries -->
+<script src="{% static 'js/plotly-3.0.1.min.js' %}"></script>
+<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+<script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+<script src="{% static 'lib/morphext/morphext.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'lib/stickyjs/sticky.js' %}"></script>
+<script src="{% static 'lib/easing/easing.js' %}"></script>
+
+<script src="{% static 'js/toast.js' %}"></script>
+<script src="{% static 'js/cultivo_maiz.js' %}"></script>
+<script src="{% static 'js/formulario_cultivo.js' %}"></script>
+<script src="{% static 'js/sistema_recomendacion.js' %}"></script>
+<script src="{% static 'js/ajax.js' %}"></script>
+<script src="{% static 'js/accordion-system.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</html>

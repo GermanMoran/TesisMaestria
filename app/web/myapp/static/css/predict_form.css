@@ -1,0 +1,168 @@
+@import url("variables.css");
+
+h1 {
+    text-align: center;
+}
+
+#id_input_predict_form {
+    width: 50%;
+}
+
+.modal {
+    max-width: 100%;
+    padding: 10px 5px;
+    background-color: var(--color-background);
+    box-shadow: 10px 15px 10px var(--color-box-shadow);
+    position: relative;
+    display: none;
+}
+
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--color-background);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+fieldset {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+}
+
+legend {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+label, input, select, textarea {
+    display: block;
+    width: 96%;
+    font-size: 0.87em;
+    border: 1px solid var(--color-border);
+    padding: 1px;
+}
+
+input, select, textarea {
+    background: var(--color-input-background);
+    color: var(--color-input-text);
+}
+
+#predecir-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: var(--color-button-primary);
+    color: white;
+    font-size: 1.1em;
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s eas
+}
+
+#predecir-btn:hover {
+    background-color: var(--color-button-hover);
+}
+
+input:disabled, select:disabled, textarea:disabled {
+    background-color: var(--color-input-disabled-background);
+    color: var(--color-text);            
+}
+
+
+.collapsible-fieldset {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+  
+.collapse-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 5px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-background);
+}
+  
+.toggle-icon {
+    display: inline-block;
+    transition: transform 0.3s;
+    color: var(--color-text);
+}
+  
+.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+  
+.collapsed .fieldset-content {
+    display: none;
+}
+  
+.fieldset-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 10px;
+    width: 100%;
+}
+  
+.fieldset-content > div {
+    width: 100%;
+}
+
+.collapsible-fieldset .fieldset-content label,
+.collapsible-fieldset .fieldset-content input,
+.collapsible-fieldset .fieldset-content select,
+.collapsible-fieldset .fieldset-content textarea {
+    display: block;
+    width: auto;
+    font-size: 0.87em;
+    padding: 1px;
+    box-sizing: border-box;
+}
+
+.predict-form-container {
+    display: flex;
+    align-items: start;
+    /*
+    width: 60%;
+    */
+    gap: 10px;
+    margin-left: 80px;
+}
+
+.predict-form-container p {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+}
+
+.predict-form-container input {
+    margin-left: 40px;
+    padding: 5px;
+}
+
+.resultado-prediccion {
+    margin: 20px auto;         
+    text-align: center;        
+    border: 2px solid #03C4EB; 
+    padding: 20px;             
+    border-radius: 8px;        
+  }
+  

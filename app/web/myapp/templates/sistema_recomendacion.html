@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1>Sistema de recomendaciones</h1>
+
+
+<legend>Selección de Variables</legend>
+<div id="recomendacion_container">
+    <fieldset>
+        <label for="id_select_cultivo_optimizar">Seleccione el Cultivo a Optimizar</label>
+        <input id="id_select_cultivo_optimizar" type="text" list="id_lote_list" name="select_cultivo_optimizar"
+            value="3734">
+        <datalist id="id_lote_list">
+            {% for lote in cultivos %}
+            <option value="{{ lote }}"></option>
+            {% endfor %}
+        </datalist>
+        </input>
+        <label for="id_precio_venta">Precio de Venta del Maíz</label>
+        <input type="number" name="precio_venta" id="id_precio_venta" value="2500">
+        <label for="id_precio_venta">Presupuesto</label>
+        <input type="number" name="presupuesto" id="id_presupuesto" value="4000000">
+    </fieldset>
+    <div id="costos-container">
+        <!-- Aquí se cargará el dropdown con los inputs de Costos Unitarios -->
+    </div>
+    <div id="cultivo-data-fieldset">
+        <!-- Aquí se cargarán dinámicamente los datos del cultivo -->
+    </div>
+    <button type="button" id="id-optimizar-btn" class="optimizar-btn">
+        Optimizar
+    </button>
+</div>
+
+{% endblock %}

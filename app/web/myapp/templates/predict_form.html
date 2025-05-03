@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<h1>Datos Predicción Formulario</h1>
+<div class="predict-form-container">
+    <p>Seleccione el cultivo</p>
+    <input id="id_input_predict_form" type="text" list="id_ID_LOTE" value="3734">
+        <datalist id="id_ID_LOTE">
+            {% for lote in cultivos %}
+            <option value="{{ lote }}"></option>
+            {% endfor %}
+        </datalist>
+    </input>
+</div>
+
+<form id="id-form" method="POST">
+    {% csrf_token %}
+    <div id="form-container">
+        {% for group_title, fields in form.get_field_groups %}
+        <fieldset class="collapsible-fieldset">
+            <legend>
+                <button type="button" class="collapse-toggle">
+                    <span class="toggle-icon">▼</span>
+                </button>
+                {{ group_title }}
+            </legend>
+            <div class="fieldset-content">
+                {% for field in fields %}
+                {{ field.label_tag }}
+                {{ field }}
+                {% endfor %}
+            </div>
+        </fieldset>
+        {% endfor %}
+    </div>
+    <button id="predecir-btn" type="submit">Predecir</button>
+</form>
+
+{% if prediccion_valor %}
+<div class="resultado-prediccion">
+    <h2>Resultados de la predicción</h2>
+    <p><strong>El rendimiento predicho es:</strong> {{ prediccion_valor }} Kg/Ha</p>
+</div>
+{% endif %}
+{% endblock %}

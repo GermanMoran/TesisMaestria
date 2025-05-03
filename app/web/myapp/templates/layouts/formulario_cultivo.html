@@ -1,0 +1,25 @@
+{% load my_filters %}
+
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <button id="guardar-btn-form" type="button" onclick="guardarBtnFormulario()">Guardar</button>
+    <button id="cancelar-btn-form" type="button" onclick="cancelarBtnFormulario()">Cancelar</button>
+    {% for group_title, fields in form.get_field_groups %}
+    <fieldset class="collapsible-fieldset">
+        <legend>
+            <button type="button" class="collapse-toggle">
+                <span class="toggle-icon">▼</span>
+            </button>
+            {{ group_title }}
+        </legend>
+        <div class="fieldset-content">
+            {% for field in fields %}
+                {{ field.label_tag }}
+                {{ field }}
+            {% endfor %}
+        </div>
+    </fieldset>
+    {% endfor %}
+</form>

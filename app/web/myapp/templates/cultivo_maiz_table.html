@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+{% load my_filters %}
+
+
+{% block content %}
+<div class="header-row">
+    <h1>Listado de Cultivo Maíz</h1>
+    {% if not request.user.is_superuser %}
+    <button id="agregar-btn-table">Agregar</button>
+    {% endif %}
+</div>
+<section>
+    <div class="modal" id="modal">
+        <div id="form-modal-container">
+            {% include 'layouts/formulario_cultivo.html' %}
+        </div>
+        <span id="close-modal">
+            <i class="fas fa-times"></i>
+        </span>
+    </div>
+</section>
+<div id="table-container">
+    <table id="cultivo-maiz-table">
+        <thead>
+            <tr>
+                <th>No hay columnas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>No hay filas</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="pagination-container"></div>
+
+{% endblock %}

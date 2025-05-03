@@ -1,0 +1,83 @@
+@import url("variables.css");
+
+h1 {
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón que activa el dropdown */
+.dropdown-toggle {
+  cursor: pointer;
+  display: block;
+  width: 96%;
+  font-size: 0.87em;
+  border: 1px solid var(--color-input-background);
+  padding: 1px;
+}
+
+/* Contenedor flotante para las opciones */
+.dropdown-menu {
+  display: none;
+  /* Se oculta por defecto */
+  position: absolute;
+  top: 100%;
+  /* Se posiciona justo debajo del botón */
+  left: 0;
+  z-index: 1000;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  width: 200px;
+  /* Ajusta según tus necesidades */
+  max-height: 350px;
+  /* Para listas largas, añade scroll */
+  overflow-y: auto;
+  box-shadow: 10px 15px 10px var(--color-box-shadow);
+  padding: 5px;
+}
+
+/* Clase para mostrar el menú */
+.dropdown-menu.show {
+  display: block;
+}
+
+/* Opcional: estilos para los labels dentro del dropdown */
+.dropdown-menu label {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.optimizar-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 36px;
+  background-color: var(--color-button-primary);
+  color: white;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s eas;
+}
+
+.optimizar-btn:hover {
+  background-color: var(--color-button-hover);
+}
+
+.optimized {
+  border: 2px solid var(--color-success, #28a745); 
+  border-radius: 5px;
+}
+
+.optimized legend {
+  color: var(--color-success, #28a745); 
+  font-weight: bold;
+}
+
+.optimized .fieldset-content {
+  color: var(--color-success-text, #155724);
+}

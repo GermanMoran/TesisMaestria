@@ -1,0 +1,184 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!--==========================
+  Hero Section
+  ============================-->
+<section id="hero">
+    <div class="hero-container">
+        <div class="wow fadeIn">
+            <div class="hero-logo">
+                <img class="" src="{% static 'images/lg2v2.png' %}" alt="ProOnliPc">
+                <h2>Una Solución Fantastica <span class="rotating"> para el campo Colombiano, para el agricultor
+                        Colombiano</span></h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--==========================
+  Basic Funcionality
+  ============================-->
+<section id="roverpage">
+    <div class="container wow fadeInUp">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="section-title">Generalidades del maiz</h3>
+                <div class="section-title-divider"></div>
+                <p class="section-description">Los principales factores que afectan la productividad del maiz son: </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="member">
+                    <div class="service-icon"><i class="fa fa-map-marker"></i></div>
+                    <h4>Preparación del suelo</h4>
+                    <span>El maíz se desarrolla mejor en suelos bien drenados, con buen contenido de materia orgánica y
+                        pH entre 5.5 y 7.5.
+                        Se recomienda una labranza adecuada para mejorar la aireación y la retención de humedad</span>
+                    <br><br>
+
+                    <div class="service-icon"><i class="fa fa-cloud"></i></div>
+                    <h4>Variedad y densidad de Siembra</h4>
+                    <span>Se debe seleccionar la variedad según el clima, el tipo de suelo y el propósito del cultivo
+                        (grano, forraje, silo).
+                        La densidad de siembra varía según la variedad y la disponibilidad de agua, generalmente entre
+                        50,000 y 80,000 plantas por hectárea.
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="member">
+                    <div class="pic"><img src="{% static 'images/corn_final.png' %}" alt=""></div>
+
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="member">
+                    <div class="service-icon"><i class="fa fa-tree fa-5x"></i></div>
+                    <h4>Fertilización y manejo de nutrientes</h4>
+                    <span>El maíz requiere nitrógeno (N), fósforo (P) y potasio (K) en diferentes etapas de crecimiento.
+                        Principalmente en las etapas de siembra a emergencia, como también de emergencia a
+                        floración.</span>
+                    <br><br>
+
+                    <div class="service-icon"><i class="fa fa-exclamation-triangle"></i></div>
+                    <h4>Control de plagas enfermedades y malezas</h4>
+                    <span>Las principales plagas que afectan el maíz son: gusanos cogolleros, pulgones y barrenadores
+                        del tallo. Se recomienda implementar un manejo integrado con control químico y biológico, además
+                        del uso de rotación de cultivos y control de malezas.</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<!--==========================
+   Rover_page components
+  ============================-->
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="section-title">Principales Componentes</h3>
+        <div class="section-title-divider"></div>
+    </div>
+</div>
+<section id="roverpage_comp1">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="profile">
+                    <div class="pic"><img src="{% static 'images/pred_maize1.jpg' %}" alt=""></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="quote">
+                    <h1>Predicción del rendimiento del cultivo</h1>
+                    <br><br>
+                    <p>La aplicación permite calcular el rendimiento del cultivo de maíz [kg/Ha] para diferentes eventos
+                        del cultivo,
+                        teniendo en cuenta variables relacionadas con clima, suelo, y prácticas de manejo agrícola.
+                        Cada agricultor dependiendo de su ID_FINCA (Identificador Único para cada lote), puede variar
+                        diversos parámetros
+                        y verificar el rendimiento. Parámetros relacionados con el clima y suelo, se recomiendan
+                        mantenlos fijos dado que
+                        corresponde a un estudio preliminar realizado en cada ubicación del cultivo.
+                    </p>
+                    <a href="{% url 'prediccion_formulario_view' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Ver</a>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!--==========================
+   Rover_page first componet
+  ============================-->
+<section id="roverpage_comp1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="quote">
+                    <h1>Análisis descriptivos de cultivos.</h1>
+                    <br><br>
+                    <p>Esta funcionalidad permite realizar analítica descriptiva para cada Lote del agricultor.
+                        Permitiendo visualizar las principales prácticas agrícolas aplicadas al cultivo del maíz como:
+                        Material Genético, cantidad de Nitrógeno, Fosforo y Potasio (NPK) suministrado,
+                        estructura del terreno donde se realiza la siembra, cantidad de controles químicos para eliminar
+                        malezas y finalmente se muestra el rendimiento promedio [Kg/Ha] de la finca.
+                        Esta funcionalidad permite realizar una comparación rápida con otras fincas y detectar
+                        diferencias clave que influyen en la productividad.
+                    </p>
+                    <a href="{% url 'plotly_view' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Ver</a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="profile">
+                    <div class="pic"><img src="{% static 'images/pred_maize2.png' %}" alt=""></div>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+<section id="roverpage_comp1">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="profile">
+                    <div class="pic"><img src="{% static 'images/Pred_maize3.jpg' %}" alt=""></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="quote">
+                    <h1>Sistema de Recomendaciones</h1>
+                    <br><br>
+                    <p>Esta aplicación ofrece un sistema de recomendaciones que permite optimizar
+                        las prácticas de manejo agrícola, permitiendo obtener el máximo rendimiento [Kg/Ha]
+                        y máxima ganancia (Pesos Colombianos) para cada finca. Las recomendaciones practicas
+                        obtenidas están sujetas al presupuesto del agricultor y los limites superior e inferior
+                        definidos para cada variable, dentro de los lineamentos definidos para el cultivo de maíz.
+                        Finalmente, esta funcionalidad permite descargar las mejores prácticas resultado de la
+                        optimización con el objetivo de brindar al agricultor colombiano una ayuda para la toma de
+                        decisiones.
+                    </p>
+                    <a href="{% url 'cultivo_maiz_recomendacion_view' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Ver</a>
+                </div>
+            </div>
+        </div>
+</section>
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+{% endblock %}

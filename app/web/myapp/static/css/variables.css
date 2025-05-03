@@ -1,0 +1,53 @@
+:root {
+    /* Colores principales
+    --color-background: #202c32;
+    --color-text: whitesmoke;
+    --color-border: #ecdfcc;
+    --color-box-shadow: rgba(236, 223, 204, 0.08);
+    
+    Colores de elementos interactivos
+    --color-input-background: #ecdfcc;
+    --color-input-disabled-background: #5f5341;
+    --color-input-text: black;
+    
+    Colores de botones
+    --color-button-primary: #15641f;
+    --color-button-hover: #1b7321;
+    
+    Colores de tabla
+    --color-head-background: #151f24;
+    --color-hover-background: #4e768a;
+
+    colores toast 
+    --color-toast-success: #0abf3055;
+    --color-toast-success-i: #0abf30;
+    --color-toast-error: #f24d4c55;
+    --color-toast-error-i: #f24d4c;
+    */
+
+    /* Colores principales */
+    --color-background: #ffffff; /* Fondo blanco para versión clara */
+    --color-text: #202c32;       /* Texto oscuro */
+    --color-border: #949494;     /* Borde en tono gris claro */
+    --color-box-shadow: rgba(0, 0, 0, 0.1); /* Sombra suave */
+
+    /* Colores de elementos interactivos */
+    --color-input-background: #ffffff; /* Fondos de inputs en blanco */
+    --color-input-disabled-background: #e0e0e0; /* Fondo para inputs deshabilitados */
+    --color-input-text: #202c32;         /* Texto de inputs oscuro */
+    --color-text-green: #20928e;         /* Texto de inputs oscuro */
+    
+    /* Colores de botones */
+    --color-button-primary: #15641f; /* Puedes mantener este si te gusta, o ajustar a un tono acorde */
+    --color-button-hover: #1b7321;   /* Hover también se puede mantener o modificar */
+    
+    /* Colores de tabla */
+    --color-head-background: #f1f1f1; /* Cabecera de la tabla en gris muy claro */
+    --color-hover-background: #e0e0e0;/* Efecto hover para filas de tabla */
+    
+    /* Colores toast */
+    --color-toast-success: #0abf3055;
+    --color-toast-success-i: #0abf30;
+    --color-toast-error: #f24d4c55;
+    --color-toast-error-i: #f24d4c;
+}

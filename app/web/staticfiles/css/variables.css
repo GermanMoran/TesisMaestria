@@ -1,0 +1,26 @@
+:root {
+    /* Colores principales */
+    --color-background: #202c32;
+    --color-text: whitesmoke;
+    --color-border: #ecdfcc;
+    --color-box-shadow: rgba(236, 223, 204, 0.08);
+    
+    /* Colores de elementos interactivos */
+    --color-input-background: #ecdfcc;
+    --color-input-disabled-background: #5f5341;
+    --color-input-text: black;
+    
+    /* Colores de botones */
+    --color-button-primary: #15641f;
+    --color-button-hover: #1b7321;
+    
+    /* Colores de tabla */
+    --color-head-background: #151f24;
+    --color-hover-background: #4e768a;
+
+    /* colores toast */
+    --color-toast-success: #0abf3055;
+    --color-toast-success-i: #0abf30;
+    --color-toast-error: #f24d4c55;
+    --color-toast-error-i: #f24d4c;
+}

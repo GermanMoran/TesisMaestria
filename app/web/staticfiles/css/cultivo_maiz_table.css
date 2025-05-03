@@ -1,0 +1,38 @@
+@import url("variables.css");
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2px 0;
+    font-size: 0.8em;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+
+th {
+    position: sticky;
+    background-color: var(--color-head-background);
+    border: 1px solid var(--color-border);
+}
+
+tr:hover {
+    background-color: var(--color-hover-background);
+}
+
+#table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 76vh;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}

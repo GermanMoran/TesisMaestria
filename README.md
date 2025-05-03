@@ -4,37 +4,40 @@ Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Pr
 
 ## Estructura del Proyecto
 ```
-├── app                <- Source code for use in this project
-├── README.md          <- The top-level README for developers using this project.
+├── app                <- Codigo fuente del proyecto
+├── README.md          <- El archivo README de nivel superior para desarrolladores que 
+|                         utilizan este    proyecto.
 ├── data
 │   ├── external       <- Fuentes de datos externas
 │   ├── Silver         <- Datos intermedios que han sido procesados y transformados.
 │   ├── Gold           <- Dataset Final utilizado  para modelos de ML.
 │   └── Bronze         <- Fuentes originales suministradas por la entidad.
 │
-├── functional_tests   <- All functional tests
+├── functional_tests   <- Tests Funcionales, Incluye manual de usario con pruebas.
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── models             <- Modelos Entrenados (Archivos.pkl) para ser consumidos.
 │
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-lam-initial-data-exploration`.
+├── notebooks          <- Jupyter notebooks para cada fase del proyecto.
 │
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+├── Referencias        <- Diccionarios de datos, manuales y todo otro material explicativo.
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
+├── Documentos         <- Generados en la investigación: Monografia y Articulos.
+│   └── figuras        <- Generadas en la investigación Monografia y Articulos.
+|                       
 │
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+├── Instrucciones.txt  <- Instrucciones a tener en cuenta para el despliegue de
+|                          la aplicación WEB.
 │
-├── setup.py           <- makes project pip installable (pip install -e .) so src can be     
-│                         imported
 └── 
 ```
 ## Herramientas 🛠️
 - Python
-- Jupyter Notebook
+- Jupyter Notebooks
 - Git Hub
+- Docker
+- Postgres SQL
+- Dash Ploty
 - Django
+- (HTML, Css y JavaScript)
+
 ## Pasos para hacer uso del proyecto

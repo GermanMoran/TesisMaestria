@@ -19,10 +19,12 @@ Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Pr
 │
 ├── notebooks          <- Jupyter notebooks para cada fase del proyecto.
 │
-├── Referencias        <- Diccionarios de datos, manuales y todo otro material explicativo.
+├── References         <- Diccionarios de datos, manuales y todo otro material explicativo.
 │
-├── Documentos         <- Generados en la investigación: Monografia y Articulos.
-│   └── figuras        <- Generadas en la investigación Monografia y Articulos.
+├── Documents          <- Generados en la investigación: Monografia y Articulos.
+|    └── Articulos     <- Generadas en la investigación.
+│    └── figuras       <- Generadas en la investigación Monografia y Articulos.
+|    └── Referencias   <- Documentos de referencias utilizados 
 |                       
 │
 ├── Instrucciones.txt  <- Instrucciones a tener en cuenta para el despliegue de

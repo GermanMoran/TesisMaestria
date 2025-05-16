@@ -314,6 +314,29 @@ def qualityFunction(df_norm, wi,df):
 
 
 
+def qualityFunction2(df_norm, wi,df, lista_modelos):
+    #print("longitud df_norm: ",len(df_norm))
+    #print("Longitud wi: ", len(wi))
+    y_pred = []
+    minDep = sys.float_info.max
+    posMinDep = 0
+    for i in range(len(df_norm)):
+        vrf = df_norm[i]
+        minDep = sys.float_info.max
+        for j in range(len(df_norm)):
+            if i != j:
+                ri = wi* np.power((df_norm[j] - vrf), 2)
+                dE = np.sum(ri)
+                if dE < minDep:
+                    posMinDep=j
+                    minDep = dE
+        #print(posMinDep)
+        y_pred.append(df.values[posMinDep][-1])
+    qs = accuracy_score(df.values[:,-1], y_pred)
+    return qs
+
+
+
 
 '''
 Función para generar la memoria Armonica

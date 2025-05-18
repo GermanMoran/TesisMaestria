@@ -1,0 +1,157 @@
+\documentclass[a4paper,10pt]{article}
+\title{Wilcoxon Signed Ranks test.}
+\date{\today}
+\author{KEEL non-parametric statistical module}
+\begin{document}
+
+\pagestyle{empty}
+\maketitle
+\thispagestyle{empty}
+
+
+
+\section{Detailed results for GWO}
+
+
+\subsection{Results}
+
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|c|c|}
+\hline
+ VS & $R^{+}$ & $R^{-}$ & Exact P-value & Asymptotic P-value \\ \hline 
+SA & 78066.0 & 540.0 & - & 0\\ \hline 
+HC & 74276.0 & 4330.0 & - & 0\\ \hline 
+
+\end{tabular}
+\caption{Results obtained by the Wilcoxon test for algorithm GWO}
+\end{table}
+
+\subsection{Confidence intervals for Median of diferences}
+
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|}
+\hline
+ $\alpha$=0.90 & Confidence interval & Exact confidence \\ \hline 
+SA & [2,236,566.025 , 2,399,998.92] & 2\\ \hline 
+HC & [1,327,920.17 , 1,460,215.85] & 2\\ \hline 
+
+\end{tabular}
+\caption{Confidence intervals for algorithm GWO ($\alpha$=0.90)}
+\end{table}
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|}
+\hline
+ $\alpha$=0.95 & Confidence interval & Exact confidence \\ \hline 
+SA & [2,221,814.19 , 2,415,275.93] & 2\\ \hline 
+HC & [1,303,681.265 , 1,466,822.225] & 2\\ \hline 
+
+\end{tabular}
+\caption{Confidence intervals for algorithm GWO ($\alpha$=0.95)}
+\end{table}
+
+ \clearpage 
+
+
+\section{Detailed results for SA}
+
+
+\subsection{Results}
+
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|c|c|}
+\hline
+ VS & $R^{+}$ & $R^{-}$ & Exact P-value & Asymptotic P-value \\ \hline 
+GWO & 540.0 & 78066.0 & - & 1\\ \hline 
+HC & 219.0 & 78387.0 & - & 1\\ \hline 
+
+\end{tabular}
+\caption{Results obtained by the Wilcoxon test for algorithm SA}
+\end{table}
+
+\subsection{Confidence intervals for Median of diferences}
+
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|}
+\hline
+ $\alpha$=0.90 & Confidence interval & Exact confidence \\ \hline 
+GWO & [-2,399,998.92 , -2,236,566.025] & 2\\ \hline 
+HC & [-1,002,729.505 , -979,007.365] & 2\\ \hline 
+
+\end{tabular}
+\caption{Confidence intervals for algorithm SA ($\alpha$=0.90)}
+\end{table}
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|}
+\hline
+ $\alpha$=0.95 & Confidence interval & Exact confidence \\ \hline 
+GWO & [-2,415,275.93 , -2,221,814.19] & 2\\ \hline 
+HC & [-1,002,802.96 , -978,235.785] & 2\\ \hline 
+
+\end{tabular}
+\caption{Confidence intervals for algorithm SA ($\alpha$=0.95)}
+\end{table}
+
+ \clearpage 
+
+
+\section{Detailed results for HC}
+
+
+\subsection{Results}
+
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|c|c|}
+\hline
+ VS & $R^{+}$ & $R^{-}$ & Exact P-value & Asymptotic P-value \\ \hline 
+GWO & 4330.0 & 74276.0 & - & 1\\ \hline 
+SA & 78387.0 & 219.0 & - & 0\\ \hline 
+
+\end{tabular}
+\caption{Results obtained by the Wilcoxon test for algorithm HC}
+\end{table}
+
+\subsection{Confidence intervals for Median of diferences}
+
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|}
+\hline
+ $\alpha$=0.90 & Confidence interval & Exact confidence \\ \hline 
+GWO & [-1,460,215.85 , -1,327,920.17] & 2\\ \hline 
+SA & [979,007.365 , 1,002,729.505] & 2\\ \hline 
+
+\end{tabular}
+\caption{Confidence intervals for algorithm HC ($\alpha$=0.90)}
+\end{table}
+\begin{table}[!htp]
+\centering\small
+\begin{tabular}{
+|c|c|c|}
+\hline
+ $\alpha$=0.95 & Confidence interval & Exact confidence \\ \hline 
+GWO & [-1,466,822.225 , -1,303,681.265] & 2\\ \hline 
+SA & [978,235.785 , 1,002,802.96] & 2\\ \hline 
+
+\end{tabular}
+\caption{Confidence intervals for algorithm HC ($\alpha$=0.95)}
+\end{table}
+
+ \clearpage 
+
+
+\end{document}

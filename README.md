@@ -4,7 +4,7 @@ Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Pr
 
 ## Estructura del Proyecto
 ```
-├── app                <- Codigo fuente del proyecto
+├── app                <- Codigo fuente de la aplicación WEB
 ├── README.md          <- El archivo README de nivel superior para desarrolladores que 
 |                         utilizan este    proyecto.
 ├── data
@@ -15,9 +15,10 @@ Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Pr
 │
 ├── functional_tests   <- Tests Funcionales, Incluye manual de usario con pruebas.
 │
-├── models             <- Modelos Entrenados (Archivos.pkl) para ser consumidos.
+├── models             <- Modelos Entrenados (Archivos.pkl) y artefcatos para ser consumidos
+|                         por otros sistemas.
 │
-├── notebooks          <- Jupyter notebooks para cada fase del proyecto.
+├── notebooks          <- Jupyter notebooks para cada fase del proyecto (EDA, modelos, SR)
 │
 ├── References         <- Diccionarios de datos, manuales y todo otro material explicativo.
 │

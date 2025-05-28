@@ -2,7 +2,8 @@
 
 ## Acerca de este proyecto
 
-Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Predicción del rendimiento del cultivo del maíz mediante el uso de CLR y metaheurísticas."
+- Repositorio asociado a todos los archivos obtenidos de la tesis de maestría "Predicción del rendimiento del cultivo del maíz mediante el uso de CLR y metaheurísticas."
+- Video MAIZE APP : https://www.youtube.com/watch?v=I0ZCiu5P7z4
 
 ## Estructura del Proyecto
 

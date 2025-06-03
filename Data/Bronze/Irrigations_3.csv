@@ -214,21 +214,21 @@ ID_EVENTO,ID_PROD,APLICA_RIEGO,FECHA_RIEGO,CANTIDAD_APORTADA,FORMA_APLICACION
 1185,1106,SI,10/30/2014,350,Aspersion
 1185,1106,SI,11/26/2014,400,Aspersion
 1186,1107,SI,10/19/2014,300,Aspersion
-1190,1110,SI,9/3/2014,300,"Mixto (Bombeo-Gravedad)"
-1190,1110,SI,9/12/2014,300,"Mixto (Bombeo-Gravedad)"
-1190,1110,SI,9/22/2014,300,"Mixto (Bombeo-Gravedad)"
+"1190,1110,SI,9/3/2014,300,""Mixto (Bombeo-Gravedad)"""
+"1190,1110,SI,9/12/2014,300,""Mixto (Bombeo-Gravedad)"""
+"1190,1110,SI,9/22/2014,300,""Mixto (Bombeo-Gravedad)"""
 1192,1112,SI,7/1/2014,300,Aspersion
 1217,1130,SI,10/30/2014,400,Gravedad
 1723,822,SI,3/16/2014,300,Aspersion
-1723,822,SI,3/25/2014,300,"Mixto (Bombeo-Gravedad)"
-1723,822,SI,4/4/2014,400,"Mixto (Bombeo-Gravedad)"
+"1723,822,SI,3/25/2014,300,""Mixto (Bombeo-Gravedad)"""
+"1723,822,SI,4/4/2014,400,""Mixto (Bombeo-Gravedad)"""
 1724,826,SI,5/22/2014,400,Aspersion
 1727,760,SI,6/15/2014,400,Aspersion
 1727,760,SI,7/2/2014,400,Aspersion
 1741,823,SI,3/5/2014,400,Aspersion
-1783,1508,SI,9/4/2014,300,"Mixto (Bombeo-Gravedad)"
-1783,1508,SI,9/12/2014,300,"Mixto (Bombeo-Gravedad)"
-1783,1508,SI,9/20/2014,300,"Mixto (Bombeo-Gravedad)"
+"1783,1508,SI,9/4/2014,300,""Mixto (Bombeo-Gravedad)"""
+"1783,1508,SI,9/12/2014,300,""Mixto (Bombeo-Gravedad)"""
+"1783,1508,SI,9/20/2014,300,""Mixto (Bombeo-Gravedad)"""
 1786,1511,SI,9/29/2014,300,Aspersion
 1786,1511,SI,10/6/2014,400,Aspersion
 1786,1511,SI,12/6/2014,400,Aspersion
@@ -415,7 +415,7 @@ ID_EVENTO,ID_PROD,APLICA_RIEGO,FECHA_RIEGO,CANTIDAD_APORTADA,FORMA_APLICACION
 2561,2400,SI,7/31/2015,300,Gravedad
 2561,2400,SI,8/15/2015,300,Gravedad
 2778,2491,SI,3/21/2015,NULL,Gravedad
-2849,2563,SI,3/31/2016,1000,"Mixto (Bombeo-Gravedad)"
+"2849,2563,SI,3/31/2016,1000,""Mixto (Bombeo-Gravedad)"""
 2870,2592,SI,12/30/2015,200,Aspersion
 2877,41,SI,9/12/2015,300,Aspersion
 2877,41,SI,9/21/2015,480,Aspersion
@@ -549,17 +549,17 @@ ID_EVENTO,ID_PROD,APLICA_RIEGO,FECHA_RIEGO,CANTIDAD_APORTADA,FORMA_APLICACION
 3375,3103,SI,6/13/2016,300,Aspersion
 3376,3111,SI,4/4/2016,250,Aspersion
 3383,3386,SI,12/18/2015,1,Aspersion
-3384,3387,SI,11/25/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3385,3388,SI,11/30/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3386,3389,SI,11/10/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3387,3390,SI,11/16/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3388,3391,SI,11/6/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3389,3392,SI,11/7/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3391,3414,SI,11/6/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3392,3416,SI,11/10/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3393,3415,SI,11/13/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3394,3417,SI,11/7/2015,NULL,"Mixto (Bombeo-Gravedad)"
-3394,3417,SI,11/30/2015,NULL,"Mixto (Bombeo-Gravedad)"
+"3384,3387,SI,11/25/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3385,3388,SI,11/30/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3386,3389,SI,11/10/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3387,3390,SI,11/16/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3388,3391,SI,11/6/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3389,3392,SI,11/7/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3391,3414,SI,11/6/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3392,3416,SI,11/10/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3393,3415,SI,11/13/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3394,3417,SI,11/7/2015,NULL,""Mixto (Bombeo-Gravedad)"""
+"3394,3417,SI,11/30/2015,NULL,""Mixto (Bombeo-Gravedad)"""
 3419,3123,SI,4/26/2016,300,Aspersion
 3419,3123,SI,5/10/2016,300,Aspersion
 3419,3123,SI,5/25/2016,300,Aspersion
@@ -633,7 +633,7 @@ ID_EVENTO,ID_PROD,APLICA_RIEGO,FECHA_RIEGO,CANTIDAD_APORTADA,FORMA_APLICACION
 3670,3614,SI,5/5/2016,0.4,Gravedad
 3795,2617,SI,11/16/2016,1000,Aspersion
 3839,2946,SI,4/18/2016,200,Aspersion
-4372,3425,SI,3/10/2016,10,"Mixto (Bombeo-Gravedad)"
+"4372,3425,SI,3/10/2016,10,""Mixto (Bombeo-Gravedad)"""
 4373,3452,SI,2/4/2016,NULL,Gravedad
 4373,3452,SI,2/11/2016,NULL,Gravedad
 4373,3452,SI,2/22/2016,NULL,Gravedad
@@ -676,7 +676,7 @@ ID_EVENTO,ID_PROD,APLICA_RIEGO,FECHA_RIEGO,CANTIDAD_APORTADA,FORMA_APLICACION
 4539,4688,SI,9/22/2016,NULL,Gravedad
 4539,4688,SI,9/29/2016,NULL,Gravedad
 4539,4688,SI,10/6/2016,NULL,Gravedad
-4552,4684,SI,4/2/2016,10,"Mixto (Bombeo-Gravedad)"
+"4552,4684,SI,4/2/2016,10,""Mixto (Bombeo-Gravedad)"""
 4589,4683,SI,11/30/2016,NULL,Gravedad
 4648,4680,SI,4/29/2016,NULL,Gravedad
 4648,4680,SI,5/9/2016,NULL,Gravedad
@@ -722,11 +722,11 @@ ID_EVENTO,ID_PROD,APLICA_RIEGO,FECHA_RIEGO,CANTIDAD_APORTADA,FORMA_APLICACION
 4699,4697,SI,7/25/2016,NULL,Gravedad
 4699,4697,SI,8/3/2016,NULL,Gravedad
 4700,4690,SI,10/22/2016,NULL,Gravedad
-4701,4694,SI,9/22/2016,380,"Mixto (Bombeo-Gravedad)"
-4701,4694,SI,9/26/2016,NULL,"Mixto (Bombeo-Gravedad)"
-4701,4694,SI,9/29/2016,NULL,"Mixto (Bombeo-Gravedad)"
-4701,4694,SI,10/3/2016,NULL,"Mixto (Bombeo-Gravedad)"
-4701,4694,SI,10/7/2016,NULL,"Mixto (Bombeo-Gravedad)"
+"4701,4694,SI,9/22/2016,380,""Mixto (Bombeo-Gravedad)"""
+"4701,4694,SI,9/26/2016,NULL,""Mixto (Bombeo-Gravedad)"""
+"4701,4694,SI,9/29/2016,NULL,""Mixto (Bombeo-Gravedad)"""
+"4701,4694,SI,10/3/2016,NULL,""Mixto (Bombeo-Gravedad)"""
+"4701,4694,SI,10/7/2016,NULL,""Mixto (Bombeo-Gravedad)"""
 4702,4696,SI,8/30/2016,NULL,Gravedad
 4702,4696,SI,9/9/2016,NULL,Gravedad
 4702,4696,SI,9/19/2016,NULL,Gravedad

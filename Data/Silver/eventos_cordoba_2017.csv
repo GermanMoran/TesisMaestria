@@ -208,7 +208,7 @@ ID_EVENTO,ID_LOTE,TIPO_SIEMBRA,SEM_TRATADAS,MATERIAL_GENETICO,CULT_ANT,DRENAJE,M
 2284,2099,Mecanizado,SI,P4082 (Pioneer),Algodón,SI,Mecanizada,NO,3.0,5970.930232558139,5.0,45.0,81.0,75000.0,11
 2292,2172,Manual,NO,DK 234 YGRR,,SI,Manual,SI,2.0,4262.790697674418,4.0,61.0,79.0,70000.0,12
 2293,2171,Manual,NO,Otro,Algodón,SI,Manual,NO,1.0,3174.4186046511627,5.0,53.0,61.0,70588.0,10
-2298,2174,Mecanizado,NO,DK 234,Maiz,SI,Manual,SI,3.0,4767.441860465116,5.0,77.0,49.0,"0      180000.000000
+"2298,2174,Mecanizado,NO,DK 234,Maiz,SI,Manual,SI,3.0,4767.441860465116,5.0,77.0,49.0,""0      180000.000000"
 1      180000.000000
 2      180000.000000
 3      180000.000000
@@ -219,7 +219,7 @@ ID_EVENTO,ID_LOTE,TIPO_SIEMBRA,SEM_TRATADAS,MATERIAL_GENETICO,CULT_ANT,DRENAJE,M
 995     90000.000000
 996     81818.181818
 997     78260.869565
-Name: AREA, Length: 882, dtype: float64",12
+"Name: AREA, Length: 882, dtype: float64"",12"
 2300,2173,Mecanizado,SI,DK 234 YGRR,Maiz,SI,Manual,SI,3.0,4343.023255813953,5.0,77.0,48.0,70000.0,12
 2301,2175,Manual,SI,DK 234,Maiz,SI,Manual,SI,3.5,4520.930232558139,5.0,46.0,80.0,70000.0,12
 2302,2176,Manual,NO,DK 234,Maiz,SI,Manual,SI,1.0,3767.4418604651164,12.0,33.0,71.0,70000.0,11
@@ -316,7 +316,7 @@ Name: AREA, Length: 882, dtype: float64",12
 2629,2283,Mecanizado,SI,PAC 105,Algodón,SI,Mecanizada,NO,7.0,2002.325581395349,5.0,46.0,90.0,60000.0,4
 2630,2282,Mecanizado,SI,DK 234 YGRR,Algodón,SI,Manual,SI,20.0,3337.2093023255816,4.0,47.0,82.0,55000.0,14
 2632,2280,Mecanizado,NO,DK 234 YGRR,Algodón,NO,Manual,NO,1.5,2260.4651162790697,4.0,46.0,79.0,55000.0,4
-2633,2287,Mecanizado,NO,PAC 105,Algodón,NO,Manual,NO,1.0,2072.093023255814,4.0,46.0,79.0,"0     NaN
+"2633,2287,Mecanizado,NO,PAC 105,Algodón,NO,Manual,NO,1.0,2072.093023255814,4.0,46.0,79.0,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -327,7 +327,7 @@ Name: AREA, Length: 882, dtype: float64",12
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",13
+"Name: AREA, Length: 882, dtype: float64"",13"
 2635,2436,Mecanizado,NO,NK254 (Syngenta),Algodón,SI,Manual,NO,1.0,3337.2093023255816,5.0,46.0,66.0,70000.0,14
 2636,2437,Mecanizado,SI,NK254 (Syngenta),Algodón,SI,Manual,SI,2.0,2947.6744186046512,5.0,46.0,60.0,71000.0,14
 2637,2438,Mecanizado,SI,PAC 105,Algodón,SI,Manual,SI,4.0,2947.6744186046512,5.0,47.0,66.0,71000.0,14
@@ -440,7 +440,7 @@ Name: AREA, Length: 882, dtype: float64",13
 3123,2829,Manual,NO,PIONEER 30F35 HRR,Maiz,NO,Manual,NO,1.0,3013.953488372093,6.0,44.0,85.0,56000.0,16
 3124,2842,Mecanizado,NO,PIONEER 30F35 HRR,Maiz,NO,Mecanizada,NO,5.0,3623.2558139534885,5.0,47.0,79.0,62500.0,16
 3125,2843,Manual,SI,DK 234 YGRR,Maiz,NO,Manual,NO,2.0,3337.2093023255816,5.0,48.0,78.0,60000.0,16
-3135,2853,Manual,NO,PIONEER 30F35 HRR,Maiz,NO,Manual,NO,2.0,3813.953488372093,,,,"0     NaN
+"3135,2853,Manual,NO,PIONEER 30F35 HRR,Maiz,NO,Manual,NO,2.0,3813.953488372093,,,,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -451,7 +451,7 @@ Name: AREA, Length: 882, dtype: float64",13
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",15
+"Name: AREA, Length: 882, dtype: float64"",15"
 3145,2863,Manual,NO,Sinko (Syngenta),Maiz,NO,Manual,NO,1.0,1883.7209302325582,5.0,46.0,87.0,42000.0,72
 3146,2864,Manual,NO,Sinko (Syngenta),Maiz,NO,Manual,NO,1.0,1883.7209302325582,5.0,45.0,89.0,42000.0,73
 3147,2865,Manual,NO,Sinko (Syngenta),Maiz,NO,Manual,NO,1.0,1953.4883720930231,5.0,44.0,84.0,42000.0,72
@@ -463,7 +463,7 @@ Name: AREA, Length: 882, dtype: float64",15
 3161,2889,Mecanizado,NO,P3966 (Pioneer),Maiz,SI,Manual,SI,1.2,2354.6511627906975,5.0,47.0,86.0,74000.0,16
 3164,2890,Manual,NO,Sinko (Syngenta),Maiz,NO,Manual,NO,1.2,3044.186046511628,5.0,46.0,90.0,42000.0,73
 3165,2891,Manual,NO,Sinko (Syngenta),Maiz,SI,Manual,NO,1.0,2697.6744186046512,5.0,26.0,112.0,52000.0,8
-3170,2906,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Mecanizada,NO,4.0,5274.418604651163,,,,"0     NaN
+"3170,2906,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Mecanizada,NO,4.0,5274.418604651163,,,,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -474,7 +474,7 @@ Name: AREA, Length: 882, dtype: float64",15
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",7
+"Name: AREA, Length: 882, dtype: float64"",7"
 3171,2907,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Mecanizada,NO,3.5,5180.232558139535,5.0,47.0,82.0,68000.0,6
 3172,2908,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Mecanizada,NO,8.0,4709.302325581395,5.0,46.0,95.0,73000.0,5
 3173,2909,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Mecanizada,NO,10.0,5180.232558139535,5.0,46.0,95.0,73000.0,6
@@ -549,7 +549,7 @@ Name: AREA, Length: 882, dtype: float64",7
 3250,2970,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Manual,SI,1.4,4501.162790697675,5.0,47.0,86.0,73000.0,5
 3251,2971,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Manual,SI,2.0,4558.13953488372,5.0,48.0,84.0,73000.0,5
 3252,2972,Mecanizado,SI,P3966 (Pioneer),Maiz,SI,Manual,SI,1.5,4709.302325581395,5.0,47.0,85.0,73000.0,5
-3253,2973,Mecanizado,SI,PIONEER 30F35,Maiz,SI,Manual,SI,3.0,4651.162790697675,,,,"0     NaN
+"3253,2973,Mecanizado,SI,PIONEER 30F35,Maiz,SI,Manual,SI,3.0,4651.162790697675,,,,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -560,7 +560,7 @@ Name: AREA, Length: 882, dtype: float64",7
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",4
+"Name: AREA, Length: 882, dtype: float64"",4"
 3254,2974,Manual,NO,Otro,Maiz,NO,Manual,SI,1.0,4776.7441860465115,5.0,47.0,80.0,73000.0,4
 3255,2975,Mecanizado,SI,DK 234 YGRR,Maiz,SI,Manual,SI,2.5,4593.023255813953,5.0,48.0,91.0,73500.0,7
 3256,2986,Manual,NO,Otro,Maiz,NO,Manual,SI,1.0,3390.6976744186045,5.0,47.0,82.0,42000.0,75
@@ -666,7 +666,7 @@ Name: AREA, Length: 882, dtype: float64",4
 3820,3632,Mecanizado,SI,P3966 (Pioneer),Pastos,NO,Mecanizada,NO,10.0,3013.953488372093,4.0,45.0,86.0,65000.0,6
 3821,3642,Manual,NO,Otro,Maiz,SI,Manual,NO,1.0,4290.697674418605,5.0,43.0,86.0,55000.0,7
 3824,3671,Mecanizado,SI,ADV 9293 (Syngenta),Algodón,SI,Manual,NO,3.0,4958.139534883721,4.0,49.0,80.0,62000.0,6
-3825,3672,Mecanizado,SI,DK 234,Maiz,SI,Manual,NO,2.0,5339.53488372093,,,,"0     NaN
+"3825,3672,Mecanizado,SI,DK 234,Maiz,SI,Manual,NO,2.0,5339.53488372093,,,,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -677,7 +677,7 @@ Name: AREA, Length: 882, dtype: float64",4
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",9
+"Name: AREA, Length: 882, dtype: float64"",9"
 3826,3673,Mecanizado,SI,DK 234,Maiz,NO,Manual,NO,3.0,5816.279069767442,2.0,48.0,81.0,65000.0,6
 3828,3675,Mecanizado,SI,PIONEER 30F35 H,Maiz,SI,Manual,NO,3.0,5911.627906976744,4.0,45.0,86.0,65000.0,10
 3829,3676,Mecanizado,SI,PIONEER 30F35 HRR,Maiz,NO,Manual,NO,4.0,5651.162790697675,4.0,47.0,81.0,65000.0,10
@@ -741,7 +741,7 @@ Name: AREA, Length: 882, dtype: float64",9
 4156,3924,Mecanizado,SI,DK 234,Maiz,NO,Manual,NO,4.0,5086.046511627907,4.0,48.0,78.0,65000.0,10
 4157,3925,Mecanizado,SI,DK 234,Algodón,NO,Manual,NO,2.0,5053.488372093024,5.0,48.0,79.0,65000.0,8
 4158,3926,Mecanizado,SI,PIONEER 30F35 HRR,Algodón,NO,Manual,NO,1.5,5530.232558139535,4.0,48.0,79.0,70000.0,6
-4159,3927,Manual,SI,P3966 (Pioneer),Algodón,NO,Manual,NO,2.0,6388.372093023256,,,,"0     NaN
+"4159,3927,Manual,SI,P3966 (Pioneer),Algodón,NO,Manual,NO,2.0,6388.372093023256,,,,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -752,7 +752,7 @@ Name: AREA, Length: 882, dtype: float64",9
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",8
+"Name: AREA, Length: 882, dtype: float64"",8"
 4161,3928,Mecanizado,SI,ADV 9339 (Syngenta),Algodón,NO,Manual,NO,2.0,5148.837209302325,4.0,47.0,85.0,70000.0,6
 4162,3929,Mecanizado,SI,DK 234,Algodón,NO,Manual,NO,1.0,4862.790697674419,5.0,47.0,81.0,62000.0,6
 4163,3930,Manual,NO,Otro,Maiz,NO,Manual,NO,2.5,4862.790697674419,4.0,52.0,73.0,60000.0,8
@@ -820,7 +820,7 @@ Name: AREA, Length: 882, dtype: float64",8
 4391,4202,Mecanizado,SI,Otro,Maiz,SI,Mecanizada,NO,12.0,6122.093023255814,5.0,46.0,87.0,73000.0,5
 4392,4203,Mecanizado,SI,Otro,Maiz,SI,Mecanizada,NO,4.0,5933.720930232558,5.0,47.0,79.0,73000.0,5
 4414,4247,Mecanizado,SI,Otro,Maiz,SI,Manual,NO,2.0,5462.790697674419,5.0,46.0,82.0,73000.0,5
-4417,4248,Mecanizado,NO,Otro,Maiz,SI,Manual,NO,1.4,5148.837209302325,,,,"0     NaN
+"4417,4248,Mecanizado,NO,Otro,Maiz,SI,Manual,NO,1.4,5148.837209302325,,,,""0     NaN"
 1     NaN
 2     NaN
 3     NaN
@@ -831,7 +831,7 @@ Name: AREA, Length: 882, dtype: float64",8
 995   NaN
 996   NaN
 997   NaN
-Name: AREA, Length: 882, dtype: float64",5
+"Name: AREA, Length: 882, dtype: float64"",5"
 4419,4249,Mecanizado,SI,Otro,Maiz,SI,Manual,SI,1.0,5302.325581395349,5.0,46.0,84.0,73000.0,6
 4421,4250,Mecanizado,SI,Otro,Maiz,SI,Manual,NO,2.0,5581.395348837209,5.0,42.0,86.0,73000.0,5
 4429,4257,Mecanizado,SI,Otro,Maiz,SI,Manual,SI,1.0,5530.232558139535,5.0,47.0,82.0,73000.0,6

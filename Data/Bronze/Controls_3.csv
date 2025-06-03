@@ -168,7 +168,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 540,509,10/18/2013,Malezas,Químico,Glifosato
 541,510,10/2/2013,Plagas,Químico,Cipermetrina
 541,510,10/17/2013,Malezas,Químico,Glufosinato de amonio
-541,510,10/17/2013,Malezas,Químico,"C9H10Cl2N2O, 33,4diclorofenil1,1dimetilurea"
+"541,510,10/17/2013,Malezas,Químico,""C9H10Cl2N2O, 33,4diclorofenil1,1dimetilurea"""
 542,511,10/10/2013,Plagas,Químico,Cipermetrina
 542,511,11/9/2013,Plagas,Químico,Cipermetrina
 542,511,10/21/2013,Malezas,Químico,Atrazina
@@ -1528,7 +1528,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 1919,1577,10/9/2014,Malezas,Químico,Glifosato
 1919,1577,11/30/2014,Malezas,Químico,Glifosato
 1920,692,6/15/2015,Plagas,Químico,Lorsban 4E
-1920,692,8/3/2015,Malezas,Químico,"AMINA 2,4D"
+"1920,692,8/3/2015,Malezas,Químico,""AMINA 2,4D"""
 1921,1747,6/3/2015,Plagas,Químico,CIPERMETRINA
 1921,1747,5/1/2015,Malezas,Mecanizado,
 1922,1748,5/14/2015,Plagas,Químico,Lorsban 4E
@@ -1623,7 +1623,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 1951,692,5/18/2015,Plagas,Químico,Lorsban 4E
 1951,692,5/29/2015,Plagas,Químico,Lorsban 4E
 1951,692,4/14/2015,Malezas,Químico,GLIFOSATO
-1951,692,6/10/2015,Malezas,Químico,"2,4D"
+"1951,692,6/10/2015,Malezas,Químico,""2,4D"""
 1955,1584,11/14/2014,Plagas,Químico,Diflubenzurón
 1955,1584,12/6/2014,Plagas,Químico,Spinetoram
 1955,1584,12/3/2014,Malezas,Químico,Glufosinato de amonio
@@ -1710,7 +1710,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2022,1898,6/10/2015,Plagas,Químico,Lorsban 4E
 2022,1898,6/16/2015,Plagas,Químico,Lorsban 4E
 2022,1898,7/6/2015,Plagas,Químico,Piretroides
-2022,1898,5/21/2015,Malezas,Químico,"glifosato + 2,4 D +PICLORAN"
+"2022,1898,5/21/2015,Malezas,Químico,""glifosato + 2,4 D +PICLORAN"""
 2023,1902,5/12/2015,Plagas,Químico,Cipermetrina
 2023,1902,6/6/2015,Plagas,Químico,Lorsban 4E
 2023,1902,7/12/2015,Plagas,Químico,Cipermetrina
@@ -1750,7 +1750,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2040,1927,6/18/2015,Plagas,Químico,teflubenzuron+cipermetrina+zetacipermetrina
 2040,1927,6/30/2015,Plagas,Químico,teflubenzuron + cipermetrina + zetacipermetrina
 2040,1927,6/4/2015,Malezas,Químico,Glifosato
-2041,1928,6/12/2015,Plagas,Químico,"zetacipermetrina , cipermetrina  y teflubenzuron"
+"2041,1928,6/12/2015,Plagas,Químico,""zetacipermetrina , cipermetrina  y teflubenzuron"""
 2041,1928,6/27/2015,Plagas,Químico,zetacipermetrina+cipermetrina y teflubenzuron
 2041,1928,5/25/2015,Malezas,Químico,Glifosato
 2042,1929,5/25/2015,Plagas,Químico,amamectina 
@@ -1838,7 +1838,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2067,1844,6/16/2015,Plagas,Químico,Teflubenzuron
 2067,1844,6/16/2015,Plagas,Químico,Cipermetrina
 2067,1844,6/1/2015,Malezas,Químico,Pendimentalina
-2067,1844,6/1/2015,Malezas,Químico,"àcido 2,4 D"
+"2067,1844,6/1/2015,Malezas,Químico,""àcido 2,4 D"""
 2067,1844,6/1/2015,Malezas,Químico,Glifosato
 2068,1949,6/5/2015,Plagas,Químico,EMAMECTINA
 2068,1949,6/11/2015,Plagas,Químico,EMAMECTINA
@@ -2193,7 +2193,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2164,2064,7/11/2015,Malezas,Químico,picloran
 2165,1923,5/21/2015,Plagas,Químico,Cipermetrina
 2165,1923,6/13/2015,Plagas,Químico,Cipermetrina
-2165,1923,5/21/2015,Malezas,Químico,"Àcido 2,4 D + Picloram"
+"2165,1923,5/21/2015,Malezas,Químico,""Àcido 2,4 D + Picloram"""
 2165,1923,5/21/2015,Malezas,Químico,Glifosato
 2165,1923,6/13/2015,Malezas,Químico,Glufosinato de amonio
 2166,2063,6/3/2015,Plagas,Químico,Cipermetrina
@@ -2318,7 +2318,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2224,2050,6/2/2015,Malezas,Químico,glifosato  y amina
 2225,2049,6/19/2015,Plagas,Químico,spinetoram
 2225,2049,6/29/2015,Plagas,Químico,Triflumuron
-2225,2049,5/31/2015,Malezas,Químico,"picloram , glifosato y amina"
+"2225,2049,5/31/2015,Malezas,Químico,""picloram , glifosato y amina"""
 2226,2128,3/17/2015,Plagas,Químico,FIPRONIL
 2226,2128,4/7/2015,Plagas,Químico,BENZOMECTINA
 2226,2128,3/17/2015,Malezas,Químico,Glifosato
@@ -2841,7 +2841,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2352,2276,6/9/2015,Plagas,Químico,teflubenzurom
 2352,2276,6/16/2015,Plagas,Químico,Thiodicarb
 2352,2276,6/24/2015,Plagas,Químico,teflubenzurom
-2352,2276,5/21/2015,Malezas,Químico,"glifosato  y 2,4D + picloram"
+"2352,2276,5/21/2015,Malezas,Químico,""glifosato  y 2,4D + picloram"""
 2352,2276,6/24/2015,Malezas,Químico,Atrazina
 2352,2276,6/24/2015,Malezas,Químico,mesotrione
 2387,2215,6/16/2015,Enfermedades,Químico,Difenoconazole
@@ -3208,7 +3208,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2577,2403,7/4/2015,Plagas,Químico,Triflumuron
 2577,2403,7/18/2015,Plagas,Químico,Triflumuron
 2577,2403,5/25/2015,Malezas,Químico,Glifosato
-2577,2403,5/25/2015,Malezas,Químico,"Picloram + 2,4D"
+"2577,2403,5/25/2015,Malezas,Químico,""Picloram + 2,4D"""
 2577,2403,7/4/2015,Malezas,Químico,Amina 720
 2577,2403,7/4/2015,Malezas,Químico,Glufosinato de amonio
 2578,2227,6/8/2015,Plagas,Químico,Cipermetrina
@@ -3350,9 +3350,9 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2636,2422,6/29/2015,Plagas,Químico,Lorsban 4E
 2636,2422,6/29/2015,Plagas,Químico,Cipermetrina
 2636,2422,5/28/2015,Malezas,Químico,Glifosato
-2636,2422,5/28/2015,Malezas,Químico," Picloran - 2,4 D"
+"2636,2422,5/28/2015,Malezas,Químico,"" Picloran - 2,4 D"""
 2636,2422,7/5/2015,Malezas,Químico,Paraquat
-2636,2422,7/5/2015,Malezas,Químico," Picloran y 2,4 D"
+"2636,2422,7/5/2015,Malezas,Químico,"" Picloran y 2,4 D"""
 2637,2422,6/4/2015,Plagas,Químico,Cipermetrina
 2637,2422,6/9/2015,Plagas,Químico,Teflubenzuron
 2637,2422,6/9/2015,Plagas,Químico,Cipermetrina
@@ -3360,7 +3360,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2637,2422,6/29/2015,Plagas,Químico,Lorsban 4E
 2637,2422,6/29/2015,Plagas,Químico,Cipermetrina
 2637,2422,5/20/2015,Malezas,Químico,Glifosato
-2637,2422,5/20/2015,Malezas,Químico,"Picloram - 2,4D"
+"2637,2422,5/20/2015,Malezas,Químico,""Picloram - 2,4D"""
 2637,2422,6/20/2015,Malezas,Químico,Paraquat
 2637,2422,6/20/2015,Malezas,Químico,Picloram - 2.4D
 2641,2423,5/12/2015,Plagas,Químico,Cipermetrina
@@ -3836,7 +3836,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 2892,2612,6/29/2015,Plagas,Químico,FIPRONIL
 2892,2612,6/12/2015,Malezas,Químico,Glifosato
 2893,2598,5/21/2015,Plagas,Químico,CIPERMETRINA
-2895,2599,6/4/2015,Malezas,Químico,"2,4D"
+"2895,2599,6/4/2015,Malezas,Químico,""2,4D"""
 2898,2607,5/21/2015,Plagas,Químico,SPENITORAM
 2901,2609,5/18/2015,Plagas,Químico,Cipermetrina
 2902,2605,5/22/2015,Plagas,Químico,SPENITORAM
@@ -4208,7 +4208,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3160,2825,10/11/2015,Plagas,Químico,Clorpirifos
 3160,2825,9/12/2015,Malezas,Químico,Diuron
 3161,2826,9/10/2015,Malezas,Químico,Glifosato
-3161,2826,9/10/2015,Malezas,Químico,"AMINA 2,4D"
+"3161,2826,9/10/2015,Malezas,Químico,""AMINA 2,4D"""
 3162,1744,10/28/2015,Plagas,Químico,EMAMECTINA
 3162,1744,11/10/2015,Plagas,Químico,Lorsban 4E
 3162,1744,11/23/2015,Malezas,Químico,GLUFOSINATO DE AMONIO
@@ -4232,14 +4232,14 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3167,2836,10/10/2015,Plagas,Químico,Cipermetrina
 3167,2836,11/8/2015,Plagas,Químico,Emamectina benzoato
 3167,2836,10/10/2015,Malezas,Químico,Glifosato
-3167,2836,10/10/2015,Malezas,Químico,"AMINA 2,4D"
+"3167,2836,10/10/2015,Malezas,Químico,""AMINA 2,4D"""
 3167,2836,11/8/2015,Malezas,Químico,GLUFOSINATO DE AMONIO
 3168,2836,10/10/2015,Plagas,Químico,Cipermetrina
 3168,2836,10/30/2015,Plagas,Químico,Emamectina benzoato
 3168,2836,11/14/2015,Plagas,Químico,Spinetoram
 3168,2836,11/20/2015,Plagas,Químico,Spinetoram
 3168,2836,10/10/2015,Malezas,Químico,Glifosato
-3168,2836,10/10/2015,Malezas,Químico,"AMINA 2,4D"
+"3168,2836,10/10/2015,Malezas,Químico,""AMINA 2,4D"""
 3168,2836,11/9/2015,Malezas,Químico,GLUFOSINATO DE AMONIO
 3169,2086,10/28/2015,Plagas,Químico,INHIBIDOR DE QUITINA
 3169,2086,11/10/2015,Plagas,Químico,CIPERMETRINA
@@ -4695,10 +4695,10 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3294,2909,10/28/2015,Plagas,Químico,Teflubenzuron
 3294,2909,11/3/2015,Plagas,Químico,Emamectina benzoato
 3294,2909,10/3/2015,Malezas,Químico,Glifosato
-3294,2909,10/3/2015,Malezas,Químico,"AMINA 2,4D"
+"3294,2909,10/3/2015,Malezas,Químico,""AMINA 2,4D"""
 3295,2909,10/27/2015,Plagas,Químico,Teflubenzuron
 3295,2909,10/3/2015,Malezas,Químico,Glifosato
-3295,2909,10/3/2015,Malezas,Químico,"AMINA 2,4D"
+"3295,2909,10/3/2015,Malezas,Químico,""AMINA 2,4D"""
 3296,1524,4/14/2016,Plagas,Químico,CIPERMETRINA
 3296,1524,4/14/2016,Plagas,Químico,Imidacloprid
 3297,2910,10/23/2015,Plagas,Químico,CIPERMETRINA
@@ -5806,13 +5806,13 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3697,3678,4/14/2016,Plagas,Químico,Cipermetrina
 3698,3688,5/14/2016,Plagas,Químico,Cipermetrina
 3698,3688,6/22/2016,Plagas,Químico,Benzoato Emamectina
-3698,3688,5/14/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3698,3688,5/14/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3698,3688,5/14/2016,Malezas,Químico,Glifosato
 3698,3688,6/13/2016,Malezas,Químico,Glufosinato de amonio
 3698,3688,6/26/2016,Enfermedades,Químico,AZOXYSTROBIN + DIFECONAZOL
 3699,3688,5/17/2016,Plagas,Químico,Cipermetrina
 3699,3688,6/25/2016,Plagas,Químico,Benzoato Emamectina
-3699,3688,5/17/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3699,3688,5/17/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3699,3688,5/17/2016,Malezas,Químico,Glifosato
 3699,3688,6/16/2016,Malezas,Químico,Glufosinato de amonio
 3699,3688,6/28/2016,Enfermedades,Químico,AZOXYSTROBIN + DIFECONAZOL
@@ -5826,7 +5826,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3701,3688,5/17/2016,Plagas,Químico,Cipermetrina
 3701,3688,6/15/2016,Plagas,Químico,Benzoato Emamectina
 3701,3688,6/29/2016,Plagas,Químico,Benzoato Emamectina
-3701,3688,5/17/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3701,3688,5/17/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3701,3688,5/17/2016,Malezas,Químico,Glifosato
 3701,3688,6/6/2016,Malezas,Químico,Glufosinato de amonio
 3701,3688,6/29/2016,Enfermedades,Químico,AZOXYSTROBIN + DIFECONAZOL
@@ -5981,7 +5981,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3859,3884,6/25/2016,Plagas,Químico,Lufenuron
 3859,3884,7/15/2016,Plagas,Químico,Cipermetrina
 3859,3884,7/15/2016,Plagas,Químico,Lufenuron
-3859,3884,5/16/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3859,3884,5/16/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3859,3884,5/16/2016,Malezas,Químico,Glifosato
 3859,3884,6/11/2016,Malezas,Químico,Glufosinato de amonio
 3859,3884,6/11/2016,Malezas,Químico,Atrazina
@@ -5990,7 +5990,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3860,3884,6/7/2016,Plagas,Químico,Lufenuron
 3860,3884,7/15/2016,Plagas,Químico,Cipermetrina
 3860,3884,7/15/2016,Plagas,Químico,Lufenuron
-3860,3884,5/12/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3860,3884,5/12/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3860,3884,5/12/2016,Malezas,Químico,Glifosato
 3860,3884,6/7/2016,Malezas,Químico,Glufosinato de amonio
 3860,3884,6/7/2016,Malezas,Químico,Atrazina
@@ -5999,7 +5999,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3862,3884,5/23/2016,Plagas,Químico,Lufenuron
 3862,3884,7/6/2016,Plagas,Químico,Cipermetrina
 3862,3884,7/6/2016,Plagas,Químico,Lufenuron
-3862,3884,5/4/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3862,3884,5/4/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3862,3884,5/4/2016,Malezas,Químico,Glifosato
 3862,3884,5/23/2016,Malezas,Químico,Glufosinato de amonio
 3862,3884,5/23/2016,Malezas,Químico,Atrazina
@@ -6044,7 +6044,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3885,4409,5/30/2016,Plagas,Químico,Cipermetrina + Clorpirifos
 3885,4409,6/9/2016,Plagas,Químico,Spinetoran
 3885,4409,6/9/2016,Plagas,Químico,Cipermetrina + Clorpirifos
-3885,4409,4/26/2016,Malezas,Químico,"AMINA 2,4D"
+"3885,4409,4/26/2016,Malezas,Químico,""AMINA 2,4D"""
 3885,4409,4/26/2016,Malezas,Químico,Glifosato
 3885,4409,5/28/2016,Malezas,Químico,Glifosato
 3885,4409,5/28/2016,Malezas,Químico,Atrazina
@@ -6055,14 +6055,14 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3888,4409,5/30/2016,Plagas,Químico,Cipermetrina + Clorpirifos
 3888,4409,6/9/2016,Plagas,Químico,Spinetoran
 3888,4409,6/9/2016,Plagas,Químico,Cipermetrina + Clorpirifos
-3888,4409,4/26/2016,Malezas,Químico,"AMINA 2,4D"
+"3888,4409,4/26/2016,Malezas,Químico,""AMINA 2,4D"""
 3888,4409,4/26/2016,Malezas,Químico,Glifosato
 3888,4409,5/28/2016,Malezas,Químico,Glifosato
 3888,4409,5/28/2016,Malezas,Químico,Atrazina
 3888,4409,6/9/2016,Enfermedades,Químico,TEBUCONAZOL + TRIFLOXYSTROBIN
 3890,4409,4/26/2016,Plagas,Químico,Cipermetrina + Clorpirifos
 3890,4409,4/26/2016,Malezas,Químico,Glifosato
-3890,4409,4/26/2016,Malezas,Químico,"AMINA 2,4D"
+"3890,4409,4/26/2016,Malezas,Químico,""AMINA 2,4D"""
 3890,4409,5/28/2016,Malezas,Químico,Glifosato
 3890,4409,5/28/2016,Malezas,Químico,Atrazina
 3890,4409,6/10/2016,Enfermedades,Químico,TEBUCONAZOL + TRIFLOXYSTROBIN
@@ -6169,7 +6169,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3968,3465,3/31/2016,Malezas,Químico,Glifosato
 3968,3465,5/19/2016,Malezas,Químico,Paraquat
 3970,4445,4/13/2016,Plagas,Químico,BENZOMECTINA
-3970,4445,4/13/2016,Malezas,Químico,"AMINA 2,4D"
+"3970,4445,4/13/2016,Malezas,Químico,""AMINA 2,4D"""
 3970,4445,5/6/2016,Malezas,Químico,PARAQUAT
 3971,4456,3/30/2016,Plagas,Químico,CIPERMETRINA
 3971,4456,4/14/2016,Plagas,Químico,BENZOMECTINA
@@ -6193,18 +6193,18 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3981,2375,6/16/2016,Plagas,Químico,INHIBIDOR DE QUITINA
 3981,2375,6/16/2016,Plagas,Químico,Tebufenozide
 3981,2375,5/7/2016,Malezas,Químico,Glifosato
-3981,2375,5/7/2016,Malezas,Químico,"AMINA 2,4D"
+"3981,2375,5/7/2016,Malezas,Químico,""AMINA 2,4D"""
 3981,2375,6/2/2016,Malezas,Químico,Glufosinato de amonio
-3981,2375,6/2/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3981,2375,6/2/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3981,2375,6/16/2016,Enfermedades,Químico,Azoxistrobin + flutriafol
 3981,2375,6/16/2016,Enfermedades,Químico,Azoxystrobin + Tebuconazole
 3982,4512,3/30/2016,Plagas,Químico,Piretroides
 3982,4512,4/10/2016,Plagas,Químico,IMIDACLOPRID+THIODICARB
 3983,2375,5/4/2016,Plagas,Químico,Cipermetrina
 3983,2375,5/4/2016,Malezas,Químico,Glifosato
-3983,2375,5/4/2016,Malezas,Químico,"AMINA 2,4D"
+"3983,2375,5/4/2016,Malezas,Químico,""AMINA 2,4D"""
 3983,2375,5/27/2016,Malezas,Químico,Glufosinato de amonio
-3983,2375,5/27/2016,Malezas,Químico,"Picloram + 2,4 D"
+"3983,2375,5/27/2016,Malezas,Químico,""Picloram + 2,4 D"""
 3983,2375,6/15/2016,Enfermedades,Químico,Propiconazole + Tebuconazole
 3983,2375,6/15/2016,Enfermedades,Químico,Fosetyl aluminio
 3984,2375,5/4/2016,Plagas,Químico,ALFACIPERMETRINA
@@ -6213,7 +6213,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 3984,2375,6/16/2016,Plagas,Químico,Clorantraniliprol
 3984,2375,6/16/2016,Plagas,Químico,ALFACIPERMETRINA
 3984,2375,5/4/2016,Malezas,Químico,Glifosato
-3984,2375,5/4/2016,Malezas,Químico,"AMINA 2,4D"
+"3984,2375,5/4/2016,Malezas,Químico,""AMINA 2,4D"""
 3984,2375,6/16/2016,Enfermedades,Químico,Propiconazole + Tebuconazole
 4111,4428,4/25/2016,Plagas,Químico,Lorsban 4E
 4111,4428,5/10/2016,Plagas,Químico,CIPERMETRINA
@@ -6320,14 +6320,14 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4249,1923,6/10/2016,Plagas,Químico,Spinetoram
 4249,1923,6/10/2016,Plagas,Químico,Cipermetrina
 4249,1923,5/11/2016,Malezas,Químico,Glifosato
-4249,1923,5/11/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4249,1923,5/11/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4249,1923,6/2/2016,Malezas,Químico,Glufosinato de amonio
 4249,1923,6/2/2016,Malezas,Químico,Atrazina
 4250,1923,6/4/2016,Plagas,Químico,Spinetoram
 4250,1923,6/4/2016,Plagas,Químico,Cipermetrina
 4250,1923,6/18/2016,Plagas,Químico,Landachialotrina + Teflubenzuron
 4250,1923,5/12/2016,Malezas,Químico,Glifosato
-4250,1923,5/12/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4250,1923,5/12/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4250,1923,6/3/2016,Malezas,Químico,Glufosinato de amonio
 4250,1923,6/3/2016,Malezas,Químico,Atrazina
 4250,1923,6/13/2016,Malezas,Químico,Glufosinato de amonio
@@ -6340,7 +6340,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4251,1923,6/9/2016,Plagas,Químico,Cipermetrina
 4251,1923,6/18/2016,Plagas,Químico,Landachialotrina + Teflubenzuron
 4251,1923,5/10/2016,Malezas,Químico,Glifosato
-4251,1923,5/10/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4251,1923,5/10/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4251,1923,6/1/2016,Malezas,Químico,Glufosinato de amonio
 4251,1923,6/1/2016,Malezas,Químico,Atrazina
 4251,1923,6/18/2016,Enfermedades,Químico,Propiconazol
@@ -6353,7 +6353,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4252,4622,5/15/2016,Malezas,Químico,Dimeteamina + Saflufenacil
 4252,4622,5/15/2016,Malezas,Químico,Glifosato
 4252,4622,6/5/2016,Malezas,Químico,Glufosinato de amonio
-4252,4622,6/5/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4252,4622,6/5/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4252,4622,7/1/2016,Enfermedades,Químico,Propiconazole + Tebuconazole
 4275,2033,5/13/2016,Plagas,Químico,BENZOMECTINA
 4275,2033,5/27/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
@@ -6400,7 +6400,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4308,4664,4/30/2016,Plagas,Químico,CIPERMETRINA
 4308,4664,4/30/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
 4309,4669,5/19/2016,Plagas,Químico,CIPERMETRINA
-4309,4669,5/6/2016,Malezas,Químico,"DOCLORAN + 2,4D"
+"4309,4669,5/6/2016,Malezas,Químico,""DOCLORAN + 2,4D"""
 4310,4672,4/30/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
 4310,4672,4/30/2016,Malezas,Químico,ATRAZINA
 4311,4670,5/5/2016,Malezas,Químico,Glifosato
@@ -6475,9 +6475,9 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4341,4705,4/28/2016,Plagas,Químico,ALFACIPERMETRINA
 4341,4705,5/28/2016,Plagas,Químico,Emamectina Benzoato
 4341,4705,4/28/2016,Malezas,Químico,Glifosato
-4341,4705,4/28/2016,Malezas,Químico,"AMINA 2,4D"
+"4341,4705,4/28/2016,Malezas,Químico,""AMINA 2,4D"""
 4341,4705,5/23/2016,Malezas,Químico,Glufosinato de amonio
-4341,4705,5/23/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4341,4705,5/23/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4341,4705,6/8/2016,Enfermedades,Químico,Propiconazole + Tebuconazole
 4341,4705,6/8/2016,Enfermedades,Químico,Fosetil Aluminio + Sulfato de Cobre
 4342,4704,3/12/2016,Plagas,Químico,THIAMETOXAM+LAMBDACIALOTRINA
@@ -6497,15 +6497,15 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4348,4440,5/12/2016,Plagas,Químico,Lorsban 4E
 4348,4440,5/25/2016,Plagas,Químico,CIPERMETRINA
 4348,4440,5/3/2016,Malezas,Químico,ATRAZINA
-4348,4440,5/3/2016,Malezas,Químico,"DOCLORAN + 2,4D"
+"4348,4440,5/3/2016,Malezas,Químico,""DOCLORAN + 2,4D"""
 4349,4433,5/12/2016,Plagas,Químico,CIPERMETRINA
 4349,4433,5/12/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
 4349,4433,5/12/2016,Malezas,Químico,ATRAZINA
 4352,4622,5/11/2016,Plagas,Químico,Cipermetrina
 4352,4622,5/11/2016,Malezas,Químico,Glifosato
-4352,4622,5/11/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4352,4622,5/11/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4352,4622,6/5/2016,Malezas,Químico,Glufosinato de amonio
-4352,4622,6/5/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4352,4622,6/5/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4352,4622,6/20/2016,Enfermedades,Químico,Propiconazole + Tebuconazole
 4352,4622,6/20/2016,Enfermedades,Químico,Fosetil de aluminio + Sulfato de cobre
 4353,4434,5/20/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
@@ -6556,25 +6556,25 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4363,4428,5/3/2016,Malezas,Químico,GLIFOSATO
 4363,4428,5/3/2016,Malezas,Químico,ATRAZINA
 4364,1843,6/19/2016,Malezas,Químico,GLIFOSATO
-4364,1843,6/19/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4364,1843,6/19/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4364,1843,7/13/2016,Malezas,Químico,GLIFOSATO
-4364,1843,7/13/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4364,1843,7/13/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4365,1844,6/20/2016,Plagas,Químico,Clorpirifos
 4365,1844,7/10/2016,Plagas,Químico,Imidacloprid
 4365,1844,7/10/2016,Plagas,Químico,CIPERMETRINA
 4365,1844,7/14/2016,Plagas,Químico,diflubenzuron + landachyalotrina
 4365,1844,7/28/2016,Plagas,Químico,spinetoram
 4365,1844,6/20/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
-4365,1844,6/20/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4365,1844,6/20/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4365,1844,7/19/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
-4365,1844,7/19/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4365,1844,7/19/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4366,1844,5/27/2016,Plagas,Químico,Spinetoram
 4366,1844,5/27/2016,Plagas,Químico,CIPERMETRINA
 4366,1844,6/3/2016,Plagas,Químico,Teflubenzuron
 4366,1844,6/3/2016,Plagas,Químico,Cipermetrina
 4366,1844,6/6/2016,Plagas,Químico,Spinetoram
 4366,1844,6/25/2016,Plagas,Químico,diflubenzuron + landachyalotrina
-4366,1844,5/9/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4366,1844,5/9/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4366,1844,5/9/2016,Malezas,Químico,GLIFOSATO
 4366,1844,6/6/2016,Malezas,Químico,Glufosinato de amonio
 4366,1844,6/6/2016,Malezas,Químico,Atrazina
@@ -6732,14 +6732,14 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4414,2879,6/13/2016,Plagas,Químico,Spinetoram
 4414,2879,5/11/2016,Malezas,Químico,Glifosato
 4414,2879,6/6/2016,Malezas,Químico,Glifosato
-4414,2879,6/6/2016,Malezas,Químico,"Picloram 2,4D"
+"4414,2879,6/6/2016,Malezas,Químico,""Picloram 2,4D"""
 4415,4520,5/5/2016,Plagas,Químico,CIPERMETRINA
 4415,4520,5/5/2016,Malezas,Químico,ATRAZINA
 4416,4519,5/11/2016,Plagas,Químico,CIPERMETRINA
 4416,4519,5/21/2016,Plagas,Químico,CIPERMETRINA
 4416,4519,6/2/2016,Plagas,Químico,Lorsban 4E
 4416,4519,5/11/2016,Malezas,Químico,ATRAZINA
-4416,4519,5/11/2016,Malezas,Químico,"AMINA 2,4D"
+"4416,4519,5/11/2016,Malezas,Químico,""AMINA 2,4D"""
 4417,2879,5/11/2016,Plagas,Químico,Cipermetrina
 4417,2879,5/27/2016,Plagas,Químico,Cipermetrina
 4417,2879,6/5/2016,Plagas,Químico,Cipermetrina
@@ -6753,7 +6753,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4419,2904,5/7/2016,Plagas,Químico,Cipermetrina
 4419,2904,5/25/2016,Plagas,Químico,Teflubenzuron
 4419,2904,6/8/2016,Plagas,Químico,Emamectina
-4419,2904,5/7/2016,Malezas,Químico,"picloram 2,4D"
+"4419,2904,5/7/2016,Malezas,Químico,""picloram 2,4D"""
 4419,2904,5/7/2016,Malezas,Químico,Glifosato
 4419,2904,6/4/2016,Malezas,Químico,Glufosinato de amonio
 4420,4515,4/20/2016,Plagas,Químico,CIPERMETRINA
@@ -6761,20 +6761,20 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4420,4515,4/20/2016,Malezas,Químico,ATRAZINA
 4421,2904,5/7/2016,Plagas,Químico,Cipermetrina
 4421,2904,5/7/2016,Malezas,Químico,Glifosato
-4421,2904,5/7/2016,Malezas,Químico,"Picloram 2,4D"
+"4421,2904,5/7/2016,Malezas,Químico,""Picloram 2,4D"""
 4421,2904,5/27/2016,Malezas,Químico,Glifosato
-4421,2904,5/27/2016,Malezas,Químico,"Picloram 2,4D"
+"4421,2904,5/27/2016,Malezas,Químico,""Picloram 2,4D"""
 4422,4516,5/12/2016,Plagas,Químico,CIPERMETRINA
 4422,4516,5/28/2016,Plagas,Químico,Lorsban 4E
 4422,4516,5/12/2016,Malezas,Químico,ATRAZINA
-4422,4516,5/12/2016,Malezas,Químico,"AMINA 2,4D"
+"4422,4516,5/12/2016,Malezas,Químico,""AMINA 2,4D"""
 4423,4429,5/23/2016,Plagas,Químico,CIPERMETRINA
 4423,4429,6/2/2016,Plagas,Químico,Lorsban 4E
 4423,4429,5/23/2016,Malezas,Químico,ATRAZINA
 4424,4426,5/10/2016,Plagas,Químico,CIPERMETRINA
 4424,4426,5/25/2016,Plagas,Químico,Lorsban 4E
 4424,4426,5/10/2016,Malezas,Químico,ATRAZINA
-4424,4426,5/10/2016,Malezas,Químico,"AMINA 2,4D"
+"4424,4426,5/10/2016,Malezas,Químico,""AMINA 2,4D"""
 4425,4422,5/2/2016,Malezas,Químico,GLIFOSATO
 4425,4422,5/2/2016,Malezas,Químico,ATRAZINA
 4426,4422,4/30/2016,Malezas,Químico,GLIFOSATO
@@ -6798,7 +6798,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4431,2928,6/4/2016,Malezas,Químico,Glufosinato de amonio
 4432,2905,5/30/2016,Plagas,Químico,Cipermetrina
 4432,2905,5/30/2016,Malezas,Químico,Glifosato
-4432,2905,5/30/2016,Malezas,Químico,"Picloram + 2,4 D"
+"4432,2905,5/30/2016,Malezas,Químico,""Picloram + 2,4 D"""
 4433,2905,5/29/2016,Plagas,Químico,Cipermetrina
 4433,2905,5/29/2016,Malezas,Químico,Glifosato
 4433,2905,5/29/2016,Malezas,Químico,Glifosato
@@ -6840,7 +6840,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4442,4518,4/18/2016,Plagas,Químico,CIPERMETRINA
 4442,4518,5/15/2016,Plagas,Químico,Lorsban 4E
 4442,4518,4/18/2016,Malezas,Químico,ATRAZINA
-4442,4518,4/18/2016,Malezas,Químico,"AMINA 2,4D"
+"4442,4518,4/18/2016,Malezas,Químico,""AMINA 2,4D"""
 4443,2927,5/4/2016,Plagas,Químico,Cipermetrina
 4443,2927,5/4/2016,Malezas,Químico,Glifosato
 4443,2927,5/30/2016,Malezas,Químico,Glifosato
@@ -6860,7 +6860,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4447,4510,4/25/2016,Plagas,Químico,Lorsban 4E
 4447,4510,5/26/2016,Plagas,Químico,CIPERMETRINA
 4447,4510,5/8/2016,Malezas,Químico,ATRAZINA
-4447,4510,5/8/2016,Malezas,Químico,"AMINA 2,4D"
+"4447,4510,5/8/2016,Malezas,Químico,""AMINA 2,4D"""
 4448,4427,5/12/2016,Plagas,Químico,CIPERMETRINA
 4448,4427,5/27/2016,Plagas,Químico,Lorsban 4E
 4448,4427,5/12/2016,Malezas,Químico,Atrazina
@@ -6924,7 +6924,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4497,4837,5/10/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
 4497,4837,5/10/2016,Malezas,Químico,Atrazina
 4498,4836,5/5/2016,Malezas,Químico,ATRAZINA
-4498,4836,5/5/2016,Malezas,Químico,"AMINA 2,4D"
+"4498,4836,5/5/2016,Malezas,Químico,""AMINA 2,4D"""
 4498,4836,5/5/2016,Plagas,Químico,Cipermetrina
 4499,4523,3/20/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
 4500,4790,6/10/2016,Plagas,Químico,BENZOATO DE EMAMECTINA
@@ -6991,7 +6991,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4516,4838,5/11/2016,Plagas,Químico,Cipermetrina
 4516,4838,5/25/2016,Plagas,Químico,Cipermetrina
 4516,4838,5/11/2016,Malezas,Químico,Atrazina
-4516,4838,5/11/2016,Malezas,Químico,"AMINA 2,4D"
+"4516,4838,5/11/2016,Malezas,Químico,""AMINA 2,4D"""
 4517,4758,6/10/2016,Plagas,Químico,CIPERMETRINA
 4517,4758,6/28/2016,Plagas,Químico,SPINETORAM
 4517,4758,6/15/2016,Malezas,Químico,GLIFOSATO
@@ -7022,7 +7022,7 @@ ID_EVENTO,ID_PROD,FECHA_CONTROL,TIPO_OBJETIVO,TIPO_CONTROL,MOLECULA_ACTIVA
 4527,4798,4/21/2016,Plagas,Químico,Cipermetrina
 4527,4798,5/16/2016,Plagas,Químico,Piretroides
 4527,4798,4/21/2016,Malezas,Químico,Atrazina
-4527,4798,4/21/2016,Malezas,Químico,"AMINA 2,4D"
+"4527,4798,4/21/2016,Malezas,Químico,""AMINA 2,4D"""
 4528,4801,4/17/2016,Malezas,Químico,GLUFOSINATO DE AMONIO
 4528,4801,4/17/2016,Malezas,Químico,Atrazina
 4529,4806,4/20/2016,Plagas,Químico,INHIBIDOR DE QUITINA
